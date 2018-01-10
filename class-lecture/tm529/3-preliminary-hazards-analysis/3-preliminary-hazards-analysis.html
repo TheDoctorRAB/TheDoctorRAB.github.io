@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>3. Prelminary hazards analysis</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu:500);
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Open Sans', sans-serif; }
+      h1, h2, h3 {
+        font-family: 'Ubuntu';
+        font-weight: normal;
+        }
+      .remark-container {background-color: #F5F5F5; }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-slide-content { background-color: #FFFAF0; font-size: 26px; 
+                         h1 { font-size: 38px; } h2 {font-size: 32px; } h3 { font-size: 28px; }
+       }
+      .remark-slide-number { bottom: 8px; position: absolute; right: 8px; }
+    </style>
+  </head>
+  <body>
+<textarea id="source">
+class: center, middle
+
+# TM529
+## RISK ASSESSMENT
+### Preliminary hazards analysis
+
+#### 3
+---
+# Learning outcomes
+
+Chapter 6 in the book
+
+Interpeting PHA within the context of risk assessment
+
+Applying PHA to engineering problems and work environment
+
+Develop a systematic approach to risk assessment
+---
+class: center,middle
+
+# What is a hazard?
+---
+# Preliminary hazard analysis (PHA) is a semi-quantitative analysis tool
+
+Line item tabular inventory of non trivial system hazards and countermeasures
+
+Best applied in the design and development stage  
+(early phase risk assessment tool)
+
+Identify all potential hazards and intiating events that may lead to an accident
+
+Rank the identified events according to their severity  
+Can be drawn from the risk assessment matrix from before
+---
+# Identify required hazard controls and follow-up actions
+
+Systematic process to identify hazards, prioritize, and propose mitigation
+
+To produce a Preliminary Hazard List
+
+Leading to deeper analytical tools
+ 
+Rapid Risk Ranking  
+Hazard identification (HAZID)  
+Failure mode and effects analysis (FMEA)  
+Hazard and operability review (HAZOP)  
+Human error analysis (HEA)  
+---
+# Overall risk assessment flowchart - Continual refinement
+
+![Risk chart](img/chart.png)
+---
+## Identify the hazards in this office space - Where's the coverletters for the TPS reports?!
+
+![Office space](img/office.space.jpg)
+---
+![Workplace](img/workplace.jpg)
+---
+## Risk assessment is everyone's responsibility
+
+![Simpsons](img/simpsons.jpg)
+---
+## From OSHA's top 10 warehouse citations
+
+1. Forklifts  
+2. Hazard communication  
+3. Electrical, wiring methods  
+4. Electrical, system design  
+5. Guarding floor, wall openings, holes  
+6. Exits  
+7. Mechanical power transmission  
+8. Lockout, tagout  
+9. Respiratory protection  
+10. Portable fire extinguishers 
+
+Any trends?
+---
+![Warehouse](img/warehouse.jpg)
+---
+![Loading dock](img/loading.dock.jpg)
+---
+![The Walking Dead](img/the.walking.dead.jpg)
+---
+# [PHA is used as an initial risk study in the early stages of the project](https://courses.candelalearning.com/riskassessment/chapter/preliminary-hazards-analysis/)
+
+Initially developed by US Army  
+"Army had half day, Mother!"
+
+Used to review process areas of energy released in uncontrolled manner
+
+Identify hazards and consequences  
+Start as early as possible in system life cycle
+
+Accidents are mainly caused by release of energy (table 6.3 in the book)  
+chemical, electrical, mechanical
+---
+# Identify potential hazards where energy may be released  
+
+mechanical moving parts  
+material incompatibilities  
+nuclear radiation  
+electromagnetic radiation (laser, radio, UV, etc.)  
+collisions from movement of personnel, equipment, automation
+
+toxic materials and corrosive liquids, gases stored or generated  
+all sorts of deterioration  
+subsonic or supersonic noise  
+biological, bacterial growth  
+human error  
+software, network, cyber-based 
+---
+# Identify accidental events (multiple) that may occur from each hazard 
+
+Estimate frequency of hazards  
+Estimate of the severity of each event  
+We've done this, but stopped here  
+
+Then  
+Compare initial design concepts  
+Focus on important risk issues  
+Input for PRA   
+
+You might be able to easily mitigate some events right at the start using PHA
+
+Consider PHA to be the base level of risk analysis  
+Not sufficient but a necessary start
+---
+# Adapt PHA to the system under study
+
+Not everything is applicable to every system
+
+Identify hazardous components or system elements
+
+Facility related hazards and surrounding property
+
+Interfaces between system elements related to safety (software)
+
+Operational equipment  
+Supporting equipment  
+Safety equipment and related safeguards
+
+Environmental constraints  
+Operational constraints  
+Leading to potential malfunctions to system and components
+---
+# Identify procedures related to operations, testing, maintenance, system diagnostics, emergencies
+
+Obtain potential related data cohorts  
+Reports, accident statistics, regulatory reviews if you know someone  
+Or existing systems and PHAs  
+Bring in some experts for an outside review
+
+Model energy or material flow in the system and develop operational modes  
+Review facility technical specifications if they are available  
+
+Not so easy even though 'qualitative'
+---
+# PHA is most effectively used during the initial development of a process and the procedures for performing that process
+
+In a PHA, idea is to list the hazards and not to analyze each step in the procedure  
+Very top-level analysis, but when done properly, very useful for more comprehensive PRA
+
+Would we really need this with mature systems?  
+Like AP1000?
+---
+# Identify where each hazard will occur  
+
+Significance   
+
+Method to eliminate or mitigate   
+
+How associated risk will be controlled
+---
+# Identify hazardous states of a system as part of the conceptual design phase
+
+Something I can use in my own research
+
+Establish framework  
+input  
+boundaries between the system(s)  
+system interaction and dependencies  
+system domain  
+system functionality for each component and holistically  
+layout  
+process flow  
+output
+---
+# Identify system hazards and materials
+
+related accidents  
+
+accident sequences  
+
+energy use   
+---
+# Assign each accident a severity categorization
+
+Quantify frequency of each accident sequence
+
+Assign each hazard a preliminary random and systematic probability target  
+6.1.1. in the book
+
+Propose safety features needed during the design and development phase
+
+You want to be able to head off low risk that can be mitigated by design and high risk that needs more work 
+---
+![Pyroprocessing flowsheet](img/pyroprocessing.flowsheet.jpg)
+---
+### Forward analysis identifies events then consequences
+![Forward PHA](img/forward.jpg)
+---
+### Backward analysis identifies hazards to find events
+![Backward PHA](img/backward.jpg)
+---
+### Use top down analysis to decompose the events
+![Top down](img/top.down.jpg)
+---
+### Use bottom up analysis to decompose the hazard
+![Bottom up](img/bottom.up.jpg)
+---
+# PHA should take place during different stages in the life cycle
+
+New facilities as part of design before committing resources
+
+During construction, things are going to come up that were not anticipated  
+We know what we know  
+We know what we don't know  
+We don't know what we don't know
+
+Operational readiness must be conducted prior to system start up
+---
+# Periodic analyze during operational lifetime
+
+Maybe due to regulations
+
+Anytime there is a modification  
+Safety analysis at USA nuclear plants after Fukushima  
+NRC regulations for technical specification, performance based goals, best practices  
+
+Finally, when decommissioning new hazards will arise  
+Disposal of materials, chemicals, etc.
+
+Really think about the wide range of engineering structures, facilities, etc., about how important this is
+---
+### Probability of occurrence of unexpected hazardous release determines credibility
+
+Less than 1E-06: less than credible  
+Not expected during facility lifetime
+
+1E-06 - 1E-04: credible and extremely unlikely  
+Probably not occur during facility lifetime
+
+1E-04 - 1E-02: credible and unlikely  
+May occur once during facility lifetime  
+Natural phenomena  
+Trained worker error (do not agree with this at all)
+
+1E-02 - 1E-01: very likely  
+Events may often occur
+---
+# If you can't guess at probabilities, estimate
+
+Frequent: occurs often  
+Likely: occurs several times  
+Occasional: occurs sporadically  
+Seldom: not negligible but unlikely  
+Unlikely: neglibible 
+
+These can be site or facility specific too
+---
+### Rank hazards in terms of qualitative consequences or severity
+
+**Class I: negligible**  
+worst case effects cause less than minor injury, occupational illness, system damage
+
+**Class II: marginal effects**  
+worse case effects cause minor occupational illness, system damage
+
+**Class III: critical**  
+worse case effects cause severe (nondisabling) personnel injury, severe occupational illness, major system damage
+
+**Class IV: catastrophic**  
+worse case effects cause death, disabling injury, system loss
+---
+# Most reliable solution is to eliminate source of hazard
+
+No problem amirite?!
+
+cf. Flushing automobile cooling system example in 6.2  and crib in 6.3
+---
+# Beware common cause events or multiple consequences
+
+Different events may lead to similar consequences
+
+Ranking hazards needs a normalized metric
+
+So severity must be carefully determined 
+
+Consequences should be characterized as precisely or descriptively as possible 
+
+Estimate the frequency that initiating event produces a specific consequence 
+
+This means that for each initiating event, there might be several consequences with associated frequencies
+---
+# Example
+
+For a typical warehouse environment
+
+Worker (sober) falls off a ladder  
+
+Risk = low severity but moderate frequency
+
+Could be fatal, but low frequency, not negligible
+
+Both should be considered in PHA
+
+How can this risk be mitigated?
+
+Maybe you have a separate section where fatalities are considered
+
+How else could this be classified?
+---
+# Clearer comparisons can be made now
+![Matrix](img/matrix.jpg)
+---
+![Farmer's chart](img/farmer.jpg)
+---
+# How can hazards be eliminated?
+
+**Substitution**  
+Use safe materials  
+Simple hardware devices may be safer than using a computer
+No technological imperative that says we MUST use computers to control dangerous devices  
+Introducing new technology introduces unknowns and even unk−unks
+
+**Simplify**  
+Limit process states  
+Easily understood and readable  
+Interactions between components are limited and straightforward  
+Code includes only minimum features and capability required by system  
+No unnecessary, undocumented features, unused executable code  
+Worst case timing is determinable  
+Design so that structural decomposition matches functional decomposition
+---
+# How else can hazards be eliminated?
+
+**Decouple**  
+Tightly coupled system is one that is highly interdependent  
+Failure or unplanned behavior in one can rapidly affect status of others  
+System accidents caused by unplanned interactions  
+Coupling creates increased number of interfaces and potential interactions
+
+**Passive safeguards**  
+Fail to a safe state
+
+**Redundancy and diversity**
+
+**Human error**
+---
+# In PHA, idea is to just rank the hazards and not to analyze each step in the procedure
+
+Event can carry wide range of consequences from negligible to catastrophic 
+
+Fire alone could be easy to put out or burn down the whole place
+
+It would seen that an envelope of potential consequences would be sensible
+
+Definitely worst case and maybe average consequence +/- something
+
+Expert judgment is critical if there is a lack of data or experience 
+---
+# What's so good about PHA?
+
+Helps ensure that the system is safe
+
+Modifications are less expensive and easier to implement in earlier design stages  
+This seems like the motivation for 'inventing' safeguardability (explain)
+
+Decreases design time by reducing the number of surprises  
+Identifies and provides a log of primary system hazards and corresponding risks
+
+Provides systematic evaluation early enough to allow for design mitigation (Rokkasho)
+
+Provides information to management to make decisions to allocate resources to reduce risk
+
+Provides relatively quick review of most significant system risks
+---
+# What's not so good about PHA?
+
+Hazards must be foreseen by the analysts  
+Effects of interactions between hazards are not easily recognized  
+You don't know what you don't know  
+Especially for new systems like pyroprocessing
+
+Can fail to assess risks well of combined hazards of common failure modes  
+Then underrepresent overall system risk
+
+Insufficient or inappropriate targets chosen, assessment is flawed
+
+Garbage in = garbage out  
+Wrong assumptions for unknown data, etc.
+
+Too many targets, PHA becomes large and costly  
+Which misses the point
+---
+![doggehs](img/final.jpg)
+</textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+    <script type="text/javascript">
+        var options = {};
+        var renderMath = function() {
+            renderMathInElement(document.body, {delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "\\[", right: "\\]", display: false},
+            ]});
+        }
+        var slideshow = remark.create({
+          // Set the slideshow display ratio
+          // Default: '4:3'
+          // Alternatives: '16:9', ...
+          ratio: '16:9',
+          // Navigation options
+          navigation: {
+          // Enable or disable navigating using scroll
+          // Default: true
+          // Alternatives: false
+          scroll: true,
+          // Enable or disable navigation using touch
+          // Default: true
+          // Alternatives: false
+          touch: true,
+          // Enable or disable navigation using click
+          // Default: false
+          // Alternatives: true
+          click: false
+          },
+          // Customize slide number label, either using a format string..
+          slideNumberFormat: '%current%',
+          // Enable or disable counting of incremental slides in the slide counting
+          countIncrementalSlides: false 
+          }, renderMath);
+    </script>
+    <script type="text/javascript">
+     /**
+      * a simple zoom in/out/reset for remark.js
+      *
+      * Hot key:
+      *   + : zoom in
+      *   - : zoom out
+      *   0 : reset zoom
+      *
+      * CAVEAT: when switching between full screen and normal screen,
+      *         the zoom factor may not function correctly.
+      *         RELOAD the page, if necessary.
+      *
+      * 
+      * @author William Yeh <william.pjyeh@gmail.com>
+      * @date   2015-01-15
+      *
+      * @license Apache License, Version 2.0.
+      * Copyright © 2015 William Yeh.
+      */
+      var ZOOM_TEXT_SELECTOR =
+       ".remark-slide-content p"
+       + "," + ".remark-slide-content .remark-code-line"
+       ;
+
+      var ZOOM_IMG_SELECTOR =
+       ".remark-slide-content img:hover"
+       ;
+
+      var ZOOM_IMG_RULE;
+
+      var zoom_factor = 100.0;
+      document.body.style.zoom = "100%"
+    
+      function init_zoom_rule() {
+       // @see http://davidwalsh.name/add-rules-stylesheets
+       var styles = document.styleSheets[0];
+       var index = styles.insertRule(
+        ZOOM_IMG_SELECTOR + ' { transform:scale(1); }',
+        styles.cssRules.length
+        );
+
+        ZOOM_IMG_RULE = styles.cssRules.item(index);
+       }
+    
+      function apply_zoom() {
+       var elements = document.querySelectorAll(ZOOM_TEXT_SELECTOR);
+       //console.log('length:', elements.length);
+       for (var i = 0; i < elements.length; ++i) {
+        var item = elements[i];
+        item.style.fontSize = zoom_factor.toString() + '%';
+        }
+
+        ZOOM_IMG_RULE.style.transform = 'scale(' + (zoom_factor / 100) + ')';
+      }
+
+      function zoom_in() {
+       zoom_factor += 10;
+       if (zoom_factor >= 200.0)  zoom_factor = 200.0;
+       apply_zoom();
+      }
+    
+      function zoom_out() {
+       zoom_factor -= 10;
+       if (zoom_factor <= 50.0)  zoom_factor = 50.0;
+       apply_zoom();
+      }
+
+      function zoom_reset() {
+       zoom_factor = 100.0;
+       apply_zoom();
+      }
+
+      init_zoom_rule();
+      window.addEventListener("keydown", function(event) {
+       //console.log(event.keyCode);
+       switch (event.keyCode) {
+        case 187:  // '+': 187 in Chrome & Safari, 61 in FF
+        case 61:  // '+': 187 in Chrome, 61 in FF
+         zoom_in(); 
+         break;
+
+        case 189:  // '-': 189 in Chrome & Safari, 173 in FF
+        case 173:  // '-': 189 in Chrome, 173 in FF
+         zoom_out();
+         break;
+        case 48:   // '0'
+         zoom_reset();
+         break;
+       }
+      }, false);
+    </script>
+  </body>
+</html>

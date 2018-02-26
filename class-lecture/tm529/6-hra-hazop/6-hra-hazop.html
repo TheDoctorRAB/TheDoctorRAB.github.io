@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>6. HRA and HAZOP</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu:500);
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Open Sans', sans-serif; }
+      h1, h2, h3 {
+        font-family: 'Ubuntu';
+        font-weight: normal;
+        }
+      .remark-container {background-color: #F5F5F5; }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-slide-content { background-color: #FFFAF0; font-size: 26px; 
+                         h1 { font-size: 38px; } h2 {font-size: 32px; } h3 { font-size: 28px; }
+       }
+      .remark-slide-number { bottom: 8px; position: absolute; right: 8px; }
+    </style>
+  </head>
+  <body>
+<textarea id="source">
+class: center, middle
+
+# TM529
+## RISK ASSESSMENT
+### HRA and HAZOP
+
+#### 6
+
+#### .right[Bob Borrelli  
+@TheDoctorRAB]
+---
+# Learning outcomes
+
+Chapter 10
+
+Applying HRA and HAZOP
+
+Analyzing systems peformance 
+
+Assessing human reliability as part of risk
+
+HAZOP is not in the book
+
+See [OER](https://courses.candelalearning.com/riskassessment/) for information on HAZOP
+---
+class: center,middle
+# Human reliability analysis
+---
+# HRA is typically part of PRA
+
+Based on human error probability
+
+Different from the other tools so introduced here
+
+PRA --> equipment failure
+
+HRA --> analyze people response to equipment failure
+
+Though an initiating event in PRA could be due to people
+
+HRA can identify activities where human error can be reduced
+
+HRA supports PRA
+---
+### HRA "system" is series of steps or actions that involve the potential for human failure
+
+Pump trips in a reactor facility
+
+Personnel would start the other pump and then maybe untrip the first one
+
+PRA tells us the sequence resulting in the trip with an event tree maybe
+
+HRA tell us how the personnel would screw up fixing it
+
+What would be the best way to reduce probability of human error?
+
+[Dreamliner documentary](https://courses.candelalearning.com/riskassessment/chapter/contemporary-cases-in-risk-assessment-2/) talking about where to score drugs
+---
+## LOCA is the worst accident at the reactor
+
+Initiating event: rupture in coolant pipes (10.1.3)  
+How could that happen?
+
+pipe ruptures (somewhere)
+
+drywell pressure reaches 2 psig  
+(provides pressure suppression system and fission product barrier BWR)
+
+emergency core cooling system (ECCS) initiates 
+
+reactor SCRAM signal initiates   
+containment building isolates  
+emergency ventilation systems start
+
+Probably could construct and event tree since these are all success/fail
+---
+## Operators have a bunch to do if a LOCA occurs
+
+Verify ECCS initiates  
+SCRAM actions
+
+Verify containment isolation  
+Verify emergency ventilation starts
+
+Numerous manual actions all with potential for error  
+Passive safety therefore is a big deal at reactors
+
+AP1000 has numerous passive safety upgrades from Generation III designs
+
+Famous EBR-II experiment
+---
+## Operators have to act if automatic systems fails
+
+Like turning on the emergency ventilation systems
+
+For loss of onsite power, which would kill the pumps, someone may have to start generators
+
+Which was hard to do at Fukushima because they were flooded
+
+Even though these are fairly straightforward procedures there is a lot happening quickly with personnel
+
+Which leads to error
+
+As much passive safety as there can be, human action is always going to be required at some level
+---
+### Each HRA must be 'bounded' and have measurable start and end states
+
+Start point and metric for successful completion of each step is distinctly identified 
+
+For SCRAM actions
+1. Control rods inserted into core (automatic no human action) 
+2. Operator places reactor mode switch to shutdown position 
+3. Verify all control rods fully inserted
+4. Verify reactor power is decreasing
+5. Operator inserts low power level monitors
+6. Verify reactor vessel (coolant) level to be within the correct band 
+7. Verify reactor pressure to be within the correct band
+8. Verify reactor coolant pumps shift to slow speed
+9. Shift feed water control system to single element
+---
+# You need an HRA for each step 
+
+Then assess total human failure probability for SCRAM
+
+Same procedure for each event in the pipe rupture sequence
+
+Then obtain failure probability of LOCA
+
+All of this will be defined as an accident sequence in a PRA
+---
+### 'Task analysis' identifies personnel actions into basic steps
+
+Derive the smallest set of actions (very detailed)  
+Walk through the overall procedure and list what needs to be done  
+
+Include what to do if personnel fails to achieve each step in the procedure  
+
+10.2 in the book shows how to do this for "verifying all rods are inserted" (coming up next)
+
+It seems overly much, but you need all this precise actions to get operating license
+
+Walkthrough with experienced personnel 
+
+You don't want to be "umm, what's first now" when an accident happens (muscle memory)
+---
+### "User error" for a nuclear reactor accident has enormous social implications
+
+TMI and Chernobyl
+
+We had all this on our research reactor, but there was only one big button
+---
+![Rods inserted](img/hra_rods.inserted.jpg)
+---
+# Task analysis - Figure 10.1
+
+Operators must validate the sequence
+
+All the stuff to do in one NPP
+
+Why do we need to be so detailed?
+
+What would cause a failure?
+---
+![WPI 1](img/wpi.reactor1.jpg)
+---
+![WPI 2](img/wpi.reactor2.jpg)
+---
+### HRA model visually depicts each task as a failure with applicable recovery actions
+
+HRA model needs to visually depict each task as a failure with applicable recovery actions
+
+Potential human errors and their mechanisms
+
+Recovery paths if error occurs
+
+Quantify error (frequency)
+
+What would be the errors and recovery acts for the SCRAM rods sequence? 
+
+Could make an event tree or fault tree from this
+
+Though fault tree would be just one and gate (figure 10.3) for failure to verify rod insertion
+---
+## Human error probability is difficult to quantify
+
+Different responses are elicited by people in the same environment  
+
+What would be examples of human errors that could be quantified?
+
+Astronaut behavior in normal conditions and critical conditions  
+
+Psychological stress
+---
+### Performance shaping factors account for human response to stressors
+
+hot/cold  
+noise level  
+light level (my office is dark)  
+vibration  
+ergonomics  
+experience and training (this is something that can be changed)  
+management  
+time  
+stress  
+equipment design/human machine interface
+
+Now, getting into an HRA, we need to obtain real frequencies to put together a PRA
+---
+## Each task then would have an associated HEP
+
+We saw this touring the hot cell
+
+[Handbook of Human Reliability Analysis with Emphasis on Nuclear Power Plant Applications](https://courses.candelalearning.com/riskassessment/chapter/human-reliability-analysis/) 
+
+"The completion cue or sign for the task or activity is simple and
+unambiguous"
+
+Not identifying buttons may be due to labeling, or whether they're lit up
+
+Also need to establish what everything looks like under normal operations
+
+NPPs have certain instrumentation and processes not found in other facilities
+
+Now what happens when control panels are digitized?  
+How can these be formulated for a pyroprocessing facility?
+---
+## Increasing complexity with human error happens fast
+
+Technique for human error rate prediction (THERP) tables  
+
+Operator fails to find Rod Deselect button = 0.003 Table 20-12 item 2
+---
+### Obtaining human error data is really the same as equipment failure rates
+
+Search historical data for the task
+
+Expert advice 
+
+We could ask people who have worked on manipulators for hot cells
+
+Simulations of the activity can be performed and data collected 
+
+Now, there are tons of PRAs to study for related activities
+
+Delphi - NEUP study
+---
+### Performance shaping factors affect human error
+
+Performance shaping factors account for human response to stressors  
+hot/cold  
+noise level   
+light level (my office is dark)  
+vibration  
+ergonomics  
+experience and training  
+management  
+time  
+stress  
+equipment design/human machine interface
+---
+### How can we reduce human error?
+
+Technique for human error rate prediction (THERP) tables (NUREG) 
+
+Is there a procedure that is followed?  
+Pre-start checklist, log, and shutdown for WPI reactor  
+If there is an error in reactor operation, the checklist could show that  
+Procedures have to be memorized though
+
+Is there time pressure to complete the sequence?
+SCRAM actions need to be completed in about 3 minutes  
+So you need to know your actions  
+Muscle memory increases skill (table 10.4)  
+
+Familiarity can lead to cutting corners and errors  
+Single reactor operation at WPI  
+Cold start  
+---
+# Avoid dependencies
+
+Dependence is relationship between tasks (chapter 10 NUREG)
+
+Now we have a new problem  
+With reactor controls going digital  
+New cyberattacks from new equipment  
+What is an attack?  
+How do operators identify an attack?  
+How do they respond?  
+
+We need to make sure we identify the most critical procedures to analyze
+
+Don't want to waste money on simple tasks
+---
+class: middle,center
+# HAZOP
+---
+### HAZOP identifies hazards without waiting for an accident to occur
+
+Developed by Imperial Chemical Industries in early 1960s
+
+Not only for safety, but efficient operations
+
+Accidents caused by deviations from design/operating intentions
+
+Identifying potential hazards and operability problems caused by deviations from the design intent of both new and existing process plants
+
+Essential feature to review process drawings and/or procedures
+---
+### Identify all possible deviations from normal operation and associated hazards
+
+Kind of a "what if" analysis for system parameters  
+What if “temperature” of “reactor” “rises”? What happens to system?  
+System realization of perturbation (or sensitivity analysis)
+
+Requires flow model of operating plant  
+So this is not something done too early on in design phases  
+But can affect design  
+Later on in the life cycle if facility upgrades/retrofits have been made  
+Fukushima NRC USA safety analysis
+
+For use with PHA/FMEA and provides input to event trees too  
+Can offer some options to mitigate hazards
+
+HAZOP seems to me to be a limited fit for industrial facilities/reactors
+---
+### HAZOP is a structured and systematic technique for examining a defined system
+
+Identify potential hazards in the system  
+We've done that!
+
+Identifying potential operability problems with the system, causes of operational disturbances, and production deviations
+
+Ensure that all relevant deviations of process parameters are evaluated  
+Causes of deviations are human error, equipment failure, external events
+
+Deviation = Guideword + Parameter
+---
+### Operability is any process inside the design envelope that would cause a shutdown 
+
+Where a shutdown could possibly lead to a violation of environmental, health or safety regulations or negatively impact profitability
+
+Also called licensing basis envelope (LBE) with reactors
+
+More about system operation than safety
+---
+### HAZOP deals with the identification of potential deviations from the design
+intent, examination of causes, and assessment of consequences
+
+Improve operating procedures or when modifying plant 
+
+Identify possible improvements in plants where accident or incident rate is abnormally high 
+
+Time consuming and can be tedious (Theo from Simplot)
+
+Generates many failure events with insignificant risk  
+But still needs to be done 
+
+Again, can miss common cause failures
+
+Tends to ignore contributions that can be made by operator interventions 
+---
+![HAZOP flowchart](img/hazop_flowchart.jpg)
+---
+**[Flash drum example](https://courses.candelalearning.com/riskassessment/chapter/hazop/)**  
+![HAZOP flash drum](img/hazop_flash.drum.jpg)
+---
+![HAZOP analysis loop](img/hazop.loop.jpg)
+---
+class: center,middle
+# Let's go through an example
+---
+### HAZOP analysis process for flash drum
+
+1. Select component - Flash drum
+
+2. Define design intent - The flash drum separates light and heavy materials
+
+3. Select component parameter - Pressure
+
+4a. Develop deviation with [guidewords](https://courses.candelalearning.com/riskassessment/chapter/hazop/) - More/high pressure
+
+4b. List causes - Valve is stuck closed; Feed temperature too high  
+Within or outside boundary  
+Derived from independent variables
+
+4c. List consequences - Explosion  
+Process hazards  
+Operability problems 
+---
+### HAZOP analysis process for flash drum
+
+4d. Identify existing safeguards - Temperature control; Pressure control  
+Safeguards reduce risk
+
+4d. Assess safeguards - Are the controls adequate? No.
+
+4e. Recommend action - Relief valve; Alarm
+Action to remove cause, mitigate consequence
+
+Return to 4a until all deviations have been analyzed under the component parameter
+
+Return to 3 and identify new component parameter
+
+Return to 1 and select new component
+---
+### There are five types of safeguards
+
+**IDENTIFY**  
+alarm instrumentation  
+human operator detection  
+
+**COMPENSATE**  
+automatic control system
+
+**PREVENT**  
+inert blanket gas in storage of flammable substances - AP1000 water blanket
+
+**DESCALATION**  
+trip of the activity - SCRAM
+
+**RELIEVE**  
+pressure safety valves (PSV)  
+vent systems
+---
+# You can set up a chart
+
+[Recording sheet](https://red-bag.com/imageslib/BN-EG-UE105_02.pdf)
+
+[Chemical reactor](http://www.ehsdb.com/resources/Imges-3/Images-3/hazop-15.JPG?timestamp=1436341480548)
+
+[Heat exchanger](http://www.ehsdb.com/resources/Imges-3/Images-3/hazop-18.JPG?timestamp=1436342662934)
+
+[P&ID](http://group10integratedprojectmay15.weebly.com/hazop-and-pid.html)
+
+[Guidelines](http://www.etenders.gov.za/sites/default/files/tenders/240-49230111%20HAZOP%20Analysis%20Guideline.pdf)
+---
+class: middle, center
+# One more example
+---
+![Pyroprocessing flowsheet](img/pyroprocessing.flowsheet.jpg)
+---
+### HAZOP analysis process for pyroprocessing injection casting 
+
+1. Select component - Injection casting machine
+
+2. Define design intent - Manufacture metal fuel slugs that contain U+TRU
+
+3. Select component parameter - Temperature
+
+4a. Develop deviation with [guidewords](https://courses.candelalearning.com/riskassessment/chapter/hazop/) - Less temperature
+
+4b. List causes - Heater malfunction; Fails to start; Starts late; Power source failure
+
+4c. List consequences - Metal is not totally melted; Quartz molds break; Spill liquid metal
+---
+### HAZOP analysis process for flash drum
+
+4d. Identify existing safeguards - Unknown
+
+4d. Assess safeguards - None
+
+4e. Recommend action - Instrumentation; Human detection
+
+Return to 4a until all deviations have been analyzed under the component parameter
+
+Return to 3 and identify new component parameter
+
+Return to 1 and select new component
+---
+**Deviation** - LESS+TEMPERATURE - Low temperature
+
+**Causes** - Heater fails to start; Heater starts late; Power source not available
+
+**Consequences** - Metal not melted; Quartz molds break; Molten TRU spill
+
+**Protection** - Unknown
+
+**Action** - Install temperature indicator; Human detection; Positive injection operation
+---
+**Deviation** - LESS+TIME - Short injection time
+
+**Causes** - Operator error; Motor trip
+
+**Consequences** - Not enough metal injected into molds; Waste of material
+
+**Protection** - Unknown
+
+**Action** - Install timer; Human detection; Positive mold removal operation
+---
+## HAZOP has a logical structure like event and fault trees
+
+Flowing/process items are “entities”
+
+Entities have characteristic properties known as “attributes”
+
+Analysis based on possible deviations of attribute values (sensitivities)
+
+“Guide words” used to guide the analysis and designed to capture dimensions of variation
+---
+# What's good about HAZOP?
+
+Considers more than failure accidents  
+Process and operation deviations
+
+Can identify new hazards  
+Not limited to previously identified hazards
+
+Easy to apply (ish)  
+A simple method that can uncover complex accidents  
+Applicable to new designs and new design features
+---
+# Eh, HAZOP, whatevs
+
+Requires detailed plant information  
+Flowsheets, piping and instrumentation diagrams, plant layout
+
+Tends to result in protective devices rather than real design changes
+
+Relies very heavily on judgment of engineers (and?)
+
+Unusual to consider deviations for systemic factors  
+Organizational, managerial factors, management systems
+
+Difficult to apply to software (not really an automated procedure)
+
+Human behavior reduces to compliance/deviation from procedures  
+Performance factors
+---
+![doggehs](img/final.jpg)
+</textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+    <script type="text/javascript">
+        var options = {};
+        var renderMath = function() {
+            renderMathInElement(document.body, {delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "\\[", right: "\\]", display: false},
+            ]});
+        }
+        var slideshow = remark.create({
+          // Set the slideshow display ratio
+          // Default: '4:3'
+          // Alternatives: '16:9', ...
+          ratio: '16:9',
+          // Navigation options
+          navigation: {
+          // Enable or disable navigating using scroll
+          // Default: true
+          // Alternatives: false
+          scroll: true,
+          // Enable or disable navigation using touch
+          // Default: true
+          // Alternatives: false
+          touch: true,
+          // Enable or disable navigation using click
+          // Default: false
+          // Alternatives: true
+          click: false
+          },
+          // Customize slide number label, either using a format string..
+          slideNumberFormat: '%current%',
+          // Enable or disable counting of incremental slides in the slide counting
+          countIncrementalSlides: false 
+          }, renderMath);
+    </script>
+    <script type="text/javascript">
+     /**
+      * a simple zoom in/out/reset for remark.js
+      *
+      * Hot key:
+      *   + : zoom in
+      *   - : zoom out
+      *   0 : reset zoom
+      *
+      * CAVEAT: when switching between full screen and normal screen,
+      *         the zoom factor may not function correctly.
+      *         RELOAD the page, if necessary.
+      *
+      * 
+      * @author William Yeh <william.pjyeh@gmail.com>
+      * @date   2015-01-15
+      *
+      * @license Apache License, Version 2.0.
+      * Copyright © 2015 William Yeh.
+      */
+      var ZOOM_TEXT_SELECTOR =
+       ".remark-slide-content p"
+       + "," + ".remark-slide-content .remark-code-line"
+       ;
+
+      var ZOOM_IMG_SELECTOR =
+       ".remark-slide-content img:hover"
+       ;
+
+      var ZOOM_IMG_RULE;
+
+      var zoom_factor = 100.0;
+      document.body.style.zoom = "100%"
+    
+      function init_zoom_rule() {
+       // @see http://davidwalsh.name/add-rules-stylesheets
+       var styles = document.styleSheets[0];
+       var index = styles.insertRule(
+        ZOOM_IMG_SELECTOR + ' { transform:scale(1); }',
+        styles.cssRules.length
+        );
+
+        ZOOM_IMG_RULE = styles.cssRules.item(index);
+       }
+    
+      function apply_zoom() {
+       var elements = document.querySelectorAll(ZOOM_TEXT_SELECTOR);
+       //console.log('length:', elements.length);
+       for (var i = 0; i < elements.length; ++i) {
+        var item = elements[i];
+        item.style.fontSize = zoom_factor.toString() + '%';
+        }
+
+        ZOOM_IMG_RULE.style.transform = 'scale(' + (zoom_factor / 100) + ')';
+      }
+
+      function zoom_in() {
+       zoom_factor += 10;
+       if (zoom_factor >= 200.0)  zoom_factor = 200.0;
+       apply_zoom();
+      }
+    
+      function zoom_out() {
+       zoom_factor -= 10;
+       if (zoom_factor <= 50.0)  zoom_factor = 50.0;
+       apply_zoom();
+      }
+
+      function zoom_reset() {
+       zoom_factor = 100.0;
+       apply_zoom();
+      }
+
+      init_zoom_rule();
+      window.addEventListener("keydown", function(event) {
+       //console.log(event.keyCode);
+       switch (event.keyCode) {
+        case 187:  // '+': 187 in Chrome & Safari, 61 in FF
+        case 61:  // '+': 187 in Chrome, 61 in FF
+         zoom_in(); 
+         break;
+
+        case 189:  // '-': 189 in Chrome & Safari, 173 in FF
+        case 173:  // '-': 189 in Chrome, 173 in FF
+         zoom_out();
+         break;
+        case 48:   // '0'
+         zoom_reset();
+         break;
+       }
+      }, false);
+    </script>
+  </body>
+</html>

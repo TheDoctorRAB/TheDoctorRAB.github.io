@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3.6 Human reliability analysis</title>
+<style> p {font-size: 24px } </style>
+<script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} }); </script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</head>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <h3><a class="navbar-brand" href="../tm529.html" target="_blank">TM529: Risk assessment</a></h3>
+        </div>
+
+        <div class="nav navbar-nav navbar-right" id="bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <h3><a class="navbar-brand" href="oer.html">OER</a></h3>
+        </div>
+    </div>
+</nav>
+
+<body>
+<xmp>
+# 3.6 Human reliability analysis
+
+Human reliability is very important due to the contributions of humans to the resilience of systems and to possible adverse consequences of human errors or oversights. Human reliability will affect any large system, like nuclear reactor operation, flying a plane, driving a car, or any industrial plant activity. There are many ways to analyze human reliability. Most notably, PRA concepts can be applied with functional decomposition, event sequence generation, and frequency
+analysis.
+
+Human actions include planned (trained) actions and unplanned actions; they may also trigger undesired events or worsen accident scenarios. Their importance strongly depends on the plant design and operation requirements.
+
+## General HRA guidelines
+
+A hierarchical task analysis is conducted on critical activities (i.e. activities with the potential to cause a hazardous event), and starts with the identification of individual tasks and steps within an activity. Potential errors associated with specific steps are then highlighted; often through the use of keyword prompts identifying possible error mechanisms (e.g. step skipped, right action on wrong object, wrong action on right object, transposed digits, etc.). Once the possible error mechanisms have been identified, associated error probabilities can be estimated. A typical quantitative approach firstly identifies the nominal error rate for the task type. Task types vary between tools and may be very specific or quite general. Then the influence of relevant performance shaping factors is calculated for the task. Performance shaping factors may increase or decrease the likelihood of error for the task in question. The overall error probability figure reflects the average error rate for the task type, while accounting for the influence of relevant situational factors. Once potential sources of error have been identified, actions can be developed to minimise or mitigate their impact and improve the reliability of human performance within the task.
+
+*Evaluation of required information
+
+*Identification of state before and after task execution
+
+*Identification of information transmission
+
+*Identification of an adequate classification
+
+*Identification of interconnections among staff and actions
+
+*Screening of important actions
+
+*Practice oriented methods for the identification of failure probabilities
+
+*Building a quantitative fault/event tree with component failures and human action failures and performing a dominance analysis
+
+[Handbook of Human Reliability Analysis with Emphasis on Nuclear Power Plant Applications](http://pbadupws.nrc.gov/docs/ML0712/ML071210299.pdf)
+
+[Fifty Years of THERP and Human Reliability Analysis](https://inldigitallibrary.inl.gov/sites/sti/sti/5680968.pdf)
+
+[Reliability Engineering Resource Website](http://www.weibull.com/)
+</xmp>
+
+<script type="text/javascript" src="../../../strapdown.min.js?theme=readable"></script>
+
+</body>
+</html>

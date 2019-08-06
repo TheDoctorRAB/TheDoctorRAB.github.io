@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Project 2: Tokaimura case study</title>
+<title>Project 8: Hand calculations for arrays</title>
 <style> p {font-size: 24px } </style>
 <script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]} }); </script>
 <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -30,7 +30,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <h3><a class="navbar-brand" href="2-tokaimura-case-study.html">Project 2: Tokaimura case study</a></h3>
+            <h3><a class="navbar-brand" href="6-criticality-experiments-subcritical-limits.html">Project 4: Criticality safety organizations</a></h3>
         </div>
     </div>
 </nav>
@@ -38,26 +38,29 @@
 <body>
 <xmp>
 # NE535: Criticality safety I 
-## Project 2
-### Tokaimura case study 
-####[200]
+## Project 8
+### Hand calculations for arrays 
+####[450]
+
+Use the information contained in [LA-14244-M](https://ncsp.llnl.gov/docs/LA-14244-M.pdf).
 
 <p>
-See [Lessons learned from criticality accident in Tokaimura](https://ansn.iaea.org/common/topics/opentopic.aspx?id=13110) for relevant information.
+1. [50] We want to store an array of 4x4x4 units of 9 kg of $U(70)O_2$ with $H:U = 10$. Using the limiting surface density method (Section 7) plot d for the range of $k_{EFF}$ (0.8,0.95).
 
 <p>
-1. [150] Estimate $k_{EFF}$ at the time of the criticality accident for with and without the water jacket. Use 18.8% $^{235}U$ enrichment.
+2. [50] Find the critical mass for fully enriched U metal for a 4x4x4 array with d = 20 in. Then find $k_{EFF} for storing 17 kg U in the array.
 
 <p>
-2. [50] Compute the dose rate normal to the tank for each.
+3. [100] *Try* to confirm the result from 1 with MCNP. Find the concentration of uranium oxide using [Figure 2.1](https://inis.iaea.org/collection/NCLCollectionStore/_Public/10/487/10487876.pdf).
 
 <p>
-3. What engineering and/or administrative controls could have been instituted to avert the accident?
+4. [100] If the containers are cylinders, construct a realistic storage array for $k_{EFF}=0.8$ and $k_{EFF}=0.95$.
 
 <p>
-4. [50] "The company lacks both fundamental knowledge of nuclear matters and safety measures and it is mind-boggling to think how both the JCO and the government allowed this to happen," according to Nobuo Oda, Professor Emeritus, Radiation Physics, Tokyo Institute of Technology.  
+5. [100] *Try* to confirm the result in 2.
 
-The government was also blamed for Fukushima in 2011. What are some systemic issues with the government when it comes to nuclear accidents?
+<p>
+6. [50] Comment on the usefulness (or not) of the hand calculation method. 
 </xmp>
 
 <script type="text/javascript" src="../../../strapdown.min.js?theme=readable"></script>

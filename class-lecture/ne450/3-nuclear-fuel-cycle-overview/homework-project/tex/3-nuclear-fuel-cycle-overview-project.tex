@@ -1,0 +1,339 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\usepackage[pagewise]{lineno} %line numbering
+\usepackage{setspace}
+\usepackage{ulem} %strikethrough - do not \sout{\cite{}}
+\usepackage{xcolor} %change font color
+\usepackage{graphicx}
+\usepackage{filecontents}
+\usepackage{tablefootnote}
+\usepackage{footnotehyper}
+\usepackage{subfig}
+\usepackage[yyyymmdd]{datetime} %date format
+\renewcommand{\dateseparator}{.}
+\graphicspath{{../img/}} %path to graphics
+\setcounter{secnumdepth}{5} %set subsection to nth level
+\usepackage{caption}
+\captionsetup[table]{skip=11pt} %sets a space after table caption
+\usepackage{times}
+\usepackage{tabto} %general tabbed spacing
+\usepackage{longtable} %need to put label at top under caption then \\ - use spacing
+\usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent
+\usepackage[round]{natbib} %parenthesis instead of brackets for inline citations
+\usepackage{enumitem}
+\usepackage{boldline}
+\usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{lscape}
+\usepackage{array}
+\usepackage{caption}
+\usepackage[labelfont=bf]{caption}
+\usepackage{chngcntr}
+\usepackage{hyperref}
+
+\newcommand{\edit}[1]{\textcolor{blue}{#1}} %shortcut for changing font color on revised text
+\newcommand{\fn}[1]{\footnote{#1}} %shortcut for footnote tag
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
+\renewcommand\labelenumi{(\theenumi)} %changes 1. to (1) in enumerated list
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} %move page number to bottom right
+\renewcommand{\headrulewidth}{0.5pt} %turn off line in header
+\lhead{\scriptsize \href{../ne450.html}{NE450 - Principles of nuclear engineering}}
+\chead{\scriptsize \today}
+\rhead{\scriptsize \href{3-nuclear-fuel-cycle-overview.html}{Project 3 - Nuclear fuel cycle overview}}
+\rfoot{\thepage}
+
+\begin{filecontents}{references.bib}
+    @misc{
+        ,
+        author = {{}},
+        title = {{}},
+        year = {}
+    }
+    @article{
+        ,
+        author = {{}},
+        journal = {},
+        pages = {},
+        title = {{}},
+        volume = {},
+        year = {}
+    }
+    @techreport{
+        ,
+        author = {{}},
+        title = {{}},
+        year = {},
+        institution = {},
+        number = {}
+    }
+\end{filecontents}
+
+\begin{document}
+
+\begin{titlepage}
+    \title{
+        NE450 - Principles of nuclear engineering\\
+        Project 3 - Nuclear fuel cycle overview\\
+    }
+    \author{
+        Name
+        \\ \\ \\
+        University of Idaho $\sq$ Idaho Falls Center for Higher Education
+        \\ \\
+        Engineering/Technology Management, Industrial Technology\\and\\Nuclear Engineering Department
+        \\ \\ \\
+        email 
+    }
+\clearpage %not have page number on title page
+\maketitle
+\vspace*{\fill}
+\begin{flushright}{
+        Total - 300 
+}
+\end{flushright}
+\thispagestyle{empty} %start with page number 1 on second page
+\end{titlepage}
+
+\section{Preface to the homework project}
+
+\noindent Refer to these references to start for aqueous reprocessing -
+\begin{enumerate}[leftmargin=*,topsep=0pt,font=\bfseries]
+    \item\href{../homework-resources/countercurrent-equilibrium-extraction.pdf}{Countercurrent equilibrium extraction}
+    \item\href{../homework-resources/nuclear-fuel-reprocessing.pdf}{Nuclear fuel reprocessing}
+    \item\href{https://youtu.be/HGwHLaPhw30}{Liquid-liquid extraction example problem}
+    \item\href{https://youtu.be/vK8XGYwnZv4}{Liquid-liquid extraction example problem}
+    \item\href{../homework-resources/principles-stagewise-separation-process-calculations.pdf}{Principles of stagewise separation process calculations}
+\end{enumerate}
+\vspace{\baselineskip}
+
+\noindent Use standard assumptions -
+\begin{itemize}[leftmargin=*,topsep=0pt,font=\bfseries]
+    \item Constant distribution coefficient
+    \item Complete mixing
+    \item Fresh solvent
+\end{itemize}
+\vspace{\baselineskip}
+
+\noindent In problems 3 - 8, please address how the solution will affect the engineering design of a commercial scale PUREX facility. \textit{Required for full credit.}
+
+\newpage
+
+\begin{enumerate}[leftmargin=*,topsep=0pt,font=\bfseries]
+    \item\textbf{(10) Derive an expression for $\frac{F}{P}$ and $\frac{W}{P}$ explicitly in terms of $x_F, \; x_P, \; x_W$.}
+        \vspace{0.25in}\\
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        \newpage 
+    \item\textbf{(10) Plot $\frac{SWU}/{P}$ as a function of $x_P$. There is an interesting implication(s) of this curve, which we talked about, in terms of the JPCOA. What is it? Note that medical isotopes require $x_P = 0.20$.}
+        \vspace{0.25in}\\
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        \newpage 
+    \item\textbf{(20) Prove that the extract concentration ($y_N$) can be expressed as - \\ 
+        $y_N = \frac{\beta^N - 1}{\beta - 1}(Dx_1 - y_0)+ y_0$.}
+        \vspace{0.25in}\\
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        \newpage 
+    \item\textbf{(20) Now eliminate $x_1$ by applying an ‘overall material balance’ to the above expression; i.e., a material balance on stage 1 and stage N.}
+        \vspace{0.25in}\\
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        \newpage 
+    \item\textbf{(20) Finally, using the definition of fractional recovery of the extractable component ($\rho$) and extraction factor ($\beta$), into the result from (4) above, and eliminate $y_N$.}
+        \vspace{0.25in}\\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        \newpage 
+    \item\textbf{(20) Derive the contamination factor ($f_{AB}$) based on the result in (5) for both $y_0 = 0$ and $y_0 \neq 0$. What does the decontamination factor actually mean? How does the efficiency compare if $y_0 = 0$ or $y_0 \neq 0$?}
+        \vspace{0.25in}\\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        \newpage 
+    \item\textbf{(25) \textit{a.} Consider a multistage extraction system with two extractable components. What is the theoretical maximum for the decontamination factor?\\
+        \textit{b.} If the extraction factor for U is 5 and for Tc is 0.01. What is the decontamination factor? What does it mean?}
+        \vspace{0.25in}\\
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       \newpage 
+   \item\textbf{(25) Show \textit{with math} that for an extraction factor less than unity, complete extraction is impossible, even if an infinite number of stages is available. When (or would) there be a case where the extraction factor would be less than unity?}
+        \vspace{0.25in}\\
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       \newpage 
+   \item\textbf{(50) Write an op-ed style piece (750 - 1000 words) on `Into Eternity.' Do you think the safety of a repository is feasible centuries into the future? What would you say to future society about the repository? Write a short op-ed piece (500 words or so) on ‘Into Eternity.’ Do you think the safety of a repository is feasible centuries into the future? What would you say to future society about the repository?\\
+       \textit{We will verify if the movie is available first.}}
+        \vspace{0.25in}\\
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       \newpage 
+   \item\textbf{(50) Everyone agrees that a `consent-based approach' must be used when siting any nuclear facility. However, no one really says what this would look like. From an engineering perspective, we want models and easily quantifiable metrics. Within this context, what might a consent-based approach look like?}
+        \vspace{0.25in}\\
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       \newpage 
+   \item\textbf{(50) Give an update on the current status of the Yucca mountain geologic repository. Will it ever become a repository? What else could the facility/property be used for?}
+        \vspace{0.25in}\\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{enumerate}
+
+\newpage
+
+\bibliographystyle{ieeetr}
+\setlength{\bibhang}{0pt}
+\bibliography{references}
+
+\end{document}

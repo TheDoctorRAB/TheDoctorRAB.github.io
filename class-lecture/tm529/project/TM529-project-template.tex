@@ -1,0 +1,279 @@
+\documentclass[11pt,a4paper]{article} 
+\usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry} 
+\usepackage[pagewise]{lineno} %line numbering
+\usepackage{setspace}
+\usepackage{ulem} %strikethrough - do not \sout{\cite{}}
+\usepackage{xcolor} %change font color
+\usepackage{graphicx}
+\usepackage{filecontents}
+\usepackage{tablefootnote}
+\usepackage{footnotehyper}
+%\usepackage{subfig}
+\usepackage[yyyymmdd]{datetime} %date format
+\renewcommand{\dateseparator}{.}
+\graphicspath{{../img/}} %path to graphics
+\setcounter{secnumdepth}{5} %set subsection to nth level
+\usepackage{caption}
+\captionsetup[table]{skip=11pt} %sets a space after table caption
+\usepackage{times}
+\usepackage{tabto} %general tabbed spacing
+\usepackage{longtable} %need to put label at top under caption then \\ - use spacing
+\usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent
+\usepackage[round,semicolon]{natbib} %parenthesis instead of brackets for inline citations
+\usepackage{enumitem}
+\usepackage{boldline}
+\usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{lscape}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[labelfont=bf]{caption}
+\usepackage{chngcntr}
+
+%\counterwithin{table}{section}
+
+%\usepackage{xr}
+%\externaldocument{} %aux file needed
+
+\newcommand{\edit}[1]{\textcolor{blue}{#1}} %shortcut for changing font color on revised text
+\newcommand{\fn}[1]{\footnote{#1}} %shortcut for footnote tag
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
+\newcommand{\x}{\cellcolor{lightgray}} %use to shade in table cell
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} %move page number to bottom right
+\renewcommand{\headrulewidth}{0.5pt}
+\lhead{\scriptsize Name}
+\chead{\scriptsize TM529 - Project report}
+\rhead{\scriptsize \today}
+\rfoot{\thepage}
+
+\begin{filecontents}{references.bib}
+    @article{
+        xxxxx,
+        author = {},
+        journal = {},
+        pages = {},
+        title = {{}},
+        volume = {},
+        year = {}
+    }
+    @conference{
+        yyyyy,
+        author = {},
+        title = {{}},
+        year = {},
+        organization = {},
+        address = {}
+    }
+    @techreport{
+        zzzzz,
+        author = {},
+        title = {{}},
+        year = {},
+        institution = {},
+        number = {},
+        type = {~}
+    }
+    @book{
+        nnnnn,
+        author = {},
+        title = {{}},
+        publisher = {},
+        year = {},
+        isbn = {}
+    }
+\end{filecontents}
+
+\begin{document}
+
+\begin{titlepage}
+    \title{Title}
+    \author{
+        Name
+        \\ \\ \\
+        University of Idaho $\sq$ Idaho Falls Center for Higher Education
+        \\ \\
+        Nuclear Engineering and Industrial Management Department
+        \\ \\ \\
+        email 
+    }
+\clearpage % not have page number on title page
+\maketitle
+\vspace*{\fill}
+\begin{flushright}{
+        \noindent Number of pages - XX \\
+        \noindent Number of tables - XX \\
+        \noindent Number of figures - XX
+}
+\end{flushright}
+\thispagestyle{empty} % start with page number 1 on second page
+\end{titlepage}
+
+\onehalfspacing
+\linenumbers
+\pagewiselinenumbers
+\modulolinenumbers[3] % line numbering interval
+
+\section*{Executive Summary}} \label{exec-summ} 
+
+\newpage
+
+\begin{center}
+    \textbf{\Large Phase I - Risk Assessment}
+\end{center}
+
+\newpage
+
+\section{Introduction} \label{introduction}
+Expand on the white paper in this section to introduce the project.
+
+\subsection{Motivation}
+
+\subsection{Goals}
+
+\newpage
+
+\section{Background} \label{background}
+Give a good technical overview of your topic with literature references.
+
+\newpage
+
+\section{Methodology}
+\subsection{Assumptions}
+\subsection{Models}
+\subsection{Input data}
+\subsection{Simulations}
+
+\newpage
+
+\section{Results} \label{results}
+\subsection{Common trends}
+\subsection{Other observations}
+
+\newpage
+
+\section{Discussion} \label{discussion}
+\subsection{Major takeaways}
+\subsection{Implications}
+\subsection{Limitations}
+
+\newpage
+
+\begin{center}
+    \textbf{\Large Phase II - Risk Management}
+\end{center}
+
+\newpage
+
+\section{Mitigation}
+\subsection{Risks}
+\subsection{Goals}
+
+\newpage
+
+\section{Methodology}
+\subsection{Assumptions}
+\subsection{Models}
+\subsection{Input data}
+\subsection{Simulations}
+
+\newpage
+
+\section{Results} 
+\subsection{Common trends}
+\subsection{Other observations}
+
+\newpage
+
+\section{Discussion} 
+\subsection{Major takeaways}
+\subsection{Implications}
+\subsection{Limitations}
+
+\newpage
+
+\begin{center}
+    \textbf{\Large Phase III - Institutional Issues}
+\end{center}
+
+\newpage
+
+\section{Risk perception}
+
+\newpage
+
+\section{Risk communication}
+
+\newpage
+
+\section{Regulatory, social, political issues}
+
+\newpage
+
+\section{Final Remarks}
+
+\newpage
+
+\section{Project summary}
+
+\newpage 
+
+\section{Cross cutting discussions} \label{cross-cutting}
+Briefly discuss cross cutting issues related to the project.
+
+\newpage
+
+\section{Future work} \label{future-work}
+Outside the scope of the project, what additional work could be done using the existing model? What enhancements can be made to the model and for what purpose(s)?
+
+\newpage
+
+\section{Lessons learned} \label{lessons-learned}
+
+What you personally learned over the course of the project?
+
+\bibliographystyle{standard}
+\setlength{\bibhang}{0pt}
+\bibliography{references}
+
+\newpage
+
+\section*{Appendix I} \label{appendix-i}
+
+%\begin{table}[h!]
+%    \centering
+%    \caption{Caption}
+%    \label{tab-label}
+%    \begin{tabular}{|c|c|c|}
+%        \hline
+%        A&
+%        B&
+%        C\\
+%        \hline
+%        1&2&3\\
+%        \hline
+%        4&5&6\\
+%        \hline
+%        7&8&9\\
+%        \hline
+%        X&Y&Z\\
+%        \hline
+%    \end{tabular}
+%\end{table}
+
+%\begin{figure}[h!]
+%    \centering
+%    \includegraphics[width=0.8\textwidth]{}
+%    \caption{}
+%    \label{fig-label}
+%\end{figure}
+
+\end{document}

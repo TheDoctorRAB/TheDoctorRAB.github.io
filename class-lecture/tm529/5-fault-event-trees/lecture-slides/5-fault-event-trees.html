@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>5. Fault and event trees </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu:500);
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Open Sans', sans-serif; }
+      h1, h2, h3 {
+        font-family: 'Ubuntu';
+        font-weight: normal;
+        }
+      .remark-container {background-color: #F5F5F5; }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-slide-content { background-color: #FFFAF0; font-size: 26px; 
+                         h1 { font-size: 38px; } h2 {font-size: 32px; } h3 { font-size: 28px; }
+       }
+      .remark-slide-number { bottom: 8px; position: absolute; right: 8px; }
+      .column:first-of-type {float:left}
+      .column:last-of-type {float:right}
+
+      .split-60 .column:first-of-type {width: 60%}
+      .split-60 .column:last-of-type {width: 40%}
+
+      .split-50 .column:first-of-type {width: 50%; }
+      .split-50 .column:last-of-type {width: 50%}
+    </style>
+  </head>
+  <body>
+<textarea id="source">
+class: center, middle
+
+# TM529
+## RISK ASSESSMENT
+### Fault and event trees
+
+#### 5
+---
+## Learning outcomes
+
+Chapter 14, 16 in the book
+
+Skipping decision trees in chapter 12 for later
+
+Quanitifying risk using fault and event trees
+
+Identifying where these tools fall short
+
+Please remember to see [case studies](https://courses.lumenlearning.com/uidaho-riskassessment/) in OER
+---
+## Learning nodes
+
+.column[
+.left[
+**Defense in depth**
+
+**Getting failure rate data**  
+
+**Failure over lifecycle**  
+Example
+
+**Pyroprocessing failures**
+
+**Data perception**
+
+**Monte Carlo analysis**
+
+**Human error**
+
+**Delphi technique**  
+Example  
+]
+]
+
+.column[
+.right[
+**Event tree analysis**  
+Fire   
+Pump  
+Gas fracking  
+LOCA  
+Limitations
+
+**Fault tree analysis**  
+TAM airline
+Building the fault tree  
+Doorbell  
+Lighting the room  
+Car crash  
+Counterexample 
+Limitations
+]
+]
+---
+## How likely is it to happen?
+
+Fault and event trees require frequency analysis for initiating events
+
+We need to establish frequencies for a PRA (chapter 8)
+
+Data data data data data
+
+Data doesn't magically appear, however
+
+We've been talking about the pyroprocessing system
+
+Troubles with scaling up from the laboratory experiments
+
+Expert judgment only goes so far to where you're just making it up
+
+Then any analysis is effectively meaningless
+---
+class: center,middle
+
+# Defense in depth
+---
+## Multiple barriers reduce risk
+
+A well designed system has multiple barriers that are implemented to stop or reduce consequences of events
+
+The probability that an accidental event will lead to unwanted consequences will therefore depend on whether these barriers are functioning
+
+Event and fault trees can then also be used as a design tool
+
+Design, procedural weaknesses can be identified
+---
+# FTA and event trees are needed together for PRA
+
+Explicitly shows all the different relationships  necessary to result in the top event
+
+Thorough understanding is obtained of the logic and basic causes leading to the top event
+
+Systematic analysis of the logic and basic causes leading to the top event
+
+Provides a framework for thorough qualitative and quantitative evaluation of the top event
+
+Input for Farmer's chart?
+---
+class: center, middle
+
+# Getting failure rate data
+---
+## Failure rate data is probably the most important
+
+We need to know when equipment is going to fail for basically everything
+
+As well as the probability distributions  
+That allows for modeling and coding of the system first
+
+We can also just buy equipment and test it  
+Manufacturer might have the data
+
+Though most entities outside of academics don't really have the time
+
+There is a 30 year test bed for clay and radioactive waste in France  
+At the repository site  
+Because the repository is completely new and unprecedented 
+
+We need to model behavior in the EDZ for at least 1000 years
+---
+## Some data can be obtained from the manufacturer
+
+Historical data (e.g., MCNP error messages)
+
+Government and military handbooks
+
+[Reliability Information Analysis Center](https://www.quanterion.com/projects/reliability-information-analysis-center-riac/)
+
+[U. S. Energy Information Administration](https://www.eia.gov/)
+---
+class: center, middle
+
+# Failure over lifecycle
+---
+## Failure rate of system or equipment varies over life cycle
+
+We've shown the [bathtub curve](https://thedoctorrab.github.io/class-lecture/tm529/1-risk-overview/1-risk-overview.html#35) in Chapter 1
+
+Airplanes (from the book is a good example)  
+They're big, like a tylenol with wings!
+
+[Failure Knowledge Database](http://www.sozogaku.com/fkd/en/index.html)
+
+Obviously the structure of the plane is going to degrade with time
+
+High stress over the life cycle
+
+[Table 8.2](https://docs.google.com/spreadsheets/d/11KeppAs0_VcJ_vLqMwpkflKbmLzNUPx13o_W31yFI8w/edit?usp=sharing) in the book is a typical example
+---
+class: center,middle
+
+# Failure rate example
+---
+## Sorting data into bins can present and overall picture of what is going on 
+
+First, they sorted by [failure](https://docs.google.com/spreadsheets/d/1iNBowXJOa8Da4_TxbC0iFPxhtJtCSlNWTEF8rtCHdbI/edit?usp=sharing)  
+I also sorted by [temperature and hours of operation](https://docs.google.com/spreadsheets/d/1MLsXFbCZcbv1Atahns1xxBUEvodaqZh2DdBCWs13oN4/edit?usp=sharing)
+
+Any observations? 
+
+**Failure rate**  
+$\lambda = \frac{20}{130300}=1.53 \times 10^{-4}$ per hour
+
+**Mean time before failure (MTBF)**  
+$\theta = \frac{1}{\lambda} = 6515$ hours  
+Typically called mean time to failure (MTTF)
+
+Assumes all systems fail in the same way  
+Is this the best way to do this?
+---
+## Let's look at failure as a function of temperature
+
+**Above 100**  
+$\lambda = 2.14 \times 10^{-4} \; /h$  
+$\theta = 4675 \; h$
+
+**Below 100**  
+$\lambda = 1.08 \times 10^{-4} \; /h $  
+$\theta = 9275 \; h$
+
+Observations?
+---
+class: center,middle
+
+# Pyroprocessing failures
+---
+![Pyroprocessing flowsheet](img/pyroprocessing.flowsheet.jpg)
+---
+![Fuel fabrication](img/fuel.fabrication.jpg)
+---
+![Fuel fabrication process steps](img/fuel.fabrication.process.steps.jpg)
+---
+## For each process step, what are the failures?
+
+Multiple failures, much more complexity
+
+Getting material into the crucible  
+Heater fails to sufficiently melt all the metal  
+Vacuum cannot be induced  
+Molds get stuck or break  
+Cannot remove heel  
+
+If one component fails the equipment fails
+
+Systems do not fail in the same way
+
+Major challenge to failure analysis
+---
+class: center,middle
+
+# Data perception
+---
+## It is important to consider how to frame failure data or what the data actually is
+
+Space shuttle program used as an example 8.1.9  
+At the time, failure rate was 1 in 25  
+2 catastrophic failures in 132 flights currently however
+
+Each shuttle operated for different number of missions with varying operating time (table 8.5)
+
+Total of 30946 operating hours = 4.5 operating years  
+1 failure in 15000 operating hours for 5 different shuttles  
+There is not any normalization in terms of failures per operating year
+
+Which is better?  
+How to decide?
+---
+class: center,middle
+
+# Monte Carlo analysis
+---
+## Monte Carlo can be used to establish failure rates or MTTFs
+
+Monte Carlo simulation is very famous, but not fancy
+
+Generates values of a random variable based probability distributions
+
+Applied to wide variety of complex problems involving random behavior
+
+We use MCNP in nuclear engineering to simulate neutron behavior
+
+Show example from [NE450](https://thedoctorrab.github.io/class-lecture/ne450/5-monte-carlo-methods-mcnp/lecture-slides/5-monte-carlo-methods-mcnp.html)
+---
+## Monte Carlo can be used for [reliability](https://courses.lumenlearning.com/uidaho-riskassessment/)
+
+$R(T) = e^{-(\frac{T}{\eta})^{\beta}}$
+
+$U \equiv R(T)$ where U is a random number
+
+$T = -\eta(ln \; U)^{\frac{1}{\beta}}$
+
+What is the interpretation of T in this context?
+
+When $\beta = 1$ we have the exponential distribution
+---
+![DES fuel fabrication](img/des_fuel.fabrication.jpg)
+---
+![Weibull](img/weibull.jpg)
+---
+![Unreliability](img/unreliability.jpg)
+---
+## We can use the unreliability function to simulate failures
+
+$Q(t) = 1 - R(t)$
+
+$Q(t) = 1 - e^{-(\frac{t}{\eta})^{\beta}}$
+
+Assume $\beta = 1$ for general failures
+
+$Q(t) = 1 - e^{-\lambda t}$  
+$\lambda = 0.4$ per day
+
+Monte Carlo simulates area under the curve at t = T
+
+A 'hit' is an equipment failure
+---
+`campaign: 1`       
+`operation time: 0.7144`  
+`failure probability: 0.2486`  
+`failure test: 0.1808`  
+**`failure`**
+
+New equipment is installed, so there is new distribution
+
+`campaign: 2`       
+`operation time: 3.0762`  
+`failure probability: 0.2486`  
+`failure test: 0.6888`  
+**`no failure`**
+
+Early times the likelihood of failure is low  
+Later times it is higher because equipment is older
+
+[Failure testing repository](https://github.com/TheDoctorRAB/failure.testing)
+---
+class: center, middle
+
+# Human error
+---
+## Human error probability is difficult to quantify
+
+Because people generally behave stupidly even sober
+
+Or, different responses are elicited by people in the same environment
+
+What would be examples of human errors that could be quantified?
+
+Astronaut behavior in normal conditions and critical conditions
+
+Psychological stress
+---
+## Performance shaping factors account for human response to stressors
+
+hot/cold  
+noise level   
+light level (my office is dark)  
+vibration  
+ergonomics  
+experience and training (this is something that can be changed)  
+management  
+time  
+stress  
+equipment design/human machine interface
+---
+class: center,middle
+
+# Delphi technique
+---
+## The [Delphi technique](https://courses.lumenlearning.com/uidaho-riskassessment/) forecasts future events
+
+Initially developed in the 1950s by Helmer and Dalkey at Rand Corp
+
+Controlled opinion feedback
+
+Initially “to solicit expert opinion to the selection, from the point of view of a Soviet strategic planner, of an optimal U.S. industrial target system and to the estimation of the number of A-bombs required to reduce the munitions output by a prescribed amount"
+---
+## Delphi is used to validate research outcomes
+
+Impact analysis of changes to the international business environment
+
+Identify national park selection criteria
+
+Develop a taxonomy of organizational mechanisms
+
+Develop rules for a ceramic casting process
+
+Examine and explain how recruitment message specificity influences job seeker attraction to organizations
+
+Well suited to rigorously capture qualitative data or when knowledge is incomplete
+---
+class: middle,center
+
+# Let's step through an example
+---
+## Assemble a panel of experts and use the Delphi technique for your problem
+
+**Mission - Build consensus with a panel on failure rates, etc.**  
+Aircraft maintenance tasks - missing structural anomalies on an inspection (8.1.12)  
+For composite structural material  
+Relevance - Dreamliner 787 from ENGIN110
+
+*Pyroprocessing (challenging because human interaction is limited)*  
+*Robotic operation? Remote equipment operation?*
+
+**Select panel and eliminate bias**  
+Airline inspectors (regulations)  
+Structural experts from manufacturer(s)  
+Repair/mechanics experts
+---
+## Who do you select? 
+
+**Select panel and eliminate bias**  
+*People from INL*  
+*Actual operators of injection casting equipment*
+
+**Calibrate the panel on the topic**  
+Historical data on detecting cracks in the structure (not the same but close)  
+Inspection procedures, etc.    
+In book example, estimated probabilities are presented
+
+*Related data on industrial injection casting processing (crucible cracking)*
+---
+## Set problem boundaries and constraints
+
+**Present the parameters of the task to evaluate**  
+Qualitatively assess the problem  
+Discuss any direct historical experience from inspectors, mechanics  
+What kind of structural anomalies would be present?  
+
+*How crucible has cracked, what can be applied to molten TRU*  
+*How we can detect any cracking, range of crack lengths if you need a camera*
+
+**Perform the initial round of discussions on the error probability**  
+Detecting anomalies 2" or less  
+Establish nominal probabilities for each class of crack 
+
+**Discuss the results and iterate**  
+**Repeat until consensus reached for each class**
+---
+## Determine roadblocks
+
+**Develop PSFs**  
+What factors would lower the probability of the task?  
+Lack of training; experience  
+Environmental conditions; lighting, etc.  
+Time to inspect
+
+*Hot cells; lack of direct line of sight*  
+*Need for cameras?*  
+*Highly radioactive environment* 
+
+**Establish the conditions where the task can be achieved satisfactorily**  
+"better than nothing"
+
+For use in human reliability analysis
+---
+class: center,middle
+
+# Event tree analysis
+---
+## An event tree is a graphical representation of a series of possible events in an accident sequence
+
+Each event is either a fail or success with associated frequency
+
+Assumes events occur in sequence to a final state
+
+Event sequences follow from some initial event of interest, usually a component failure
+
+Downstream events follow from original event and subsequent events of other components
+
+Initiating event -- event 1 -- event 2 -- event 3 -- event n-1 -- event n -- Final state
+
+We covered ways to assess frequency - now we ask "What are the consequences?"
+---
+## Event trees apply forward logic
+
+We start with the initiating events and work to what eventually happens
+
+Event trees are used to describe the major events in the accident sequence and each event can then be further analyzed using a fault tree
+
+Each event would need its own fault tree
+
+Event trees are accident sequence development tools
+
+We talked about WASH1400 that basically invented for nuclear power plants
+
+[NRC Handbook](http://www.nrc.gov/reading-rm/doc-collections/nuregs/staff/sr0492/)
+
+Figure 12.3 in the book
+---
+## Event trees are essential to a PRA
+
+Visualize event chains following an accidental event
+
+Visualize barriers and sequence of activation
+
+Good basis for evaluating the need for new/improved procedures and safety functions
+
+Draws on prior PHAs, etc., to determine initiating events
+
+So it's a natural progression into PRA I,II,III
+---
+class: center,middle 
+
+# Examples
+---
+class: center,middle 
+
+# Fire
+---
+## What events lead to [fire?](https://courses.lumenlearning.com/uidaho-riskassessment/chapter/event-trees-2/) - Figure 12.2 in book
+
+![Event tree for fire](img/event.tree_fire.jpg)
+---
+## Calculate probabilities and losses
+![Event tree for fire](img/event.tree_fire.loss.jpg)
+---
+class: center,middle 
+
+# Pumps
+---
+![Event tree for pump and valve maintenance](img/event.tree_pump.valve.jpg)
+---
+class: center,middle 
+
+# Fracking
+---
+![Event tree for high pressure gas](img/event.tree_gas.jpg)
+---
+class: center,middle 
+
+# LOCA
+---
+![Event tree for LOCA](img/event.tree_loca.jpg)
+---
+class: center,middle
+
+# Limitations
+---
+## But event trees have limitations
+
+No standard for the graphical representation of the event tree
+
+Only one initiating event can be studied in each analysis
+
+Easy to overlook subtle system dependencies
+
+Not well suited for handling common cause failures (only independent events)
+
+Practical only when events can be ordered in time (chronology of events is stable) 
+
+Does not show acts of omission
+
+Difficult to represent interactions among events  
+Difficult to consider effects of multiple initiating events (PHA, FMEA)
+
+So we need other tools for comprehensive risk assessment
+---
+class: center,middle
+
+# Fault tree analysis
+---
+## Fault tree analysis is applied to identify areas to mitigate or prevent risk at all phases of system life cycle
+
+'Little things' lead to catastrophic failures  
+Like the [Japan Airlines](https://lessonslearned.faa.gov/ll_adsearch_results.cfm?TabID=5) accident  
+
+But before risk assessment was invented, most likely from common cause failures
+
+Advancements in technologies increased complexity and necessitated detailed safety analysis
+
+First FTA developed by Bell Telephone Laboratories (1962)
+
+For the Minuteman ICBM (can't find any information)
+
+Though it seems that not formalized as part of risk assessment until WASH1400
+---
+## Fault trees are a graphic to represent the interaction of failures and other events in a system
+
+Top down, deductive failure analysis  
+Top event are hazards or failure modes (from event tree) - LOCA, emissions, explosions
+Decompose the top event using boolean logic (AND, OR)  
+Bottom set of events are non-decomposable (basic events)
+
+Identify failures as a malfunction in a component requiring repair (pump shaft)
+
+Identify faults as malfunctions that self-repair once the governing condition is corrected (wet contacts for a switch; dry them)
+
+Undeveloped events are neglected due to low probability or effect on system
+
+FMEA can be used as input to FTA
+---
+## Define the top event clearly and unambiguously
+
+What is the event?  
+Where does the event occur?  
+When does the event occur?
+
+Crucible cracks in the injection casting equipment during normal operation
+
+Immediate, necessary, and sufficient causes leading to the event  
+Connect via logic gates (down)
+
+Get down to basic events  
+Independent events  
+For which failure data is obtained (or distributions)  
+Work back up to compute top event probability
+
+Really requires expert knowledge of the system
+---
+## Assemble a basic event matrix after defining the top event
+
+Basic failure event -- description -- credible? (table 14.5)
+
+Assessing credibility = whether to include the event in the fault tree
+
+Coolant system flushing procedure in the car (14.7.1)
+
+Sprinkler system failure
+
+System design tool
+---
+class: center,middle
+
+# TAM airline
+---
+## [TAM Airlines Flight 3054](https://www.google.com/maps/place/Sao+Paulo+International+Airport/@-23.4382049,-46.4703261,15z/data=!4m5!3m4!1s0x94ce8af96f722a25:0x8071626c51a7154a!8m2!3d-23.4345529!4d-46.478126) overran the runway and crashed into a warehouse (2007)
+
+Use of FTA for accident analysis with multiple failures (14.7.3)
+
+Airplane are an instructive example because we know a lot about them
+
+Warehouse next to gas station, which exploded
+
+199 fatalities
+---
+## What happened
+
+Rain caused the runway to be wet
+
+Plane overran the runway
+
+Crossed the road(!)
+---
+## Background
+
+20379 operating hours
+
+Jammed braking device reported the day before (thrust reverser)
+
+Landed and couldn't slow down
+
+Veered left and overshot runway over the major road
+
+Collided with warehouse
+
+Safety issues with insufficient length of the runway (faster speed, more distance to stop)
+---
+## Flight recorder
+
+Thrusters in climb position just before touchdown
+
+Audio warning 2 seconds before touchdown for pilots to take manual control
+
+One idle, one at climb position at touchdown; both needed to be in idle position
+
+(cause of veering left)
+
+So, what are some causes for this crash?
+---
+class: center,middle
+
+![Sao Paulo airport](img/brazil_airport.jpg)
+---
+## Top event is the airplane crash
+
+So, what are some causes for this crash?  
+Wet runway (hydroplaning, loss of vehicle control)  
+Rain   
+Grooves cut in runway to drain and increase traction  
+Thrust reverser broken (known)  
+Airline policy allowed aircraft to be flown with broken thrust reverser  
+Short runway   
+Airport policy allowed larger planes to land on runway  
+Experienced pilots had not had training in this situation  
+
+Which of these are basic events?
+---
+class: center,middle
+
+# Building the fault tree
+---
+## How is the probability of crash calculated?
+
+Gates aren't limited to only two events  
+
+Can be more than one level of intermediate causes
+---
+class: center,middle
+
+![Fault tree plane 1](img/fault.tree_plane.1.jpg)
+---
+## What are some causes for this crash?
+
+Wet runway (hydroplaning, loss of vehicle control)  
+Rain  
+Grooves cut in runway to drain and increase traction     
+Thrust reverser broken (known)  
+Airline policy allowed aircraft to be flown with broken thrust reverser  
+Short runway   
+Airport policy allowed larger planes to land on runway  
+Experienced pilots had not had training in this situation  
+
+Which of these are basic events?
+---
+class: center,middle
+
+![Fault tree plane 2](img/fault.tree_plane.2.jpg)
+---
+class: center,middle
+
+![Fault tree plane 3](img/fault.tree_plane.3.jpg)
+---
+class: center,middle
+
+# Doorbell
+---
+class: center,middle
+
+![Fault tree doorbell](img/fault.tree_doorbell.jpg)
+---
+class: center,middle
+
+Lighting the room
+---
+class: center,middle
+
+![Fault tree room](img/fault.tree_room.jpg)
+---
+class: center,middle
+
+# Car crash
+---
+class: center,middle
+
+![Fault tree car](img/fault.tree_car.jpg)
+---
+class: center,middle
+
+# Counterexample
+
+## What is the flaw in this fault tree analysis?
+---
+![Fault tree Fukushima](img/fault.tree_fukushima.jpg)
+---
+## Of course, there are limitations to FTA
+
+Undesirable events must be foreseen  
+
+We don't know what we don't know
+ 
+Each event analyzed singly
+
+Significant contributors to fault/failure must be anticipated or predicted
+
+Each initiator must be constrained to two conditional modes (AND/OR)
+
+Initiators at beneath a common gate must be independent 
+
+Still requires detailed knowledge of the system
+---
+![doggehs](img/final.jpg)
+</textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/contrib/auto-render.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+    <script type="text/javascript">
+        var options = {};
+        var renderMath = function() {
+            renderMathInElement(document.body, {delimiters: [
+                    {left: "$$", right: "$$", display: true},
+                    {left: "$", right: "$", display: false},
+                    {left: "\\[", right: "\\]", display: true},
+                    {left: "\\[", right: "\\]", display: false},
+            ]});
+        }
+        var slideshow = remark.create({
+          // Set the slideshow display ratio
+          // Default: '4:3'
+          // Alternatives: '16:9', ...
+          ratio: '16:9',
+          // Navigation options
+          navigation: {
+          // Enable or disable navigating using scroll
+          // Default: true
+          // Alternatives: false
+          scroll: true,
+          // Enable or disable navigation using touch
+          // Default: true
+          // Alternatives: false
+          touch: true,
+          // Enable or disable navigation using click
+          // Default: false
+          // Alternatives: true
+          click: false
+          },
+          // Customize slide number label, either using a format string..
+          slideNumberFormat: '%current%',
+          // Enable or disable counting of incremental slides in the slide counting
+          countIncrementalSlides: false 
+          }, renderMath);
+    </script>
+    <script type="text/javascript">
+     /**
+      * a simple zoom in/out/reset for remark.js
+      *
+      * Hot key:
+      *   + : zoom in
+      *   - : zoom out
+      *   0 : reset zoom
+      *
+      * CAVEAT: when switching between full screen and normal screen,
+      *         the zoom factor may not function correctly.
+      *         RELOAD the page, if necessary.
+      *
+      * 
+      * @author William Yeh <william.pjyeh@gmail.com>
+      * @date   2015-01-15
+      *
+      * @license Apache License, Version 2.0.
+      * Copyright © 2015 William Yeh.
+      */
+      var ZOOM_TEXT_SELECTOR =
+       ".remark-slide-content p"
+       + "," + ".remark-slide-content .remark-code-line"
+       ;
+
+      var ZOOM_IMG_SELECTOR =
+       ".remark-slide-content img:hover"
+       ;
+
+      var ZOOM_IMG_RULE;
+
+      var zoom_factor = 100.0;
+      document.body.style.zoom = "100%"
+    
+      function init_zoom_rule() {
+       // @see http://davidwalsh.name/add-rules-stylesheets
+       var styles = document.styleSheets[0];
+       var index = styles.insertRule(
+        ZOOM_IMG_SELECTOR + ' { transform:scale(1); }',
+        styles.cssRules.length
+        );
+
+        ZOOM_IMG_RULE = styles.cssRules.item(index);
+       }
+    
+      function apply_zoom() {
+       var elements = document.querySelectorAll(ZOOM_TEXT_SELECTOR);
+       //console.log('length:', elements.length);
+       for (var i = 0; i < elements.length; ++i) {
+        var item = elements[i];
+        item.style.fontSize = zoom_factor.toString() + '%';
+        }
+
+        ZOOM_IMG_RULE.style.transform = 'scale(' + (zoom_factor / 100) + ')';
+      }
+
+      function zoom_in() {
+       zoom_factor += 10;
+       if (zoom_factor >= 200.0)  zoom_factor = 200.0;
+       apply_zoom();
+      }
+    
+      function zoom_out() {
+       zoom_factor -= 10;
+       if (zoom_factor <= 50.0)  zoom_factor = 50.0;
+       apply_zoom();
+      }
+
+      function zoom_reset() {
+       zoom_factor = 100.0;
+       apply_zoom();
+      }
+
+      init_zoom_rule();
+      window.addEventListener("keydown", function(event) {
+       //console.log(event.keyCode);
+       switch (event.keyCode) {
+        case 187:  // '+': 187 in Chrome & Safari, 61 in FF
+        case 61:  // '+': 187 in Chrome, 61 in FF
+         zoom_in(); 
+         break;
+
+        case 189:  // '-': 189 in Chrome & Safari, 173 in FF
+        case 173:  // '-': 189 in Chrome, 173 in FF
+         zoom_out();
+         break;
+        case 48:   // '0'
+         zoom_reset();
+         break;
+       }
+      }, false);
+    </script>
+  </body>
+</html>

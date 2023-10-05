@@ -1,0 +1,692 @@
+%%%%%
+%@TheDoctorRAB
+%%%%%
+%
+%REFERENCES
+%
+%neup.bst - numbered citations in order of appearance, short author list with et al in reference section
+%nsf.bst - numbered citations in order of appearance, full author list in references section
+%standard.bst - citations with author last name with et al for more than 2 authors; full author list in references section
+%ans.bst is for ANS only. 
+%
+%author = {Lastname, Firstname and Lastname, Firstname and Lastname, Firstname} for all bst formats
+%bst renders the author list itself
+%
+%author = {{Nuclear Regulatory Commission}} if the author is an organization, institution, etc., and not people
+%
+%title = {{}} for all
+%
+%for all - use \citep{-} - [1] or (Borrelli, 2021) in the text
+%standard.bst \cite{-} - Borrelli (2021) in the text
+%standard.bst lists references alphabetically
+%the rest list numerically
+%%%%%
+
+
+%%%%% general 
+\documentclass[11pt,a4paper]{article}
+\usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\usepackage[pagewise]{lineno} %line numbering
+\usepackage{setspace}
+\usepackage{ulem} %strikethrough - do not \sout{\cite{}}
+\usepackage[pdftex,dvipsnames]{xcolor,colortbl} %change font color
+\usepackage{graphicx}
+\usepackage{filecontents}
+\usepackage{tablefootnote}
+\usepackage{footnotehyper}
+\usepackage{float}
+\usepackage{mypythonhighlight,verbatim}
+%\usepackage{subfig}
+\usepackage[yyyymmdd]{datetime} %date format
+\renewcommand{\dateseparator}{.}
+\graphicspath{{../img/}} %path to graphics
+\setcounter{secnumdepth}{5} %set subsection to nth level
+\usepackage{needspace}
+\usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
+\usepackage[inline]{enumitem}
+\usepackage{boldline}
+\usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{amsmath,nicefrac}
+\usepackage{physics}
+\usepackage{lscape}
+\usepackage{array}
+\usepackage{chngcntr}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=black,citecolor=black,urlcolor=blue} 
+\usepackage{sectsty}
+\usepackage{textcomp}
+\usepackage{lastpage}
+\usepackage{xargs} %for \newcommandx
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes} %makes colored boxes for commenting
+\usepackage{soul}
+\usepackage{color}
+\usepackage{marginnote}
+\usepackage[figure,table]{totalcount}
+\usepackage[capitalise]{cleveref}
+\usepackage{nameref}
+\usepackage{parskip}
+%%%%%
+
+
+%%%%% tikz
+\usepackage{pgf}
+\usepackage{tikz} % required for drawing custom shapes
+\usetikzlibrary{shapes,arrows,automata,trees}
+%%%%%
+
+
+%%%%% fonts
+\usepackage{times}
+%arial - uncomment next two lines
+%\usepackage{helvet}
+%\renewcommand{\familydefault}{\sfdefault}
+%%%%%
+
+
+%%%%% references
+%\usepackage[round,semicolon]{natbib} %for (Borrelli 2021; Clooney 2019) - standard.bst 
+\usepackage[numbers,sort&compress]{natbib} %for [1-3] - nsf.bst, neup.bst
+\setlength{\bibsep}{7pt} %sets space between references
+%\renewcommand{\bibsection}{} %suppresses large 'references' heading
+%\renewcommand\bibpreamble{\vspace{\baselineskip}} %sets spacing after heading if not using default references heading
+%%%%%
+
+
+%%%%% tables and figures
+\usepackage{longtable} %need to put label at top under caption then \\ - use spacing
+\usepackage{tablefootnote}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{tabto} %general tabbed spacing
+\usepackage{pdfpages}
+\usepackage{wrapfig} %wraps figures around text
+\setlength{\intextsep}{0.00mm}
+\setlength{\columnsep}{1.00mm}
+\usepackage[singlelinecheck=false,labelfont=bf]{caption}
+\usepackage{subcaption}
+\captionsetup[table]{justification=justified,skip=5pt,labelformat={default},labelsep=period,name={Table}} %sets a space after table caption
+\captionsetup[figure]{justification=justified,skip=5pt,labelformat={default},labelsep=period,name={Figure}} %sets space above caption, 'figure' format
+\captionsetup[wrapfigure]{justification=centering,aboveskip=0pt,belowskip=0pt,labelformat={default},labelsep=period,name={Fig.}} %sets space above caption, 'figure' format
+\captionsetup[wraptable]{justification=centering,aboveskip=0pt,belowskip=0pt,labelformat={default},labelsep=period,name={Table}} %sets space above caption, 'figure' format
+%%%%%
+
+
+%%%%% watermark
+%\usepackage[firstpage,vpos=0.63\paperheight]{draftwatermark}
+%\SetWatermarkText{\shortstack{CONFIDENTIAL\\do not distribute}}
+%\SetWatermarkScale{0.20}
+%%%%%
+
+
+%%%%% cross referencing files
+%\usepackage{xr} %for revisions - will cross reference from one file to here
+%\externaldocument{../review/PNUCENE-D-22-00841-Reviewer1} %aux file needed
+%\externaldocument{../review/PNUCENE-D-22-00841-Reviewer2} %aux file needed
+%see reviwer tex file for compiling instructions
+%%%%%
+
+
+%%%%% toc and glossaries
+\usepackage[toc,title]{appendix}
+\usepackage[acronym,nomain,nonumberlist]{glossaries}
+\makenoidxglossaries
+\AtBeginEnvironment{appendices}{\crefalias{section}{appendix}}
+\usepackage{titlesec,titletoc}
+%\renewcommand{\thepart}{ARTICLE \Roman{part}} %puts the label into the command so \thelabel will carry through
+%\renewcommand{\thesection}{\arabic{section}} %puts the label into the command so \thelabel will carry through
+%\titleformat{\part}{\normalfont\Large\bfseries\filcenter}{\thepart}{}{}[]
+%\titlespacing*\part{0pt}{0.95\baselineskip}{0.75\baselineskip}
+%\titleformat{\section}{\normalfont\large\bfseries\filcenter}{\thesection}{}{}[]
+%\titlespacing*\section{0pt}{0.65\baselineskip}{0.35\baselineskip}
+%\titleformat{\subsection}[runin]{\normalfont\normalsize\bfseries}{\thesubsection}{-1em}{}[.]
+%\titlespacing*\subsection{0pt}{0.50\baselineskip}{0.25\baselineskip}
+%\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries\itshape}{\theparagraph}{-1em}{}[.]
+%\titlespacing*\paragraph{0pt}{0.45\baselineskip}{0.25\baselineskip}
+%\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{-1em}{}[.]
+%\titlespacing*\subparagraph{0pt}{0.40\baselineskip}{0.25\baselineskip}
+\titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{\theparagraph}{5pt}{}[]
+\titlespacing*\paragraph{0pt}{0.50\baselineskip}{0.25\baselineskip}
+\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{-1em}{}[.]
+\titlespacing*\subparagraph{0pt}{0.40\baselineskip}{0.20\baselineskip}
+%%%%%
+
+
+%%%%% editing
+\newcommand{\edit}[1]{\textcolor{blue}{#1}} %shortcut for changing font color on revised text
+\newcommand{\fn}[1]{\footnote{#1}} %shortcut for footnote tag
+\newcommand*\sq{\mathbin{\vcenter{\hbox{\rule{.3ex}{.3ex}}}}} %makes a small square as a separator $\sq$
+%\newcommand{\sk}[1]{\sout{#1}} %shortcut for default strikethrough - do not sk through citep
+\newcommand\sk{\bgroup\markoverwith{\textcolor{red}{\rule[0.5ex]{1pt}{1pt}}}\ULon} %strikethrough with red line; not in \section{}
+%\st{} does strikethrough using soul package but does not like acronyms
+\newcommand{\blucell}{\cellcolor{aliceblue}} %use to shade in table cell
+\newcommand{\grycekk}{\cellcolor{lightgray}} %use to shade in table cell
+\newcommand{\whicell}{\cellcolor{antiquewhite}} %use to shade in table cell
+%%%%%
+
+
+%%%%% colors
+%http://latexcolor.com/
+%https://en.wikibooks.org/wiki/LaTeX/Colors#:~:text=black%2C%20blue%2C%20brown%2C%20cyan,be%20available%20on%20all%20systems.
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\definecolor{antiquewhite}{rgb}{0.98, 0.92, 0.84}
+\definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
+\definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
+\definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
+\definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
+%%%%%
+
+
+%%%%% acronyms
+\newcommand{\acf}{\acrfull} %full acronym
+\newcommand{\acl}{\acrlong} %long acronym
+\newcommand{\acs}{\acrshort} %short acronym
+
+\newcommand{\acfp}{\acrfullpl} %full acronym plural
+\newcommand{\aclp}{\acrlongpl} %long acronym plural
+\newcommand{\acsp}{\acrshortpl} %short acronym plural
+%%%%%
+
+
+%%%%% todonotes
+\newcommandx{\cmt}[2][1=]{\todo[author=\textbf{STRUCTURE},tickmarkheight=0.15cm,linecolor=red,backgroundcolor=red!25,bordercolor=black,#1]{#2}}
+\newcommandx{\con}[2][1=]{\todo[author=\textbf{CONTENT},tickmarkheight=0.15cm,linecolor=brilliantlavender,backgroundcolor=brilliantlavender,bordercolor=black,#1]{#2}}
+\newcommandx{\rab}[2][1=]{\todo[noline,author=\textbf{RAB},backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
+\newcommandx{\one}[2][1=]{\todo[author=\textbf{Reviewer 1},tickmarkheight=0.15cm,linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=black,#1]{#2}} 
+\newcommandx{\two}[2][1=]{\todo[author=\textbf{Reviewer 2},tickmarkheight=0.15cm,linecolor=Plum,backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
+\newcommandx{\thr}[2][1=]{\todo[author=\textbf{Reviewer 3},tickmarkheight=0.15cm,linecolor=Plum,backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
+
+%\newcommandx{\jon}[2][1=]{\todo[noline,author=\textbf{ATTN: Johnson},backgroundcolor=blue!25,bordercolor=black,#1]{#2}}
+%\newcommandx{\han}[2][1=]{\todo[noline,author=\textbf{ATTN: Haney},backgroundcolor=OliveGreen!25,bordercolor=black,#1]{#2}}
+%\newcommandx{\rab}[2][1=]{\todo[author=\textbf{RAB},tickmarkheight=0.15cm,linecolor=Plum,backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
+%\newcommandx{\han}[2][1=]{\todo[author=\textbf{ATTN: Haney},tickmarkheight=0.15cm,linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+%\newcommandx{\jon}[2][1=]{\todo[author=\textbf{ATTN: Johnson},tickmarkheight=0.15cm,linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+
+
+% highlighting 
+\DeclareRobustCommand{\hlc}[1]{{\sethlcolor{LimeGreen}\hl{#1}}}
+\makeatletter
+    \if@todonotes@disabled
+    \newcommand{\hlh}[2]{#1}
+    \else
+    \newcommand{\hlh}[2]{\han{#2}\hlc{#1}}
+    \fi
+    \makeatother
+
+\DeclareRobustCommand{\hld}[1]{{\sethlcolor{CornflowerBlue}\hl{#1}}}
+\makeatletter
+    \if@todonotes@disabled
+    \newcommand{\hlj}[2]{#1}
+    \else
+    \newcommand{\hlj}[2]{\jon{#2}\hld{#1}}
+    \fi
+    \makeatother
+
+\DeclareRobustCommand{\hlf}[1]{{\sethlcolor{lightmauve}\hl{#1}}}
+\makeatletter
+    \if@todonotes@disabled
+    \newcommand{\hlb}[2]{#1}
+    \else
+    \newcommand{\hlb}[2]{\rab{#2}\hlf{#1}}
+    \fi
+    \makeatother
+%%%%%
+
+
+%%%%% table alignments
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} %uses \raggedright with m,p{} in table column
+%%%%%
+
+
+%%%%% table contents
+\makeatletter
+\renewcommand\tableofcontents{%
+    \@starttoc{toc}%
+}
+\makeatother
+
+\makeatletter
+\renewcommand\listoffigures{%
+    \@starttoc{lof}%
+}
+\makeatother
+
+\makeatletter
+\renewcommand\listoftables{%
+    \@starttoc{lot}%
+}
+\makeatother
+
+\makeatletter
+\newcommand*\ftp{\fontsize{16.5}{17.5}\selectfont}
+\makeatother
+%%%%%
+
+
+%%%%% archived section commands - use titlesec
+%\makeatletter
+%\renewcommand\section{%
+%    \@startsection{section}{1}{\z@ }{0.50\baselineskip}{0.25\baselineskip}
+%    {\large \normalfont \bfseries}}%
+%\makeatletter
+%\renewcommand\paragraph{%
+%    \@startsection{paragraph}{4}{\z@ }{0.55\baselineskip}{-1em}
+%    {\normalfont \normalsize \bfseries}}%
+%\makeatletter
+%\renewcommand\subparagraph{%
+%    \@startsection{subparagraph}{5}{\z@ }{0.40\baselineskip}{-1em}
+%    {\normalfont \normalsize \itshape }}%
+%\makeatletter
+%\renewcommand\subsection{%
+%    \@startsection{subsection}{2}{\z@ }{0.45\baselineskip}{0.25\baselineskip}
+%    {\large \normalfont \bfseries}}%
+%%%%%
+
+
+%%%%% header and footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} %move page number to bottom right
+%\renewcommand{\headrulewidth}{0pt} %turn off line in header
+\lhead{\scriptsize NE585}
+\chead{\scriptsize \textit{Project 4a -- Burnup \& Depletion}}
+\rhead{\scriptsize \today}
+\rfoot{\thepage}
+%%%%%
+
+
+%%%%% citations
+\begin{filecontents}{references.bib}
+    @misc{
+        nye15a,
+        author = {Nye, Jr., Joseph S.},
+        title = {{The World Needs an Arms-control Treaty for Cybersecurity}},
+        year = {2015},
+        note = {{The Washington Post}}
+    }
+    @article{
+        mil20a,
+        author = {Miller, James N.},
+        title = {No to no first use — for now},
+        journal = {Bulletin of the Atomic Scientists},
+        volume = {76},
+        pages = {8},
+        year  = {2020}
+    }
+    @incollection{
+        mil17a,
+        author = {Miller, Steven E.},
+        title = {{Cyber Threats, Nuclear Analogies? Divergent Trajectories in Adapting to New Dual-Use Technologies}},
+        booktitle = {Understanding Cyber Conflict: 14 Analogies},
+        publisher = {Georgetown University Press},
+        year = {2017},
+        editor = {Perkovich, George and Levite, Ariel E.},
+        pages = {161}
+    }
+    @conference{
+        ben20a,
+        author = {Benjamin, Jacob and Haney, Michael},
+        title = {{Nonproliferation of Cyber Weapons}},
+        year = { 2020},
+        organization = {Symposium on Cyber Warfare, Cyber Defense, \& Cyber Security },
+        address = {Las Vegas, Nevada}
+    }
+\end{filecontents}
+%%%%%
+
+
+%%%% acronyms
+% alphabetical ordering is automated
+\newacronym{nrs}{NRHES}{Nuclear Renewable Hybrid Energy System}
+\newacronym{ahp}{AHP}{Analytical Hierarchy Process}
+\newacronym{inl}{INL}{Idaho National Laboratory}
+\newacronym{orl}{ORNL}{Oak Ridge National Laboratory}
+\newacronym{anl}{ANL}{Argonne National Laboratory}
+\newacronym{npp}{NPP}{Nuclear Power Plant}
+\newacronym{smr}{SMR}{Small Modular Reactor}
+\newacronym{ump}{UAMPS}{Utah Associated Municipal Power Systems}
+\newacronym{nus}{NuScale}{NuScale Power, LLC}
+\newacronym{nrc}{NRC}{United States Nuclear Regulatory Commission}
+\newacronym{epri}{EPRI}{Electric Power Research Institute}
+\newacronym{nerc}{NERC}{North American Electric Reliability Corporation}
+\newacronym{ci}{CI}{Consistency Index}
+\newacronym{cr}{CR}{Consistency Ratio}
+\newacronym{htse}{HTSE}{High Temperature Steam Electrolysis}
+\newacronym{lwr}{LWR}{Light Water Reactor}
+\newacronym{eia}{EIA}{U.S. Energy Information Administration}
+\newacronym{oer}{OER}{Online Educational Resource}
+\newacronym{lms}{LMS}{Learning Management System}
+\newacronym{cps}{CPS}{Cyber-Physical Systems}
+\newacronym{nsf}{NSF}{National Science Foundation}
+\newacronym{wsc}{WSC}{Western Services Corporation}
+\newacronym{cae}{CAES}{Center for Advanced Energy Studies}
+\newacronym{hsl}{HSSL}{Human System Simulation Laboratory}
+\newacronym{pwr}{PWR}{Pressurized Water Reactor}
+\newacronym{bwr}{BWR}{Boiling Water Reactor}
+\newacronym{roi}{ROI}{Return on Investment}
+\newacronym{ic}{I\&C}{Instrumentation \& Controls}
+\newacronym{mwe}{MWe}{Megawatts-electric}
+\newacronym{ics}{ICS}{Industrial Control Systems}
+\newacronym{sca}{SCADA}{Supervisory Control and Data Acquisition}
+\newacronym{ip}{IP}{Internet Protocol}
+\newacronym{udp}{UDP}{User Datagram Protocol}
+\newacronym{tva}{TVA}{Tennessee Valley Authority}
+\newacronym{plc}{PLC}{Programmable Logic Controller}
+\newacronym{vfd}{VFD}{Variable Frequency Drive}
+\newacronym{khp}{KHNP}{Korean Hydro \& Nuclear Power Co., Ltd}
+\newacronym{onl}{ORNL}{Oak Ridge National Laboratory}
+\newacronym{jcp}{JCPOA}{Joint Comprehensive Plan of Action}
+\newacronym{mim}{MITM}{Man in the Middle}
+\newacronym{dos}{DDoS}{Distributed Denial of Service}
+\newacronym{tcp}{TCP/IP}{Transmission Control Protocol/Internet Protocol}
+\newacronym{dnp}{DNP3}{Distributed Network Protocol 3}
+\newacronym{pra}{PRA}{Probabilistic Risk Assessment}
+\newacronym{cs}{CS}{Critical System}
+\newacronym{loc}{LOCA}{Loss of Coolant Accident}
+\newacronym{hmi}{HMI}{Human Machine Interface}
+\newacronym{pha}{PHA}{Preliminary Hazards Analysis}
+\newacronym{bol}{BOL}{Beginning-of-Life}
+\newacronym{eol}{EOL}{End-of-Life}
+\newacronym{mol}{MOL}{Middle-of-Life}
+\newacronym{imu}{IMUNES}{Integrated Multiprotocol Network Emulator/Simulator}
+\newacronym{ccc}{CCC}{Computing Community Consortium}
+\newacronym{neu}{NEUP}{Nuclear Energy University Program}
+\newacronym{doe}{DOE}{United States Department of Energy}
+\newacronym{nei}{NEI}{Nuclear Energy Institute}
+\newacronym{nit}{NITRD}{Networking Information Technology Research \& Development Program}
+\newacronym{rcs}{RCS}{Reactor Cooling System}
+\newacronym{con}{IC}{Initial Condition}
+\newacronym{csi}{CSIS}{Center for Strategic \& International Studies}
+\newacronym{pcap}{PCAP}{packet capture file}
+\newacronym{dc}{DC}{Direct-Current}
+\newacronym{ac}{AC}{Alternating-Current}
+\newacronym{iff}{UIIF}{Idaho Falls Center for Higher Education}
+\newacronym{snl}{SNL}{Sandia National Laboratory}
+\newacronym{cie}{CIE}{Cyber-Informed Engineering}
+\newacronym{cds}{CRDS}{Control Rod Drive System}
+\newacronym{cdm}{CRDM}{Control Rod Drive Mechanism}
+\newacronym{fma}{FMEA}{Failure Modes \& Effects Analysis}
+\newacronym{rpn}{RPN}{Risk Priority Number}
+\newacronym{scr}{SCR}{silicon controller rectifier}
+\newacronym{hvc}{HVAC}{Heating, Ventilation \& Air Conditioning}
+\newacronym{ttb}{TTB}{Time-to-Boil}
+\newacronym{sis}{SIS}{Safety Instrumented System}
+\newacronym{usb}{USB}{Universal Serial Bus}
+\newacronym{ack}{ACK}{Acknowledge}
+\newacronym{seq}{SEQ}{Sequence}
+\newacronym{npr}{NPR}{National Public Radio}
+\newacronym{cyd}{CYDEF}{Cyber Defence QCD Corporation}
+\newacronym{ara}{ARA}{Amsterdam-Rotterdam-Antwerp}
+%\newacronym{}{}{}
+%%%%%
+
+
+\begin{document}
+
+\begin{titlepage}
+    \title{
+        NE585 -- Nuclear fuel cycle analysis\\
+        Project 4a -- Burnup \& Depletion\\
+    }
+    \author{
+        Name
+        \\ \\ \\
+        University of Idaho $\sq$ Idaho Falls Center for Higher Education
+        \\ \\
+        Nuclear Engineering and Industrial Management Department
+        \\ \\ \\
+        email 
+    }
+\clearpage %not have page number on title page
+\maketitle
+\vspace*{\fill}
+\begin{flushright}{
+        Total -- 400
+}
+\end{flushright}
+\thispagestyle{empty} %start with page number 1 on second page
+\end{titlepage}
+
+\printnoidxglossary
+
+\newpage
+
+\section{Plutonium production}
+\paragraph*{(100)}
+Solve the Pu-239 production equation. See \cref{app-equations} and \Cref{tab-data} for guidance.
+
+
+
+
+
+\newpage
+
+\section{Fission product production I}
+\paragraph*{(100)}
+Solve for fission product production for U-235 and Pu-239. 
+
+
+
+
+\newpage
+
+\section{Burnup}
+\paragraph*{(100)}
+Plot $N v B$ for U-235, U-238, Pu-239, and the fission products all together. Compare to Fig. 3.29 from Benedict in \cref{app-burnup}. Don't worry that the graph is B v w; the shape of the curves should be similar. 
+
+
+
+
+
+
+\newpage
+
+\section{Fission product production II}
+\paragraph*{(100)}
+Compute and plot the production and decay of Cs-137 and Sr-90 for an irradiation time of 24 months and a cooling time of 25 years.
+
+
+
+
+
+\newpage
+
+\section*{Tables}
+
+{%
+\let\oldnumberline\numberline%
+\renewcommand{\numberline}{\tablename~\oldnumberline}%
+\listoftables%
+}
+
+\newpage
+%Put tables here
+
+\setlength{\arrayrulewidth}{0.3mm}
+\begin{longtable}{|c|c|}
+    \caption{Burnup \& depletion data}
+    \label{tab-data}
+    \\
+    \hline
+    initial fuel mass
+    & 99.2 MTU
+    \\
+    \hline
+    enrichment
+    & 3.2\%
+    \\
+    \hline
+    $\overline{\phi}$
+    &$3.5 \times 10^{13} \; \frac{n}{cm^2 \cdot s}$
+    \\
+    \hline
+    $\epsilon$
+    &1.0476
+    \\
+    \hline
+    $P_{F}$ 
+    &0.9889
+    \\
+    \hline
+    $p$
+    &0.772
+    \\
+    \hline
+    $\sigma_{25}$
+    &555.6 b
+    \\
+    \hline
+    $\sigma_{28}$
+    &2.23 b
+    \\
+    \hline
+    $\sigma_{49}$
+    &1618.2 b
+    \\
+    \hline
+    $\sigma_{40}$
+    &2616.8 b
+    \\
+    \hline
+    $\sigma_{41}$
+    &1567.3 b
+    \\
+    \hline
+    $\sigma_{42}$
+    &381 b
+    \\
+    \hline
+    $\eta{25}$
+    &1.96
+    \\
+    \hline
+    $\eta_{28}$
+    &2.3432
+    \\
+    \hline
+    $\eta_{49}$
+    &1.86
+    \\
+    \hline
+    $\eta_{41}$
+    &3.06
+    \\
+    \hline
+    $\alpha_{25}$
+    &0.2398
+    \\
+    \hline
+    $\alpha_{28}$
+    &0.1907
+    \\
+    \hline
+    $\alpha_{49}$
+    &0.5430
+    \\
+    \hline
+    $\alpha_{41}$
+    &0.3765
+    \\
+    \hline
+\end{longtable}
+
+\newpage
+
+\section*{Figures}
+
+{%
+\let\oldnumberline\numberline%
+\renewcommand{\numberline}{\figurename~\oldnumberline}%
+\listoffigures%
+}
+
+\newpage
+%Put figures here
+
+%\begin{figure}[h!]
+%    \centering
+%    \includegraphics[width=0.X\textwidth]{filename}
+%    \caption{Descriptive caption}
+%    \label{fig-label-name}
+%\end{figure}
+
+\newpage
+
+%appendix - uncomment below to add - do not uncomment this line
+
+\begin{appendices}
+
+    \renewcommand{\thesection}{\Roman{section}}
+    \titleformat{\section}{\normalfont\large\bfseries\filcenter}{Appendix \thesection:}{1ex}{}[]
+    \pagenumbering{gobble}
+
+    \section{Equations} \label{app-equations}
+    \begin{equation}
+        \begin{aligned}
+            \frac{dN_{49}}{d\theta} & = N_{28}^{0} \sigma_{28}  +  \kappa_{25} N_{25} \sigma_{25} - \gamma_{49} N_{49} \sigma_{49}
+            \\
+            N_{49}(0) &= 0
+            \\
+            \kappa_m &= \eta_m \epsilon P_F (1-p) + \eta_m \frac{\alpha_{28}}{1 +  \alpha_{28}}\cdot\frac{\epsilon-1}{\eta_{28}-1}
+            \\
+            \gamma_m &= 1-\kappa_m
+            \\
+            N_{49}(\theta) &= C_1(1-e^{-\sigma_{49}\gamma_{49}\theta}) + C_2(e^{- \sigma_{25}\theta}-e^{-\sigma_{49}\gamma_{49}\theta})
+            \\
+            C_1 &= \frac{N_{28}^0\sigma_{28}}{\sigma_{49}\gamma_{49}}
+            \\
+            C_2 &= \frac{\kappa_{25} N_{25}^0 \sigma_{25}}{\sigma_{49}\gamma_{49}- \sigma_{25}}
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            \frac{dN_{25}^F}{d\theta} &= \frac{1}{1 + \alpha_{25}}N_{25}\sigma_{25}
+            \\
+            N^F_m(0) &= 0
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            \frac{dN_{49}^F}{d\theta} & = \frac{1}{1 + \alpha_{49}}N_{49}\sigma_{49}
+            \\
+            N^F_m(0) &= 0
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            B &= 9.5 \times 10^5 \cdot w
+            \\
+            w &= \frac{235N^F_{25} + 238N^F_{28} + 239N^F_{49} + 241N^F_{41}}{235N^0_{25} +  238N^0_{28}}
+        \end{aligned}
+    \end{equation}
+
+    \begin{equation}
+        \begin{aligned}
+            N_i(T + C) &= e^{-\lambda_iC}[Y_{25}^iN_{25}^F(T) + Y_{49}^iN_{49}^F(T)]
+            \\
+            N_i(0) &= 0
+        \end{aligned}
+    \end{equation}
+
+\newpage
+
+    \section{Burnup graph} \label{app-burnup}
+    \includepdf[scale=1.00,pages=-]{../data/burnup.pdf}
+
+
+\end{appendices}
+
+\newpage 
+
+\bibliographystyle{nsf}
+\setlength{\bibhang}{0pt}
+\bibliography{references}
+
+\end{document}

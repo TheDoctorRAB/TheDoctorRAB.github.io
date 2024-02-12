@@ -1,5 +1,7 @@
 %@TheDoctorRAB
-%standard white paper/preproposal format
+%
+%presentation template for class slides and research presentations
+%allows for citations in slide and a list at the end
 %
 %%%%%
 %
@@ -23,7 +25,7 @@
 %the rest list numerically
 %
 %
-%%% slides 
+%%% citations on slides 
 %
 %\citep{xxxnna} where the citation should go
 %\blfootnote{\fontsize\cite{xxxnna}\fontsize\bibentry{xxxnna}} before \end{frame}
@@ -37,10 +39,76 @@
 \usecolortheme{seahorse}
 \beamertemplatenavigationsymbolsempty
 \addtobeamertemplate{footnote}{\hskip -2em}{} %pushes footnote to margin
+%%% font style - can add size, etc.
+%https://tug.ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf
 \setbeamerfont{title}{series=\bfseries}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamerfont{footline}{series=\bfseries}
+\setbeamerfont{author}{series=\bfseries}
+\setbeamerfont{institute}{series=\bfseries}
+\setbeamerfont{date}{series=\bfseries}
 \setbeamertemplate{page number in head/foot}[framenumber] %just gives slide number; comment out for 1/7, 2/7...
+%%%%%
+
+
+%%%%% colors
+%http://latexcolor.com/
+%https://en.wikibooks.org/wiki/LaTeX/Colors#:~:text=black%2C%20blue%2C%20brown%2C%20cyan,be%20available%20on%20all%20systems.
+%sam root
 \definecolor{BackGround}{RGB}{255,250,240}
+\definecolor{PrideGold}{RGB}{241,179,0}
+\definecolor{Silver}{RGB}{165,169,180}
+\definecolor{White}{RGB}{255,255,255}
+\definecolor{Black}{RGB}{25,25,25}
+\definecolor{Chrome}{RGB}{245,245,245}
+%%% general
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\definecolor{antiquewhite}{rgb}{0.98, 0.92, 0.84}
+\definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
+\definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
+\definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
+\definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
+\definecolor{darkchampagne}{rgb}{0.76, 0.7, 0.5}
+%%% set slides
 \setbeamercolor{background canvas}{bg=BackGround}
+%%%
+\setbeamercolor{block title}{bg=Silver,fg=Black}
+\setbeamercolor{block body}{bg=Silver!20,fg=Black}
+\setbeamercolor{block title alerted}{bg=Black,fg=Silver}
+\setbeamercolor{block body alerted}{bg=PrideGold,fg=Black}
+\setbeamercolor{alerted text}{fg=Silver}
+\setbeamercolor*{block title example}{bg=PrideGold,fg=Black}
+\setbeamercolor*{block body example}{bg=PrideGold!20,fg=Black}
+%%%
+\setbeamercolor*{palette primary}{bg=PrideGold,fg=Black}
+\setbeamercolor*{palette secondary}{bg=PrideGold,fg=Black}
+\setbeamercolor*{palette tertiary}{bg=PrideGold,fg=Black}
+%%%
+\setbeamercolor*{titlelike}{bg=PrideGold,fg=Black}
+\setbeamercolor*{title}{bg=PrideGold,fg=Black}
+\setbeamercolor*{item}{fg=PrideGold}
+\setbeamercolor*{caption name}{fg=PrideGold}
+%%%
+\setbeamercolor*{sidebar}{fg=PrideGold,bg=Black}
+\setbeamercolor*{title in sidebar}{fg=PrideGold}
+\setbeamercolor*{author in sidebar}{fg=PrideGold}
+\setbeamercolor*{section in sidebar}{fg=PrideGold}
+%%%
+\setbeamercolor{section in toc}{fg=Black}
+\setbeamercolor{subsection in toc}{fg=Black}
+%%%
+\setbeamercolor{page number in head/foot}{fg=Black,bg=PrideGold}
+%\setbeamercolor{footline}{bg=Black}
+%%%
+\setbeamercolor{bibliography entry author}{fg=Black}
+\setbeamercolor{bibliography entry note}{fg=Black}
+\setbeamercolor{bibliography entry title}{fg=Black}
+%%%
+\newcommand{\x}{\cellcolor{aliceblue}} %use to shade in table cell
+\newcommand{\y}{\cellcolor{lightgray}} %use to shade in table cell
+\newcommand{\z}{\cellcolor{antiquewhite}} %use to shade in table cell
+\newcommand{\w}{\cellcolor{darkchampagne}} %use to shade in table cell
+
 %%%%%
 
 
@@ -111,6 +179,7 @@
 %%%%% references
 %\usepackage[round,semicolon]{natbib} %for (Borrelli 2021; Clooney 2019) - standard.bst 
 \usepackage[numbers,sort&compress]{natbib} %for [1-3] - nsf.bst, neup.bst
+\usepackage{bibentry}
 \setlength{\bibsep}{7pt} %sets space between references
 %\renewcommand{\bibsection}{} %suppresses large 'references' heading
 %\renewcommand\bibpreamble{\vspace{\baselineskip}} %sets spacing after heading if not using default references heading
@@ -119,6 +188,7 @@
 
 %%%%% tables and figures
 \usepackage{longtable} %need to put label at top under caption then \\ - use spacing
+\usepackage{makecell}
 \usepackage{tablefootnote}
 \usepackage{tabularx}
 \usepackage{multirow}
@@ -152,7 +222,7 @@
 %%%%% toc and glossaries
 \usepackage[toc,title]{appendix}
 \usepackage[acronym,nomain,nonumberlist]{glossaries}
-\makenoidxglossaries
+%\makenoidxglossaries
 %\usepackage{titlesec,titletoc}
 %\renewcommand{\thepart}{ARTICLE \Roman{part}} %puts the label into the command so \thelabel will carry through
 %\renewcommand{\thesection}{\arabic{section}} %puts the label into the command so \thelabel will carry through
@@ -186,22 +256,6 @@
 %%%%%
 
 
-%%%%% colors
-%http://latexcolor.com/
-%https://en.wikibooks.org/wiki/LaTeX/Colors#:~:text=black%2C%20blue%2C%20brown%2C%20cyan,be%20available%20on%20all%20systems.
-\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
-\definecolor{antiquewhite}{rgb}{0.98, 0.92, 0.84}
-\definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
-\definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
-\definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
-\definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
-
-\newcommand{\x}{\cellcolor{aliceblue}} %use to shade in table cell
-\newcommand{\y}{\cellcolor{lightgray}} %use to shade in table cell
-\newcommand{\z}{\cellcolor{antiquewhite}} %use to shade in table cell
-%%%%%
-
-
 %%%%% acronyms
 \newcommand{\acf}{\acrfull} %full acronym
 \newcommand{\acl}{\acrlong} %long acronym
@@ -216,17 +270,14 @@
 %%%%% todonotes
 \newcommandx{\cmt}[2][1=]{\todo[author=\textbf{STRUCTURE},tickmarkheight=0.15cm,linecolor=red,backgroundcolor=red!25,bordercolor=black,#1]{#2}}
 \newcommandx{\con}[2][1=]{\todo[author=\textbf{CONTENT},tickmarkheight=0.15cm,linecolor=brilliantlavender,backgroundcolor=brilliantlavender,bordercolor=black,#1]{#2}}
-\newcommandx{\rab}[2][1=]{\todo[noline,author=\textbf{RAB},backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
-
-
+%\newcommandx{\rab}[2][1=]{\todo[noline,author=\textbf{RAB},backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
+%%%
 %\newcommandx{\jon}[2][1=]{\todo[noline,author=\textbf{ATTN: Johnson},backgroundcolor=blue!25,bordercolor=black,#1]{#2}}
 %\newcommandx{\han}[2][1=]{\todo[noline,author=\textbf{ATTN: Haney},backgroundcolor=OliveGreen!25,bordercolor=black,#1]{#2}}
-%\newcommandx{\rab}[2][1=]{\todo[author=\textbf{RAB},tickmarkheight=0.15cm,linecolor=Plum,backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
+\newcommandx{\rab}[2][1=]{\todo[author=\textbf{Borrelli},tickmarkheight=0.15cm,linecolor=black,backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
 %\newcommandx{\han}[2][1=]{\todo[author=\textbf{ATTN: Haney},tickmarkheight=0.15cm,linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
 %\newcommandx{\jon}[2][1=]{\todo[author=\textbf{ATTN: Johnson},tickmarkheight=0.15cm,linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
-
-
-% highlighting 
+%%% highlighting 
 \DeclareRobustCommand{\hlc}[1]{{\sethlcolor{LimeGreen}\hl{#1}}}
 \makeatletter
     \if@todonotes@disabled
@@ -296,31 +347,26 @@
   \endgroup
 }
 
+
 \makeatletter
 \renewcommand{\@biblabel}[1]{#1.\hfill} %bibliography ordered list has numbers left flush
 \makeatother
-%%%%%
 
-%%%%% archived section commands - use titlesec
-%\makeatletter
-%\renewcommand\section{%
-%    \@startsection{section}{1}{\z@ }{0.50\baselineskip}{0.25\baselineskip}
-%    {\large \normalfont \bfseries}}%
 
-%\makeatletter
-%\renewcommand\paragraph{%
-%    \@startsection{paragraph}{4}{\z@ }{0.55\baselineskip}{-1em}
-%    {\normalfont \normalsize \bfseries}}%
+\AtBeginSection[]{
+    \begin{frame}[plain]{}
+         
+         \vfill
 
-%\makeatletter
-%\renewcommand\subparagraph{%
-%    \@startsection{subparagraph}{5}{\z@ }{0.40\baselineskip}{-1em}
-%    {\normalfont \normalsize \itshape }}%
+         \centering
+         \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{titlelike}
+             \usebeamerfont{title}\insertsectionhead\par
+         \end{beamercolorbox}
 
-%\makeatletter
-%\renewcommand\subsection{%
-%    \@startsection{subsection}{2}{\z@ }{0.45\baselineskip}{0.25\baselineskip}
-%    {\large \normalfont \bfseries}}%
+         \vfill
+
+     \end{frame}
+ }
 %%%%%
 
 
@@ -389,6 +435,7 @@
 \newacronym{tcp}{TCP/IP}{Transmission Control Protocol/Internet Protocol}
 \newacronym{dnp}{DNP3}{Distributed Network Protocol 3}
 \newacronym{pra}{PRA}{Probabilistic Risk Assessment}
+\newacronym{hra}{HRA}{Human Reliability Analysis}
 \newacronym{cs}{CS}{Critical System}
 \newacronym{loc}{LOCA}{Loss of Coolant Accident}
 \newacronym{hmi}{HMI}{Human Machine Interface}
@@ -415,20 +462,17 @@
 \newacronym{cdm}{CRDM}{Control Rod Drive Mechanism}
 \newacronym{fma}{FMEA}{Failure Modes \& Effects Analysis}
 \newacronym{rpn}{RPN}{Risk Priority Number}
+\newacronym{scr}{SCR}{silicon controller rectifier}
 \newacronym{hvc}{HVAC}{Heating, Ventilation \& Air Conditioning}
 \newacronym{ttb}{TTB}{Time-to-Boil}
 \newacronym{sis}{SIS}{Safety Instrumented System}
 \newacronym{ui}{UI}{University of Idaho}
 \newacronym{ala}{ALARA}{As Low As Reasonably Achievable}
-\newacronym{pdf}{PDF}{Probability Density Function}
-\newacronym{cdf}{CDF}{Cumulative Distribution Function}
-\newacronym{osa}{OSHA}{Occupational Safety and Health Administration}
+\newacronym{icr}{I-CREWS}{Idaho Community-Engaged Resilience for Energy-Water Systems}
+\newacronym{ew}{E-W}{Energy-Water}
+\newacronym{ml}{ML}{Machine Learning}
+\newacronym{set}{SETS}{Socio-Environmental Technological System}
 \newacronym{haz}{HAZOP}{Hazard \& Operability Analysis}
-\newacronym{mtb}{MTBF}{Mean Time Before Failure}
-\newacronym{mtf}{MTTF}{Mean Time To Failure}
-\newacronym{hra}{HRA}{Human Reliability Analysis}
-\newacronym{ecs}{ECCS}{Emergency Core Cooling System}
-\newacronym{scr}{SCRAM}{SCRAM}
 \newacronym{trp}{THERP}{Technique for Human Error Rate Prediction}
 \newacronym{pid}{P\&ID}{Piping \& Instrumentation Diagram}
 \newacronym{npv}{NPV}{Net Present Value}
@@ -459,19 +503,22 @@
 \institute[]{
     \acl{ui}\\
     \vspace{0.10in}
-    \includegraphics[width=0.20\textwidth]{ne-logo.png}
     }
 \date{\acl{iff}}
+\titlegraphic{\includegraphics[width=0.20\textwidth]{ne-logo.png}}
 %%%%%
 
 
 \begin{document}
 
 
+\nobibliography* %allows \bibentry citations in the footers of frames; NOT effect putting bibliography slide at the end
+
+
 %%%%% title page with no footer
 {
     \setbeamertemplate{footline}{}
-    \begin{frame}
+    \begin{frame}[plain]{}
         \titlepage
     \end{frame}
 }
@@ -559,9 +606,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{What is risk management?}
-\end{frame}
+\section{What is risk management?}
 
 
 \addtocounter{framenumber}{-1}
@@ -575,9 +620,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{Strategies}
-\end{frame}
+\section{Strategies}
 
 
 \addtocounter{framenumber}{-1}
@@ -602,9 +645,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{\acf{npv}}
-\end{frame}
+\section{\acf{npv}}
 
 
 \addtocounter{framenumber}{-1}
@@ -639,9 +680,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{\href{https://uidaho.pressbooks.pub/riskassessment/chapter/decision-trees/}{Decision trees}}
-\end{frame}
+\section{\href{https://uidaho.pressbooks.pub/riskassessment/chapter/decision-trees/}{Decision trees}}
 
 
 \addtocounter{framenumber}{-1}
@@ -669,9 +708,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{Example}
-\end{frame}
+\section{Example}
 
 
 \addtocounter{framenumber}{-1}
@@ -780,9 +817,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{Bridge modifications}
-\end{frame}
+\section{Bridge modifications}
 
 
 \addtocounter{framenumber}{-1}
@@ -795,9 +830,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{Upfront costs}
-\end{frame}
+\section{Upfront costs}
 
 
 \addtocounter{framenumber}{-1}
@@ -814,9 +847,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{Expected value}
-\end{frame}
+\section{Expected value}
 
 
 \addtocounter{framenumber}{-1}
@@ -840,9 +871,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{Hurwicz criterion}
-\end{frame}
+\section{Hurwicz criterion}
 
 
 \addtocounter{framenumber}{-1}
@@ -865,9 +894,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{Land use}
-\end{frame}
+\section{Land use}
 
 
 \addtocounter{framenumber}{-1}
@@ -925,9 +952,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{\href{https://uidaho.pressbooks.pub/riskassessment/chapter/utility-theory/}{Utility theory}}
-\end{frame}
+\section{\href{https://uidaho.pressbooks.pub/riskassessment/chapter/utility-theory/}{Utility theory}}
 
 
 \addtocounter{framenumber}{-1}
@@ -965,9 +990,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{Expected utility}
-\end{frame}
+\section{Expected utility}
 
 
 \addtocounter{framenumber}{-1}
@@ -1030,9 +1053,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{Data fitting}
-\end{frame}
+\section{Data fitting}
 
 
 \addtocounter{framenumber}{-1}
@@ -1048,9 +1069,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{Revisit land use}
-\end{frame}
+\section{Revisit land use}
 
 
 \addtocounter{framenumber}{-1}
@@ -1099,9 +1118,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{Arrow-Pratt coefficient}
-\end{frame}
+\section{Arrow-Pratt coefficient}
 
 
 \addtocounter{framenumber}{-1}
@@ -1143,9 +1160,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{Multiple attributes}
-\end{frame}
+\section{Multiple attributes}
 
 
 \addtocounter{framenumber}{-1}
@@ -1168,9 +1183,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{\acf{ahp}}
-\end{frame}
+\section{\acf{ahp}}
 
 
 \addtocounter{framenumber}{-1}
@@ -1188,9 +1201,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{\acs{ahp} procedure}
-\end{frame}
+\section{\acs{ahp} procedure}
 
 
 \addtocounter{framenumber}{-1}
@@ -1224,9 +1235,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{Yucca mountain}
-\end{frame}
+\section{Yucca mountain}
 
 
 \addtocounter{framenumber}{-1}
@@ -1400,9 +1409,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{Buying a car}
-\end{frame}
+\section{Buying a car}
 
 
 \addtocounter{framenumber}{-1}
@@ -1415,9 +1422,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{Anything missing?}
-\end{frame}
+\section{Anything missing?}
 
 
 \addtocounter{framenumber}{-1}
@@ -1529,9 +1534,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{Apartment}
-\end{frame}
+\section{Apartment}
 
 
 \addtocounter{framenumber}{-1}
@@ -1642,9 +1645,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{Fuzzy logic}
-\end{frame}
+\section{Fuzzy logic}
 
 
 \addtocounter{framenumber}{-1}
@@ -1662,9 +1663,7 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{Procedure}
-\end{frame}
+\section{Procedure}
 
 
 \addtocounter{framenumber}{-1}
@@ -1730,14 +1729,10 @@
 \end{frame}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{\href{https://www.sciencedirect.com/science/article/pii/S0149197021004352}{Fuzzy \acs{ahp}}}
-\end{frame}
+\section{\href{https://www.sciencedirect.com/science/article/pii/S0149197021004352}{Fuzzy \acs{ahp}}}
 
 
-\begin{frame}[plain]{}
-    \centering\LARGE\textbf{Risk perception and communication}
-\end{frame}
+\section{Risk perception and communication}
 
 
 \addtocounter{framenumber}{-2}

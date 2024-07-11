@@ -1,5 +1,7 @@
 %@TheDoctorRAB
-%standard white paper/preproposal format
+%
+%presentation template for class slides and research presentations
+%allows for citations in slide and a list at the end
 %
 %%%%%
 %
@@ -23,7 +25,7 @@
 %the rest list numerically
 %
 %
-%%% slides 
+%%% citations on slides 
 %
 %\citep{xxxnna} where the citation should go
 %\blfootnote{\fontsize\cite{xxxnna}\fontsize\bibentry{xxxnna}} before \end{frame}
@@ -37,10 +39,76 @@
 \usecolortheme{seahorse}
 \beamertemplatenavigationsymbolsempty
 \addtobeamertemplate{footnote}{\hskip -2em}{} %pushes footnote to margin
+%%% font style - can add size, etc.
+%https://tug.ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf
 \setbeamerfont{title}{series=\bfseries}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamerfont{footline}{series=\bfseries}
+\setbeamerfont{author}{series=\bfseries}
+\setbeamerfont{institute}{series=\bfseries}
+\setbeamerfont{date}{series=\bfseries}
 \setbeamertemplate{page number in head/foot}[framenumber] %just gives slide number; comment out for 1/7, 2/7...
+%%%%%
+
+
+%%%%% colors
+%http://latexcolor.com/
+%https://en.wikibooks.org/wiki/LaTeX/Colors#:~:text=black%2C%20blue%2C%20brown%2C%20cyan,be%20available%20on%20all%20systems.
+%sam root
 \definecolor{BackGround}{RGB}{255,250,240}
+\definecolor{PrideGold}{RGB}{241,179,0}
+\definecolor{Silver}{RGB}{165,169,180}
+\definecolor{White}{RGB}{255,255,255}
+\definecolor{Black}{RGB}{25,25,25}
+\definecolor{Chrome}{RGB}{245,245,245}
+%%% general
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\definecolor{antiquewhite}{rgb}{0.98, 0.92, 0.84}
+\definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
+\definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
+\definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
+\definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
+\definecolor{darkchampagne}{rgb}{0.76, 0.7, 0.5}
+%%% set slides
 \setbeamercolor{background canvas}{bg=BackGround}
+%%%
+\setbeamercolor{block title}{bg=Silver,fg=Black}
+\setbeamercolor{block body}{bg=Silver!20,fg=Black}
+\setbeamercolor{block title alerted}{bg=Black,fg=Silver}
+\setbeamercolor{block body alerted}{bg=PrideGold,fg=Black}
+\setbeamercolor{alerted text}{fg=Silver}
+\setbeamercolor*{block title example}{bg=PrideGold,fg=Black}
+\setbeamercolor*{block body example}{bg=PrideGold!20,fg=Black}
+%%%
+\setbeamercolor*{palette primary}{bg=PrideGold,fg=Black}
+\setbeamercolor*{palette secondary}{bg=PrideGold,fg=Black}
+\setbeamercolor*{palette tertiary}{bg=PrideGold,fg=Black}
+%%%
+\setbeamercolor*{titlelike}{bg=PrideGold,fg=Black}
+\setbeamercolor*{title}{bg=PrideGold,fg=Black}
+\setbeamercolor*{item}{fg=PrideGold}
+\setbeamercolor*{caption name}{fg=PrideGold}
+%%%
+\setbeamercolor*{sidebar}{fg=PrideGold,bg=Black}
+\setbeamercolor*{title in sidebar}{fg=PrideGold}
+\setbeamercolor*{author in sidebar}{fg=PrideGold}
+\setbeamercolor*{section in sidebar}{fg=PrideGold}
+%%%
+\setbeamercolor{section in toc}{fg=Black}
+\setbeamercolor{subsection in toc}{fg=Black}
+%%%
+\setbeamercolor{page number in head/foot}{fg=Black,bg=PrideGold}
+%\setbeamercolor{footline}{bg=Black}
+%%%
+\setbeamercolor{bibliography entry author}{fg=Black}
+\setbeamercolor{bibliography entry note}{fg=Black}
+\setbeamercolor{bibliography entry title}{fg=Black}
+%%%
+\newcommand{\x}{\cellcolor{aliceblue}} %use to shade in table cell
+\newcommand{\y}{\cellcolor{lightgray}} %use to shade in table cell
+\newcommand{\z}{\cellcolor{antiquewhite}} %use to shade in table cell
+\newcommand{\w}{\cellcolor{darkchampagne}} %use to shade in table cell
+
 %%%%%
 
 
@@ -59,7 +127,7 @@
 %\usepackage{subfig}
 \usepackage[yyyymmdd]{datetime} %date format
 \renewcommand{\dateseparator}{.}
-\graphicspath{{img/}} %path to graphics
+\graphicspath{{$TEXIMG/}} %path to graphics
 \setcounter{secnumdepth}{5} %set subsection to nth level
 \usepackage{needspace}
 \usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
@@ -101,6 +169,7 @@
 
 %%%%% fonts
 \usepackage{times}
+%\renewcommand{\sfdefault}{ubuntu}
 %arial - uncomment next two lines
 %\usepackage{helvet}
 %\renewcommand{\familydefault}{\sfdefault}
@@ -110,6 +179,7 @@
 %%%%% references
 %\usepackage[round,semicolon]{natbib} %for (Borrelli 2021; Clooney 2019) - standard.bst 
 \usepackage[numbers,sort&compress]{natbib} %for [1-3] - nsf.bst, neup.bst
+\usepackage{bibentry}
 \setlength{\bibsep}{7pt} %sets space between references
 %\renewcommand{\bibsection}{} %suppresses large 'references' heading
 %\renewcommand\bibpreamble{\vspace{\baselineskip}} %sets spacing after heading if not using default references heading
@@ -118,6 +188,7 @@
 
 %%%%% tables and figures
 \usepackage{longtable} %need to put label at top under caption then \\ - use spacing
+\usepackage{makecell}
 \usepackage{tablefootnote}
 \usepackage{tabularx}
 \usepackage{multirow}
@@ -151,7 +222,7 @@
 %%%%% toc and glossaries
 \usepackage[toc,title]{appendix}
 \usepackage[acronym,nomain,nonumberlist]{glossaries}
-\makenoidxglossaries
+%\makenoidxglossaries
 %\usepackage{titlesec,titletoc}
 %\renewcommand{\thepart}{ARTICLE \Roman{part}} %puts the label into the command so \thelabel will carry through
 %\renewcommand{\thesection}{\arabic{section}} %puts the label into the command so \thelabel will carry through
@@ -185,22 +256,6 @@
 %%%%%
 
 
-%%%%% colors
-%http://latexcolor.com/
-%https://en.wikibooks.org/wiki/LaTeX/Colors#:~:text=black%2C%20blue%2C%20brown%2C%20cyan,be%20available%20on%20all%20systems.
-\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
-\definecolor{antiquewhite}{rgb}{0.98, 0.92, 0.84}
-\definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
-\definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
-\definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
-\definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
-
-\newcommand{\x}{\cellcolor{aliceblue}} %use to shade in table cell
-\newcommand{\y}{\cellcolor{lightgray}} %use to shade in table cell
-\newcommand{\z}{\cellcolor{antiquewhite}} %use to shade in table cell
-%%%%%
-
-
 %%%%% acronyms
 \newcommand{\acf}{\acrfull} %full acronym
 \newcommand{\acl}{\acrlong} %long acronym
@@ -215,17 +270,14 @@
 %%%%% todonotes
 \newcommandx{\cmt}[2][1=]{\todo[author=\textbf{STRUCTURE},tickmarkheight=0.15cm,linecolor=red,backgroundcolor=red!25,bordercolor=black,#1]{#2}}
 \newcommandx{\con}[2][1=]{\todo[author=\textbf{CONTENT},tickmarkheight=0.15cm,linecolor=brilliantlavender,backgroundcolor=brilliantlavender,bordercolor=black,#1]{#2}}
-\newcommandx{\rab}[2][1=]{\todo[noline,author=\textbf{RAB},backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
-
-
+%\newcommandx{\rab}[2][1=]{\todo[noline,author=\textbf{RAB},backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
+%%%
 %\newcommandx{\jon}[2][1=]{\todo[noline,author=\textbf{ATTN: Johnson},backgroundcolor=blue!25,bordercolor=black,#1]{#2}}
 %\newcommandx{\han}[2][1=]{\todo[noline,author=\textbf{ATTN: Haney},backgroundcolor=OliveGreen!25,bordercolor=black,#1]{#2}}
-%\newcommandx{\rab}[2][1=]{\todo[author=\textbf{RAB},tickmarkheight=0.15cm,linecolor=Plum,backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
+\newcommandx{\rab}[2][1=]{\todo[author=\textbf{Borrelli},tickmarkheight=0.15cm,linecolor=black,backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
 %\newcommandx{\han}[2][1=]{\todo[author=\textbf{ATTN: Haney},tickmarkheight=0.15cm,linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
 %\newcommandx{\jon}[2][1=]{\todo[author=\textbf{ATTN: Johnson},tickmarkheight=0.15cm,linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
-
-
-% highlighting 
+%%% highlighting 
 \DeclareRobustCommand{\hlc}[1]{{\sethlcolor{LimeGreen}\hl{#1}}}
 \makeatletter
     \if@todonotes@disabled
@@ -295,31 +347,26 @@
   \endgroup
 }
 
+
 \makeatletter
 \renewcommand{\@biblabel}[1]{#1.\hfill} %bibliography ordered list has numbers left flush
 \makeatother
-%%%%%
 
-%%%%% archived section commands - use titlesec
-%\makeatletter
-%\renewcommand\section{%
-%    \@startsection{section}{1}{\z@ }{0.50\baselineskip}{0.25\baselineskip}
-%    {\large \normalfont \bfseries}}%
 
-%\makeatletter
-%\renewcommand\paragraph{%
-%    \@startsection{paragraph}{4}{\z@ }{0.55\baselineskip}{-1em}
-%    {\normalfont \normalsize \bfseries}}%
+\AtBeginSection[]{
+    \begin{frame}[plain]{}
+         
+         \vfill
 
-%\makeatletter
-%\renewcommand\subparagraph{%
-%    \@startsection{subparagraph}{5}{\z@ }{0.40\baselineskip}{-1em}
-%    {\normalfont \normalsize \itshape }}%
+         \centering
+         \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{titlelike}
+             \usebeamerfont{title}\insertsectionhead\par
+         \end{beamercolorbox}
 
-%\makeatletter
-%\renewcommand\subsection{%
-%    \@startsection{subsection}{2}{\z@ }{0.45\baselineskip}{0.25\baselineskip}
-%    {\large \normalfont \bfseries}}%
+         \vfill
+
+     \end{frame}
+ }
 %%%%%
 
 
@@ -336,95 +383,8 @@
 %%%%%
 
 
-%%%%%%% citations
-%\begin{filecontents}{references.bib}
-%\end{filecontents}
-%%%%%%%
-
-
 %%%%% acronyms
-% alphabetical ordering is automated
-\newacronym{nrs}{NRHES}{Nuclear Renewable Hybrid Energy System}
-\newacronym{ahp}{AHP}{Analytical Hierarchy Process}
-\newacronym{inl}{INL}{Idaho National Laboratory}
-\newacronym{orl}{ORNL}{Oak Ridge National Laboratory}
-\newacronym{anl}{ANL}{Argonne National Laboratory}
-\newacronym{npp}{NPP}{Nuclear Power Plant}
-\newacronym{smr}{SMR}{Small Modular Reactor}
-\newacronym{ump}{UAMPS}{Utah Associated Municipal Power Systems}
-\newacronym{nus}{NuScale}{NuScale Power, LLC}
-\newacronym{nrc}{NRC}{United States Nuclear Regulatory Commission}
-\newacronym{epri}{EPRI}{Electric Power Research Institute}
-\newacronym{nerc}{NERC}{North American Electric Reliability Corporation}
-\newacronym{ci}{CI}{Consistency Index}
-\newacronym{cr}{CR}{Consistency Ratio}
-\newacronym{htse}{HTSE}{High Temperature Steam Electrolysis}
-\newacronym{lwr}{LWR}{Light Water Reactor}
-\newacronym{eia}{EIA}{U.S. Energy Information Administration}
-\newacronym{oer}{OER}{Online Educational Resource}
-\newacronym{lms}{LMS}{Learning Management System}
-\newacronym{cps}{CPS}{Cyber-Physical Systems}
-\newacronym{nsf}{NSF}{National Science Foundation}
-\newacronym{wsc}{WSC}{Western Services Corporation}
-\newacronym{cae}{CAES}{Center for Advanced Energy Studies}
-\newacronym{hsl}{HSSL}{Human System Simulation Laboratory}
-\newacronym{pwr}{PWR}{Pressurized Water Reactor}
-\newacronym{bwr}{BWR}{Boiling Water Reactor}
-\newacronym{roi}{ROI}{Return on Investment}
-\newacronym{ic}{I\&C}{Instrumentation \& Controls}
-\newacronym{mwe}{MWe}{Megawatts-electric}
-\newacronym{ics}{ICS}{Industrial Control Systems}
-\newacronym{sca}{SCADA}{Supervisory Control and Data Acquisition}
-\newacronym{ip}{IP}{Internet Protocol}
-\newacronym{udp}{UDP}{User Datagram Protocol}
-\newacronym{tva}{TVA}{Tennessee Valley Authority}
-\newacronym{plc}{PLC}{Programmable Logic Controller}
-\newacronym{vfd}{VFD}{Variable Frequency Drive}
-\newacronym{khp}{KHNP}{Korean Hydro \& Nuclear Power Co., Ltd}
-\newacronym{onl}{ORNL}{Oak Ridge National Laboratory}
-\newacronym{jcp}{JCPOA}{Joint Comprehensive Plan of Action}
-\newacronym{mim}{MITM}{Man in the Middle}
-\newacronym{dos}{DDoS}{Distributed Denial of Service}
-\newacronym{tcp}{TCP/IP}{Transmission Control Protocol/Internet Protocol}
-\newacronym{dnp}{DNP3}{Distributed Network Protocol 3}
-\newacronym{pra}{PRA}{Probabilistic Risk Assessment}
-\newacronym{cs}{CS}{Critical System}
-\newacronym{loc}{LOCA}{Loss of Coolant Accident}
-\newacronym{hmi}{HMI}{Human Machine Interface}
-\newacronym{pha}{PHA}{Preliminary Hazards Analysis}
-\newacronym{bol}{BOL}{Beginning-of-Life}
-\newacronym{eol}{EOL}{End-of-Life}
-\newacronym{mol}{MOL}{Middle-of-Life}
-\newacronym{imu}{IMUNES}{Integrated Multiprotocol Network Emulator/Simulator}
-\newacronym{ccc}{CCC}{Computing Community Consortium}
-\newacronym{neu}{NEUP}{Nuclear Energy University Program}
-\newacronym{doe}{DOE}{United States Department of Energy}
-\newacronym{nei}{NEI}{Nuclear Energy Institute}
-\newacronym{nit}{NITRD}{Networking Information Technology Research \& Development Program}
-\newacronym{rcs}{RCS}{Reactor Cooling System}
-\newacronym{con}{IC}{Initial Condition}
-\newacronym{csi}{CSIS}{Center for Strategic \& International Studies}
-\newacronym{pcap}{PCAP}{packet capture file}
-\newacronym{dc}{DC}{Direct-Current}
-\newacronym{ac}{AC}{Alternating-Current}
-\newacronym{iff}{UIIF}{Idaho Falls Center for Higher Education}
-\newacronym{snl}{SNL}{Sandia National Laboratory}
-\newacronym{cie}{CIE}{Cyber-Informed Engineering}
-\newacronym{cds}{CRDS}{Control Rod Drive System}
-\newacronym{cdm}{CRDM}{Control Rod Drive Mechanism}
-\newacronym{fma}{FMEA}{Failure Modes \& Effects Analysis}
-\newacronym{rpn}{RPN}{Risk Priority Number}
-\newacronym{scr}{SCR}{silicon controller rectifier}
-\newacronym{hvc}{HVAC}{Heating, Ventilation \& Air Conditioning}
-\newacronym{ttb}{TTB}{Time-to-Boil}
-\newacronym{sis}{SIS}{Safety Instrumented System}
-\newacronym{ui}{UI}{University of Idaho}
-\newacronym{mox}{MOX}{mixed oxide}
-\newacronym{atr}{ATR}{Advanced Test Reactor}
-\newacronym{swu}{SWU}{Separative Work Unit}
-\newacronym{eb1}{EBR-I}{Experimental Breeder Reactor-I}
-\newacronym{lft}{LFTR}{Liquid Fluoride Thorium Reactor}
-%\newacronym{}{}{}
+\input{$ACRONYM/acronyms}
 %%%%%
 
 %%%%% spacing
@@ -448,10 +408,11 @@
 \institute[]{
     \acl{ui}\\
     \vspace{0.10in}
-    \includegraphics[width=0.20\textwidth]{ne-logo.png}
+    \includegraphics[width=0.20\textwidth]{logo/university-of-idaho/nuclear-engineering/ne-logo.png}
     }
 \date{\acl{iff}}
 %%%%%
+
 
 \begin{document}
 
@@ -872,7 +833,7 @@
 
 
 \begin{frame}[plain]{}
-    \centering\textbf{\href{http://montecarlo.vtt.fi/download/S32.pdf}{Numerical methods for nuclear fuel burnup calculations}}
+    \centering\textbf{\href{https://serpent.vtt.fi/serpent/download/S32.pdf}{Numerical methods for nuclear fuel burnup calculations}}
 \end{frame}
 
 
@@ -885,7 +846,7 @@
 \begin{frame}{}
     \begin{figure}
         \centering
-        \includegraphics[width=0.65\textwidth]{neutron.balance.png}
+        \includegraphics[width=0.65\textwidth]{ne585/neutron.balance.png}
 %        \caption{}
     \end{figure}
 \end{frame}
@@ -1231,7 +1192,7 @@
 \begin{frame}{}
     \begin{figure}
         \centering
-        \includegraphics[width=0.50\textwidth]{the-fission.yield.jpg}
+        \includegraphics[width=0.50\textwidth]{ne585/the-fission.yield.jpg}
 %        \caption{}
     \end{figure}
 \end{frame}
@@ -1404,68 +1365,10 @@
 \end{frame}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 \begin{frame}[plain]{}
     \begin{figure}
         \centering
-        \includegraphics[width=0.75\textwidth]{final.jpg}
+        \includegraphics[width=0.75\textwidth]{ne585/4a-final.jpg}
 %        \caption{}
     \end{figure}
 \end{frame}

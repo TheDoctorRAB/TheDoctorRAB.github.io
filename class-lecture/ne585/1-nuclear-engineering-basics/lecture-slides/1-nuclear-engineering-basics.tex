@@ -1,5 +1,7 @@
 %@TheDoctorRAB
-%standard white paper/preproposal format
+%
+%presentation template for class slides and research presentations
+%allows for citations in slide and a list at the end
 %
 %%%%%
 %
@@ -23,7 +25,7 @@
 %the rest list numerically
 %
 %
-%%% slides 
+%%% citations on slides 
 %
 %\citep{xxxnna} where the citation should go
 %\blfootnote{\fontsize\cite{xxxnna}\fontsize\bibentry{xxxnna}} before \end{frame}
@@ -37,10 +39,76 @@
 \usecolortheme{seahorse}
 \beamertemplatenavigationsymbolsempty
 \addtobeamertemplate{footnote}{\hskip -2em}{} %pushes footnote to margin
+%%% font style - can add size, etc.
+%https://tug.ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf
 \setbeamerfont{title}{series=\bfseries}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamerfont{footline}{series=\bfseries}
+\setbeamerfont{author}{series=\bfseries}
+\setbeamerfont{institute}{series=\bfseries}
+\setbeamerfont{date}{series=\bfseries}
 \setbeamertemplate{page number in head/foot}[framenumber] %just gives slide number; comment out for 1/7, 2/7...
+%%%%%
+
+
+%%%%% colors
+%http://latexcolor.com/
+%https://en.wikibooks.org/wiki/LaTeX/Colors#:~:text=black%2C%20blue%2C%20brown%2C%20cyan,be%20available%20on%20all%20systems.
+%sam root
 \definecolor{BackGround}{RGB}{255,250,240}
+\definecolor{PrideGold}{RGB}{241,179,0}
+\definecolor{Silver}{RGB}{165,169,180}
+\definecolor{White}{RGB}{255,255,255}
+\definecolor{Black}{RGB}{25,25,25}
+\definecolor{Chrome}{RGB}{245,245,245}
+%%% general
+\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
+\definecolor{antiquewhite}{rgb}{0.98, 0.92, 0.84}
+\definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
+\definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
+\definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
+\definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
+\definecolor{darkchampagne}{rgb}{0.76, 0.7, 0.5}
+%%% set slides
 \setbeamercolor{background canvas}{bg=BackGround}
+%%%
+\setbeamercolor{block title}{bg=Silver,fg=Black}
+\setbeamercolor{block body}{bg=Silver!20,fg=Black}
+\setbeamercolor{block title alerted}{bg=Black,fg=Silver}
+\setbeamercolor{block body alerted}{bg=PrideGold,fg=Black}
+\setbeamercolor{alerted text}{fg=Silver}
+\setbeamercolor*{block title example}{bg=PrideGold,fg=Black}
+\setbeamercolor*{block body example}{bg=PrideGold!20,fg=Black}
+%%%
+\setbeamercolor*{palette primary}{bg=PrideGold,fg=Black}
+\setbeamercolor*{palette secondary}{bg=PrideGold,fg=Black}
+\setbeamercolor*{palette tertiary}{bg=PrideGold,fg=Black}
+%%%
+\setbeamercolor*{titlelike}{bg=PrideGold,fg=Black}
+\setbeamercolor*{title}{bg=PrideGold,fg=Black}
+\setbeamercolor*{item}{fg=PrideGold}
+\setbeamercolor*{caption name}{fg=PrideGold}
+%%%
+\setbeamercolor*{sidebar}{fg=PrideGold,bg=Black}
+\setbeamercolor*{title in sidebar}{fg=PrideGold}
+\setbeamercolor*{author in sidebar}{fg=PrideGold}
+\setbeamercolor*{section in sidebar}{fg=PrideGold}
+%%%
+\setbeamercolor{section in toc}{fg=Black}
+\setbeamercolor{subsection in toc}{fg=Black}
+%%%
+\setbeamercolor{page number in head/foot}{fg=Black,bg=PrideGold}
+%\setbeamercolor{footline}{bg=Black}
+%%%
+\setbeamercolor{bibliography entry author}{fg=Black}
+\setbeamercolor{bibliography entry note}{fg=Black}
+\setbeamercolor{bibliography entry title}{fg=Black}
+%%%
+\newcommand{\x}{\cellcolor{aliceblue}} %use to shade in table cell
+\newcommand{\y}{\cellcolor{lightgray}} %use to shade in table cell
+\newcommand{\z}{\cellcolor{antiquewhite}} %use to shade in table cell
+\newcommand{\w}{\cellcolor{darkchampagne}} %use to shade in table cell
+
 %%%%%
 
 
@@ -59,7 +127,7 @@
 %\usepackage{subfig}
 \usepackage[yyyymmdd]{datetime} %date format
 \renewcommand{\dateseparator}{.}
-\graphicspath{{img/}} %path to graphics
+\graphicspath{{$TEXIMG/}} %path to graphics
 \setcounter{secnumdepth}{5} %set subsection to nth level
 \usepackage{needspace}
 \usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
@@ -111,6 +179,7 @@
 %%%%% references
 %\usepackage[round,semicolon]{natbib} %for (Borrelli 2021; Clooney 2019) - standard.bst 
 \usepackage[numbers,sort&compress]{natbib} %for [1-3] - nsf.bst, neup.bst
+\usepackage{bibentry}
 \setlength{\bibsep}{7pt} %sets space between references
 %\renewcommand{\bibsection}{} %suppresses large 'references' heading
 %\renewcommand\bibpreamble{\vspace{\baselineskip}} %sets spacing after heading if not using default references heading
@@ -119,6 +188,7 @@
 
 %%%%% tables and figures
 \usepackage{longtable} %need to put label at top under caption then \\ - use spacing
+\usepackage{makecell}
 \usepackage{tablefootnote}
 \usepackage{tabularx}
 \usepackage{multirow}
@@ -152,7 +222,7 @@
 %%%%% toc and glossaries
 \usepackage[toc,title]{appendix}
 \usepackage[acronym,nomain,nonumberlist]{glossaries}
-\makenoidxglossaries
+%\makenoidxglossaries
 %\usepackage{titlesec,titletoc}
 %\renewcommand{\thepart}{ARTICLE \Roman{part}} %puts the label into the command so \thelabel will carry through
 %\renewcommand{\thesection}{\arabic{section}} %puts the label into the command so \thelabel will carry through
@@ -186,22 +256,6 @@
 %%%%%
 
 
-%%%%% colors
-%http://latexcolor.com/
-%https://en.wikibooks.org/wiki/LaTeX/Colors#:~:text=black%2C%20blue%2C%20brown%2C%20cyan,be%20available%20on%20all%20systems.
-\definecolor{aliceblue}{rgb}{0.94, 0.97, 1.0}
-\definecolor{antiquewhite}{rgb}{0.98, 0.92, 0.84}
-\definecolor{lightmauve}{rgb}{0.86, 0.82, 1.0}
-\definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
-\definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
-\definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
-
-\newcommand{\x}{\cellcolor{aliceblue}} %use to shade in table cell
-\newcommand{\y}{\cellcolor{lightgray}} %use to shade in table cell
-\newcommand{\z}{\cellcolor{antiquewhite}} %use to shade in table cell
-%%%%%
-
-
 %%%%% acronyms
 \newcommand{\acf}{\acrfull} %full acronym
 \newcommand{\acl}{\acrlong} %long acronym
@@ -216,17 +270,14 @@
 %%%%% todonotes
 \newcommandx{\cmt}[2][1=]{\todo[author=\textbf{STRUCTURE},tickmarkheight=0.15cm,linecolor=red,backgroundcolor=red!25,bordercolor=black,#1]{#2}}
 \newcommandx{\con}[2][1=]{\todo[author=\textbf{CONTENT},tickmarkheight=0.15cm,linecolor=brilliantlavender,backgroundcolor=brilliantlavender,bordercolor=black,#1]{#2}}
-\newcommandx{\rab}[2][1=]{\todo[noline,author=\textbf{RAB},backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
-
-
+%\newcommandx{\rab}[2][1=]{\todo[noline,author=\textbf{RAB},backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
+%%%
 %\newcommandx{\jon}[2][1=]{\todo[noline,author=\textbf{ATTN: Johnson},backgroundcolor=blue!25,bordercolor=black,#1]{#2}}
 %\newcommandx{\han}[2][1=]{\todo[noline,author=\textbf{ATTN: Haney},backgroundcolor=OliveGreen!25,bordercolor=black,#1]{#2}}
-%\newcommandx{\rab}[2][1=]{\todo[author=\textbf{RAB},tickmarkheight=0.15cm,linecolor=Plum,backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
+\newcommandx{\rab}[2][1=]{\todo[author=\textbf{Borrelli},tickmarkheight=0.15cm,linecolor=black,backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
 %\newcommandx{\han}[2][1=]{\todo[author=\textbf{ATTN: Haney},tickmarkheight=0.15cm,linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
 %\newcommandx{\jon}[2][1=]{\todo[author=\textbf{ATTN: Johnson},tickmarkheight=0.15cm,linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
-
-
-% highlighting 
+%%% highlighting 
 \DeclareRobustCommand{\hlc}[1]{{\sethlcolor{LimeGreen}\hl{#1}}}
 \makeatletter
     \if@todonotes@disabled
@@ -296,31 +347,26 @@
   \endgroup
 }
 
+
 \makeatletter
 \renewcommand{\@biblabel}[1]{#1.\hfill} %bibliography ordered list has numbers left flush
 \makeatother
-%%%%%
 
-%%%%% archived section commands - use titlesec
-%\makeatletter
-%\renewcommand\section{%
-%    \@startsection{section}{1}{\z@ }{0.50\baselineskip}{0.25\baselineskip}
-%    {\large \normalfont \bfseries}}%
 
-%\makeatletter
-%\renewcommand\paragraph{%
-%    \@startsection{paragraph}{4}{\z@ }{0.55\baselineskip}{-1em}
-%    {\normalfont \normalsize \bfseries}}%
+\AtBeginSection[]{
+    \begin{frame}[plain]{}
+         
+         \vfill
 
-%\makeatletter
-%\renewcommand\subparagraph{%
-%    \@startsection{subparagraph}{5}{\z@ }{0.40\baselineskip}{-1em}
-%    {\normalfont \normalsize \itshape }}%
+         \centering
+         \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{titlelike}
+             \usebeamerfont{title}\insertsectionhead\par
+         \end{beamercolorbox}
 
-%\makeatletter
-%\renewcommand\subsection{%
-%    \@startsection{subsection}{2}{\z@ }{0.45\baselineskip}{0.25\baselineskip}
-%    {\large \normalfont \bfseries}}%
+         \vfill
+
+     \end{frame}
+ }
 %%%%%
 
 
@@ -337,90 +383,8 @@
 %%%%%
 
 
-%%%%%%% citations
-%\begin{filecontents}{references.bib}
-%\end{filecontents}
-%%%%%%%
-
-
 %%%%% acronyms
-% alphabetical ordering is automated
-\newacronym{nrs}{NRHES}{Nuclear Renewable Hybrid Energy System}
-\newacronym{ahp}{AHP}{Analytical Hierarchy Process}
-\newacronym{inl}{INL}{Idaho National Laboratory}
-\newacronym{orl}{ORNL}{Oak Ridge National Laboratory}
-\newacronym{anl}{ANL}{Argonne National Laboratory}
-\newacronym{npp}{NPP}{Nuclear Power Plant}
-\newacronym{smr}{SMR}{Small Modular Reactor}
-\newacronym{ump}{UAMPS}{Utah Associated Municipal Power Systems}
-\newacronym{nus}{NuScale}{NuScale Power, LLC}
-\newacronym{nrc}{NRC}{United States Nuclear Regulatory Commission}
-\newacronym{epri}{EPRI}{Electric Power Research Institute}
-\newacronym{nerc}{NERC}{North American Electric Reliability Corporation}
-\newacronym{ci}{CI}{Consistency Index}
-\newacronym{cr}{CR}{Consistency Ratio}
-\newacronym{htse}{HTSE}{High Temperature Steam Electrolysis}
-\newacronym{lwr}{LWR}{Light Water Reactor}
-\newacronym{eia}{EIA}{U.S. Energy Information Administration}
-\newacronym{oer}{OER}{Online Educational Resource}
-\newacronym{lms}{LMS}{Learning Management System}
-\newacronym{cps}{CPS}{Cyber-Physical Systems}
-\newacronym{nsf}{NSF}{National Science Foundation}
-\newacronym{wsc}{WSC}{Western Services Corporation}
-\newacronym{cae}{CAES}{Center for Advanced Energy Studies}
-\newacronym{hsl}{HSSL}{Human System Simulation Laboratory}
-\newacronym{pwr}{PWR}{Pressurized Water Reactor}
-\newacronym{bwr}{BWR}{Boiling Water Reactor}
-\newacronym{roi}{ROI}{Return on Investment}
-\newacronym{ic}{I\&C}{Instrumentation \& Controls}
-\newacronym{mwe}{MWe}{Megawatts-electric}
-\newacronym{ics}{ICS}{Industrial Control Systems}
-\newacronym{sca}{SCADA}{Supervisory Control and Data Acquisition}
-\newacronym{ip}{IP}{Internet Protocol}
-\newacronym{udp}{UDP}{User Datagram Protocol}
-\newacronym{tva}{TVA}{Tennessee Valley Authority}
-\newacronym{plc}{PLC}{Programmable Logic Controller}
-\newacronym{vfd}{VFD}{Variable Frequency Drive}
-\newacronym{khp}{KHNP}{Korean Hydro \& Nuclear Power Co., Ltd}
-\newacronym{onl}{ORNL}{Oak Ridge National Laboratory}
-\newacronym{jcp}{JCPOA}{Joint Comprehensive Plan of Action}
-\newacronym{mim}{MITM}{Man in the Middle}
-\newacronym{dos}{DDoS}{Distributed Denial of Service}
-\newacronym{tcp}{TCP/IP}{Transmission Control Protocol/Internet Protocol}
-\newacronym{dnp}{DNP3}{Distributed Network Protocol 3}
-\newacronym{pra}{PRA}{Probabilistic Risk Assessment}
-\newacronym{cs}{CS}{Critical System}
-\newacronym{loc}{LOCA}{Loss of Coolant Accident}
-\newacronym{hmi}{HMI}{Human Machine Interface}
-\newacronym{pha}{PHA}{Preliminary Hazards Analysis}
-\newacronym{bol}{BOL}{Beginning-of-Life}
-\newacronym{eol}{EOL}{End-of-Life}
-\newacronym{mol}{MOL}{Middle-of-Life}
-\newacronym{imu}{IMUNES}{Integrated Multiprotocol Network Emulator/Simulator}
-\newacronym{ccc}{CCC}{Computing Community Consortium}
-\newacronym{neu}{NEUP}{Nuclear Energy University Program}
-\newacronym{doe}{DOE}{United States Department of Energy}
-\newacronym{nei}{NEI}{Nuclear Energy Institute}
-\newacronym{nit}{NITRD}{Networking Information Technology Research \& Development Program}
-\newacronym{rcs}{RCS}{Reactor Cooling System}
-\newacronym{con}{IC}{Initial Condition}
-\newacronym{csi}{CSIS}{Center for Strategic \& International Studies}
-\newacronym{pcap}{PCAP}{packet capture file}
-\newacronym{dc}{DC}{Direct-Current}
-\newacronym{ac}{AC}{Alternating-Current}
-\newacronym{iff}{UIIF}{Idaho Falls Center for Higher Education}
-\newacronym{snl}{SNL}{Sandia National Laboratory}
-\newacronym{cie}{CIE}{Cyber-Informed Engineering}
-\newacronym{cds}{CRDS}{Control Rod Drive System}
-\newacronym{cdm}{CRDM}{Control Rod Drive Mechanism}
-\newacronym{fma}{FMEA}{Failure Modes \& Effects Analysis}
-\newacronym{rpn}{RPN}{Risk Priority Number}
-\newacronym{scr}{SCR}{silicon controller rectifier}
-\newacronym{hvc}{HVAC}{Heating, Ventilation \& Air Conditioning}
-\newacronym{ttb}{TTB}{Time-to-Boil}
-\newacronym{sis}{SIS}{Safety Instrumented System}
-\newacronym{ui}{UI}{University of Idaho}
-%\newacronym{}{}{}
+\input{$ACRONYM/acronyms}
 %%%%%
 
 %%%%% spacing
@@ -444,10 +408,11 @@
 \institute[]{
     \acl{ui}\\
     \vspace{0.10in}
-    \includegraphics[width=0.20\textwidth]{ne-logo.png}
+    \includegraphics[width=0.20\textwidth]{logo/university-of-idaho/nuclear-engineering/ne-logo.png}
     }
 \date{\acl{iff}}
 %%%%%
+
 
 \begin{document}
 
@@ -489,7 +454,7 @@
 \begin{frame}{}
     \begin{figure}
         \centering
-        \includegraphics[width=0.95\textwidth]{nuclear.infographic.jpg}
+        \includegraphics[width=0.95\textwidth]{ne585/nuclear.infographic.jpg}
 %        \caption{}
     \end{figure}
 \end{frame}
@@ -527,7 +492,7 @@
         \begin{column}{0.50\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=0.95\textwidth]{fission.jpg}
+                \includegraphics[width=0.95\textwidth]{ne585/fission.jpg}
                 %\caption{}
             \end{figure}
         \end{column}
@@ -535,7 +500,7 @@
         \begin{column}{0.50\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=0.95\textwidth]{fusion.jpg}
+                \includegraphics[width=0.95\textwidth]{ne585/fusion.jpg}
                 %\caption{}
             \end{figure}
         \end{column}
@@ -574,7 +539,7 @@
         \begin{column}{0.50\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=0.75\textwidth]{calcium.jpg}
+                \includegraphics[width=0.75\textwidth]{ne585/calcium.jpg}
                 %\caption{}
             \end{figure}
         \end{column}
@@ -582,7 +547,7 @@
         \begin{column}{0.50\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=0.95\textwidth]{phosphorus.jpg}
+                \includegraphics[width=0.95\textwidth]{ne585/phosphorus.jpg}
                 %\caption{}
             \end{figure}
         \end{column}
@@ -607,7 +572,7 @@
 \begin{frame}{}
     \begin{figure}
         \centering
-        \href{https://ptable.com/}{\includegraphics[width=0.95\textwidth]{periodic.table.jpg}}
+        \href{https://ptable.com/}{\includegraphics[width=0.95\textwidth]{ne585/periodic.table.jpg}}
 %        \caption{}
     \end{figure}
 \end{frame}
@@ -657,7 +622,7 @@
 \begin{frame}{Binding energy is used to compare atomic stability, reaction energy, probability of fission/fusion}
     \begin{figure}
         \centering
-        \href{https://static.wixstatic.com/media/b89a36_1bd87fd3fe5c4d148c7a37c821c5187b~mv2.gif}{\includegraphics[width=0.55\textwidth]{binding.energy.jpg}}
+        \href{https://static.wixstatic.com/media/b89a36_1bd87fd3fe5c4d148c7a37c821c5187b~mv2.gif}{\includegraphics[width=0.55\textwidth]{ne585/binding.energy.jpg}}
 %        \caption{}
     \end{figure}
 \end{frame}
@@ -666,7 +631,7 @@
 \begin{frame}{Light nuclei get more stable by fusion; heavy nuclei get more stable by fission}
     \begin{figure}
         \centering
-        \href{http://ch302.cm.utexas.edu/images302/binding-energy.png}{\includegraphics[width=0.75\textwidth]{binding.energy.invert.jpg}}
+        \href{http://ch302.cm.utexas.edu/images302/binding-energy.png}{\includegraphics[width=0.75\textwidth]{ne585/binding.energy.invert.jpg}}
 %        \caption{}
     \end{figure}
 \end{frame}
@@ -756,7 +721,7 @@
 \begin{frame}{Scientists in late 1800s made discoveries which would change the course of science, medicine, and history in the 20th Century}
     \begin{figure}
         \centering
-        \includegraphics[width=0.75\textwidth]{nobel.jpg}
+        \includegraphics[width=0.75\textwidth]{ne585/nobel.jpg}
 %        \caption{}
     \end{figure}
 \end{frame}
@@ -765,7 +730,7 @@
 \begin{frame}{Radiation is energy as particles or electromagnetic waves, like sunshine}
     \begin{figure}
         \centering
-        \href{https://www.researchgate.net/profile/Ngai_Chan/publication/277996216/figure/fig5/AS:336497640263680@1457238697222/The-electromagnetic-spectrum-for-different-frequency-bands-and-the-corresponding.jpg}{\includegraphics[width=0.55\textwidth]{waves.jpg}}
+        \href{https://www.researchgate.net/profile/Ngai_Chan/publication/277996216/figure/fig5/AS:336497640263680@1457238697222/The-electromagnetic-spectrum-for-different-frequency-bands-and-the-corresponding.jpg}{\includegraphics[width=0.55\textwidth]{ne585/waves.jpg}}
 %        \caption{}
     \end{figure}
 \end{frame}
@@ -777,7 +742,7 @@
         \begin{column}{0.50\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=0.75\textwidth]{shielding.jpg}
+                \includegraphics[width=0.75\textwidth]{ne585/shielding.jpg}
                 %\caption{}
             \end{figure}
         \end{column}
@@ -785,7 +750,7 @@
         \begin{column}{0.50\textwidth}
             \begin{figure}
                 \centering
-                \includegraphics[width=0.95\textwidth]{shielding2.jpg}
+                \includegraphics[width=0.95\textwidth]{ne585/shielding2.jpg}
                 %\caption{}
             \end{figure}
         \end{column}
@@ -816,7 +781,7 @@
 \begin{frame}{Ernest Rutherford discovered the three main kinds of radioactive decay (Chemistry Nobel 08)}
     \begin{figure}
         \centering
-        \includegraphics[width=0.45\textwidth]{radioactivity.jpg}
+        \includegraphics[width=0.45\textwidth]{ne585/radioactivity.jpg}
 %        \caption{}
     \end{figure}
 \end{frame}
@@ -847,7 +812,7 @@
 \begin{frame}{}
     \begin{figure}
         \centering
-        \href{https://courses.ecampus.oregonstate.edu/ne581/three/images/chart32.gif}{\includegraphics[width=0.55\textwidth]{alpha.con.jpg}}
+        \href{https://courses.ecampus.oregonstate.edu/ne581/three/images/chart32.gif}{\includegraphics[width=0.55\textwidth]{ne585/alpha.con.jpg}}
 %        \caption{}
     \end{figure}
 \end{frame}
@@ -872,7 +837,7 @@
 \begin{frame}{}
     \begin{figure}
         \centering
-        \includegraphics[width=0.55\textwidth]{beta.con.jpg}
+        \includegraphics[width=0.55\textwidth]{ne585/beta.con.jpg}
 %        \caption{}
     \end{figure}
 \end{frame}
@@ -897,7 +862,7 @@
 \begin{frame}{}
     \begin{figure}
         \centering
-        \includegraphics[width=0.55\textwidth]{betaplus.con.jpg}
+        \includegraphics[width=0.55\textwidth]{ne585/betaplus.con.jpg}
 %        \caption{}
     \end{figure}
 \end{frame}
@@ -906,7 +871,7 @@
 \begin{frame}{In both forms of beta decay, the energies are exhibited by a continuous energy spectrum}
     \begin{figure}
         \centering
-        \href{http://images.slideplayer.com/17/5357960/slides/slide_24.jpg}{\includegraphics[width=0.30\textwidth]{beta.spectrum.jpg}}
+        \href{http://images.slideplayer.com/17/5357960/slides/slide_24.jpg}{\includegraphics[width=0.30\textwidth]{ne585/beta.spectrum.jpg}}
 %        \caption{}
     \end{figure}
 
@@ -943,7 +908,7 @@
 \begin{frame}{}
     \begin{figure}
         \centering
-        \includegraphics[width=0.45\textwidth]{ec.shell.jpg}
+        \includegraphics[width=0.45\textwidth]{ne585/ec.shell.jpg}
 %        \caption{}
     \end{figure}
 \end{frame}
@@ -992,7 +957,7 @@
 \begin{frame}{}
     \begin{figure}
         \centering
-        \href{https://www.nndc.bnl.gov/chart/}{\includegraphics[width=0.90\textwidth]{chart.jpg}}
+        \href{https://www.nndc.bnl.gov/chart/}{\includegraphics[width=0.90\textwidth]{ne585/chart.jpg}}
 %        \caption{}
     \end{figure}
 \end{frame}
@@ -1001,7 +966,7 @@
 \begin{frame}{}
     \begin{figure}
         \centering
-        \includegraphics[width=0.50\textwidth]{chart.example.jpg}
+        \includegraphics[width=0.50\textwidth]{ne585/chart.example.jpg}
 %        \caption{}
     \end{figure}
 \end{frame}
@@ -1016,7 +981,7 @@
 \begin{frame}{}
     \begin{figure}
         \centering
-        \includegraphics[width=0.30\textwidth]{th232.chain.jpg}
+        \includegraphics[width=0.30\textwidth]{ne585/th232.chain.jpg}
 %        \caption{}
     \end{figure}
 \end{frame}
@@ -1025,7 +990,7 @@
 \begin{frame}{}
     \begin{figure}
         \centering
-        \includegraphics[width=0.30\textwidth]{np237.chain.jpg}
+        \includegraphics[width=0.30\textwidth]{ne585/np237.chain.jpg}
 %        \caption{}
     \end{figure}
 \end{frame}
@@ -1034,7 +999,7 @@
 \begin{frame}{}
     \begin{figure}
         \centering
-        \includegraphics[width=0.30\textwidth]{u238.chain.jpg}
+        \includegraphics[width=0.30\textwidth]{ne585/u238.chain.jpg}
 %        \caption{}
     \end{figure}
 \end{frame}
@@ -1043,7 +1008,7 @@
 \begin{frame}{}
     \begin{figure}
         \centering
-        \includegraphics[width=0.30\textwidth]{u235.chain.jpg}
+        \includegraphics[width=0.30\textwidth]{ne585/u235.chain.jpg}
 %        \caption{}
     \end{figure}
 \end{frame}
@@ -1143,7 +1108,7 @@
 
     \begin{figure}
         \centering
-        \includegraphics[width=0.75\textwidth]{half.life.example.jpg}
+        \includegraphics[width=0.75\textwidth]{ne585/half.life.example.jpg}
 %        \caption{}
     \end{figure}
 
@@ -1169,7 +1134,7 @@
 \begin{frame}{}
     \begin{figure}
         \centering
-        \includegraphics[width=0.75\textwidth]{au198.linear.jpg}
+        \includegraphics[width=0.75\textwidth]{ne585/au198.linear.jpg}
 %        \caption{}
     \end{figure}
 \end{frame}
@@ -1178,7 +1143,7 @@
 \begin{frame}{Engineers like straight lines}
     \begin{figure}
         \centering
-        \includegraphics[width=0.75\textwidth]{au198.log.jpg}
+        \includegraphics[width=0.75\textwidth]{ne585/au198.log.jpg}
 %        \caption{}
     \end{figure}
 
@@ -1193,7 +1158,7 @@
 \begin{frame}[plain]{}
     \begin{figure}
         \centering
-        \includegraphics[width=0.45\textwidth]{final.jpg}
+        \includegraphics[width=0.45\textwidth]{ne585/1-final.jpg}
 %        \caption{}
     \end{figure}
 \end{frame}

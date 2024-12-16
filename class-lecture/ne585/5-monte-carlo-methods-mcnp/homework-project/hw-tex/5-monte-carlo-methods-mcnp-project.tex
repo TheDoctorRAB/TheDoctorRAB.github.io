@@ -444,7 +444,7 @@
 \maketitle
 \vspace*{\fill}
 \begin{flushright}{
-        Total -- 450 
+        Total -- 420 
 }
 \end{flushright}
 \thispagestyle{empty} %start with page number 1 on second page
@@ -478,7 +478,7 @@ Solve for G using Monte Carlo techniques. Solve the integral analytically and gr
 
 \section{Evaluating an integral II}
 \paragraph*{(30)}
-Do the same for the following function. This g(x) does not have an analytical solution. However, you can use another numerical solver to compare the Monte Carlo result.
+Do the same for the following function. This g(x) does not have an analytical solution. However, use a numerical solver or other technique to compare the Monte Carlo result. Graph g(x) and plot G v N.
 \begin{equation}
     \int_0^{\frac{\pi}{2}}sin(x^2)dx
 \end{equation}
@@ -491,7 +491,7 @@ Do the same for the following function. This g(x) does not have an analytical so
 
 \section{Approximation}
 \paragraph*{(30)}
-Approximate $\sqrt{2}$ in a similar manner to the way we approximated $\pi$.
+Approximate $\sqrt{2}$ in a similar manner to the way we approximated $\pi$. Plot the convergence. 
 
 
 
@@ -520,7 +520,7 @@ Conduct a short modeling study of the metal fuel alloy for the hot cell facility
     \item Use MCNP to compute the volume averaged (F4) flux tallies for the SE cell and SW cell.
     \item Use a neutron emission rate of of $1.1 \times 10^7 \; n/s/g$ for 24 grams of material. 
     \item Increase NPS from the original files to reduce standard error.
-    \item Start with a wall thickness of 15 cm using the material already included in the deck. It is a form of borated concrete that is common to these kinds of facilities. Increase the wall thickness until the dose rate falls below $1 \; \mu Sv/h$ and the relative flux falls below 0.01.
+    \item Start with a wall thickness of 15 cm using the material already included in the deck. It is a form of borated concrete that is common to these kinds of facilities. Increase the wall thickness until the dose rate falls below $1 \; \mu Sv/h$ and the relative flux falls below 0.01. \textit{There seems to be some issues with dose card IC = 10. Appendix F should have a fix. Try to see if it will work.}
     \item Plot dose rate v wall thickness and the relative flux v wall thickness.
     \item Justify that the results are scientifically sound.
 \end{enumerate}
@@ -545,8 +545,8 @@ For the criticality models, to get full credit --
     \item Include a screenshot of the model from the VisEd/plotter.
     \item Use finite geometries.
     \item Design geometries that will minimize leakage. Show (as part of making the mcnp file and results; not calculating by hand) that leakage has been minimized.
-    \item For criticality, try to get to 3 9s or 0s (.999x, 1.000x) for the mean, and 68\% confidence. Bonus for 4 9s/0s.
-    \item Report output in a table -- k, standard deviation, 68\% confidence, 95\% confidence, and 99\% confidence.
+    \item For criticality, get to 3 9s or 0s (.999x, 1.000x) for the mean for full credit. Bonus for 4 9s/0s.
+    \item Report output in a table -- k, standard deviation, 95\% confidence. 
     \item Justify the results are scientifically sound.
     \item Include the input deck in the appendix.
 \end{enumerate}
@@ -559,7 +559,7 @@ For the criticality models, to get full credit --
 
 \section{Critical mass I}
 \paragraph*{(20)}
-What is the critical mass of a bare sphere of plutonium containing (1) $95.5\% \; ^{239}Pu$ and (2) $80\% \; ^{239}Pu$, where the rest is $^{238}Pu$?
+What is the critical mass of a bare sphere of plutonium containing (1) $95.5\% \; ^{239}Pu$ and (2) $80\% \; ^{239}Pu$, where the rest is $^{238}Pu$? \textit{Comment on the results.}
 
 
 
@@ -594,7 +594,7 @@ For the next three problems, select 3 -- 5 typical reflector materials for each 
 
 \section{Critical mass I}
 \paragraph*{(30)}
-Taking the bare sphere $^{239}Pu$ model, what is the `optimal' reflector that minimizes the \textit{critical mass}? Pick at least one reflector material that is `exotic'; e.g., maybe for a reactor powering a Mars Rover style robot mining on an asteroid or a moon. Consider cost in the analysis of optimal material, generally estimate; no need to research specific costs. 
+Taking the bare sphere $^{239}Pu$ model, what is the `optimal' reflector that minimizes the \textit{critical mass}? Pick at least one reflector material that is `exotic'; e.g., maybe for a reactor powering a Mars Rover style robot mining on an asteroid or a moon.  
 
 
 
@@ -624,7 +624,7 @@ Do the same for $^{233}U$.
 
 \section{Reflector analysis}
 \paragraph*{(30)}
-Put all the results from the reflector problems together in a table. Which reflector material is minimal and why, neutronically speaking? Check the output files for different types of neutron losses as part of the analysis. 
+Put all the results from the reflector problems together in a table. Which reflector material is minimal and why, neutronically speaking? Check the output files for different types of neutron losses as part of the analysis. Comment on cost in the analysis of optimal material, generally estimate; no need to research specific costs.
 
 
 

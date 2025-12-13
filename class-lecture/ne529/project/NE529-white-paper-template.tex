@@ -40,7 +40,8 @@
 %\usepackage{subfig}
 \usepackage[yyyymmdd]{datetime} %date format
 \renewcommand{\dateseparator}{.}
-\graphicspath{{../img/}} %path to graphics
+\graphicspath{{$TEXIMG/}} %path to graphics
+%\graphicspath{{../img/}} %path to graphics
 \setcounter{secnumdepth}{5} %set subsection to nth level
 \usepackage{needspace}
 \usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
@@ -136,7 +137,7 @@
 \titleformat{\part}{\normalfont\large\bfseries\filcenter}{\thepart}{}{}[]
 \titlespacing*\part{0pt}{0.95\baselineskip}{0.50\baselineskip}
 
-\titleformat{\section}[runin]{\normalfont\large\bfseries}{\thesection.}{0.5em}{}[]
+\titleformat{\section}[runin]{\normalfont\normalsize\bfseries}{\thesection.}{0.5em}{}[]
 \titlespacing*\section{0pt}{0.50\baselineskip}{0.50\baselineskip}
 
 \titleformat{\subsection}[runin]{\normalfont\normalsize\bfseries}{\thesection\alph{subsection}.}{0.25em}{}[]
@@ -329,145 +330,9 @@
 %%%%%
 
 
-%%%%% citations
-\begin{filecontents}{references.bib} 
-    @misc{
-        nye15a,
-        author = {Nye, Jr., Joseph S.},
-        title = {{The World Needs an Arms-control Treaty for Cybersecurity}},
-        year = {2015},
-        note = {{The Washington Post}}
-    }
-    @article{
-        mil20a,
-        author = {Miller, James N.},
-        title = {No to no first use — for now},
-        journal = {Bulletin of the Atomic Scientists},
-        volume = {76},
-        pages = {8},
-        year  = {2020}
-    }
-    @incollection{
-        mil17a,
-        author = {Miller, Steven E.},
-        title = {{Cyber Threats, Nuclear Analogies? Divergent Trajectories in Adapting to New Dual-Use Technologies}},
-        booktitle = {Understanding Cyber Conflict: 14 Analogies},
-        publisher = {Georgetown University Press},
-        year = {2017},
-        editor = {Perkovich, George and Levite, Ariel E.},
-        pages = {161}
-    }
-    @conference{
-        ben20a,
-        author = {Benjamin, Jacob and Haney, Michael},
-        title = {{Nonproliferation of Cyber Weapons}},
-        year = { 2020},
-        organization = {Symposium on Cyber Warfare, Cyber Defense, \& Cyber Security },
-        address = {Las Vegas, Nevada}
-    }
-\end{filecontents}
-%%%%%
-
-
 %%%%% acronyms
-% alphabetical ordering is automated
-\newacronym{nrs}{NRHES}{Nuclear Renewable Hybrid Energy System}
-\newacronym{ahp}{AHP}{Analytical Hierarchy Process}
-\newacronym{inl}{INL}{Idaho National Laboratory}
-\newacronym{orl}{ORNL}{Oak Ridge National Laboratory}
-\newacronym{anl}{ANL}{Argonne National Laboratory}
-\newacronym{npp}{NPP}{Nuclear Power Plant}
-\newacronym{smr}{SMR}{Small Modular Reactor}
-\newacronym{ump}{UAMPS}{Utah Associated Municipal Power Systems}
-\newacronym{nus}{NuScale}{NuScale Power, LLC}
-\newacronym{nrc}{NRC}{United States Nuclear Regulatory Commission}
-\newacronym{epri}{EPRI}{Electric Power Research Institute}
-\newacronym{nerc}{NERC}{North American Electric Reliability Corporation}
-\newacronym{ci}{CI}{Consistency Index}
-\newacronym{cr}{CR}{Consistency Ratio}
-\newacronym{htse}{HTSE}{High Temperature Steam Electrolysis}
-\newacronym{lwr}{LWR}{Light Water Reactor}
-\newacronym{eia}{EIA}{U.S. Energy Information Administration}
-\newacronym{oer}{OER}{Online Educational Resource}
-\newacronym{lms}{LMS}{Learning Management System}
-\newacronym{cps}{CPS}{Cyber-Physical Systems}
-\newacronym{nsf}{NSF}{National Science Foundation}
-\newacronym{wsc}{WSC}{Western Services Corporation}
-\newacronym{cae}{CAES}{Center for Advanced Energy Studies}
-\newacronym{hsl}{HSSL}{Human System Simulation Laboratory}
-\newacronym{pwr}{PWR}{Pressurized Water Reactor}
-\newacronym{roi}{ROI}{Return on Investment}
-\newacronym{ic}{I\&C}{Instrumentation \& Controls}
-\newacronym{mwe}{MWe}{Megawatts-electric}
-\newacronym{ics}{ICS}{Industrial Control Systems}
-\newacronym{sca}{SCADA}{Supervisory Control and Data Acquisition}
-\newacronym{ip}{IP}{Internet Protocol}
-\newacronym{udp}{UDP}{User Datagram Protocol}
-\newacronym{tva}{TVA}{Tennessee Valley Authority}
-\newacronym{plc}{PLC}{Programmable Logic Controller}
-\newacronym{vfd}{VFD}{Variable Frequency Drive}
-\newacronym{khp}{KHNP}{Korean Hydro \& Nuclear Power Co., Ltd}
-\newacronym{onl}{ORNL}{Oak Ridge National Laboratory}
-\newacronym{jcp}{JCPOA}{Joint Comprehensive Plan of Action}
-\newacronym{mim}{MITM}{Man in the Middle}
-\newacronym{dos}{DDoS}{Distributed Denial of Service}
-\newacronym{tcp}{TCP/IP}{Transmission Control Protocol/Internet Protocol}
-\newacronym{dnp}{DNP3}{Distributed Network Protocol 3}
-\newacronym{pra}{PRA}{Probabilistic Risk Assessment}
-\newacronym{cs}{CS}{Critical System}
-\newacronym{loc}{LOCA}{Loss of Coolant Accident}
-\newacronym{hmi}{HMI}{Human Machine Interface}
-\newacronym{pha}{PHA}{Preliminary Hazards Analysis}
-\newacronym{bol}{BOL}{beginning-of-life}
-\newacronym{eol}{EOL}{end-of-life}
-\newacronym{mol}{MOL}{middle-of-life}
-\newacronym{imu}{IMUNES}{Integrated Multiprotocol Network Emulator/Simulator}
-\newacronym{ccc}{CCC}{Computing Community Consortium}
-\newacronym{neu}{NEUP}{Nuclear Energy University Program}
-\newacronym{doe}{DOE}{United States Department of Energy}
-\newacronym{nei}{NEI}{Nuclear Energy Institute}
-\newacronym{nit}{NITRD}{Networking Information Technology Research \& Development Program}
-\newacronym{snm}{SNM}{special nuclear material}
-\newacronym{kmp}{KMP}{key measurement point}
-\newacronym{mba}{MBA}{material balance area}
-\newacronym{nma}{NMA}{nuclear materials accounting}
-\newacronym{sei}{SEID}{standard error of the inventory difference}
-\newacronym{tru}{TRU}{transuranic element}
-\newacronym{des}{DES}{discrete event simulation}
-\newacronym{sq}{SQ}{significant quantity}
-\newacronym{pyn}{PyNE}{Python for Nuclear Engineering}
-\newacronym{haz}{HAZOP}{hazard and operability analysis}
-\newacronym{msr}{MSR}{molten salt reactor}
-\newacronym{mpt}{MPACT}{Materials Protection, Accounting and Control Technology}
-\newacronym{aoo}{AOO}{Anticipated Operational Occurrence}
-\newacronym{dbe}{DBE}{Design Basis Event}
-\newacronym{bbe}{BDBE}{Beyond Design Basis Event}
-\newacronym{fma}{FMEA}{Failure Modes and Effects Analysis}
-\newacronym{ies}{IES}{Integrated Energy Systems}
-\newacronym{mca}{MC\&A}{Materials Control and Accountability}
-\newacronym{scr}{SCRAM}{SCRAM}
-\newacronym{us}{US}{United States}
-\newacronym{rg}{RG}{Regulatory Guide}
-\newacronym{nur}{NUREG}{\acl{nrc} Regulation}
-\newacronym{cie}{CIE}{Cyber-Informed Engineering}
-\newacronym{pi}{PI}{Principal Investigator}
-\newacronym{ttx}{TTX}{Tabletop Exercise}
-\newacronym{igm}{IGEM}{Idaho Global Entrepreneurial Mission Initiative}
-\newacronym{hrc}{HERC}{Higher Education Research Council}
-\newacronym{iff}{UIIF}{Idaho Falls Center for Higher Education}
-\newacronym{nca}{NCAE-CD}{National Centers of Academic Excellence in Cyber Defense}
-\newacronym{bs}{BS}{Bachelor of Science}
-\newacronym{ms}{MS}{Master of Science}
-\newacronym{phd}{Ph.D.}{Doctor of Philosophy}
-\newacronym{ui}{UI}{University of Idaho}
-\newacronym{aas}{AAS}{Adversary-As-A-Service}
-\newacronym{csi}{CSIS}{Center for Strategic \& International Studies}
-\newacronym{bwr}{BWR}{Boiling Water Reactor}
-\newacronym{snl}{SNL}{Sandia National Laboratory}
-\newacronym{rpn}{RPN}{Risk Priority Number}
-\newacronym{rv}{R\&V}{Reproducibility \& Validation}
-\newacronym{one}{NE}{Office of Nuclear Energy}
-%\newacronym{}{}{}
+\input{$ACRONYM/acronyms}
+%\input{../acronyms/acronyms}
 %%%%%
 
 
@@ -478,17 +343,18 @@
 %%%%%
 
 %%%%% linenumbering
-%\linenumbers %toggle line numbers
-%\pagewiselinenumbers %reset line numbers on new page
-%\modulolinenumbers[2] %line numbering interval
+\linenumbers %toggle line numbers
+\pagewiselinenumbers %reset line numbers on new page
+\modulolinenumbers[5] %line numbering interval
 %%%%%
 
 
 \begin{document}
 
+
 {\centering 
     \textbf{Title\\
-    NE529 -- Risk Assessment Project\\
+    NE529 -- Risk Assessment  Design Project\\
     }
     \vspace{0.10in}
     Name\\
@@ -622,10 +488,23 @@ This project will advance the state-of-the-art in nuclear fuel cycle analysis by
 \end{enumerate*}
 
 
+%%%%% header and footer
+\nolinenumbers
+\pagestyle{fancy}
+\fancyhf{} %move page number to bottom right
+\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
+%\lhead{\scriptsize }
+%\chead{\scriptsize }
+%\rhead{\scriptsize }
+%\lfoot{\scriptsize }
+\rfoot{\thepage}
+%%%%%
 
+
+\part*{\textbf{Timeframe for Execution}}
 \begin{longtable}{|L{0.17\linewidth}|c|c|c|c|c|}
 %        \captionsetup{margin=-9pt}
-        \caption*{\textbf{Timeframe for Execution}}
+        \caption*{}
         \label{tab-timeline}\\
         \hline
         \multicolumn{1}{|c|}{\multirow{2}{*}{\textbf{TASKS}}}& 
@@ -705,23 +584,24 @@ This project will advance the state-of-the-art in nuclear fuel cycle analysis by
 \part*{References}
 \bibliographystyle{nsf}
 \setlength{\bibhang}{0pt}
-\bibliography{references}
+\bibliography{}
 
 
-%\newpage
+\newpage
 
 
-%\begin{appendices}
+\begin{appendices}
 
 
-%    \renewcommand{\thesection}{\Roman{section}}
-%    \titleformat{\section}{\normalfont\large\bfseries\filcenter}{Appendix \thesection:}{1ex}{}[]
+    \renewcommand{\thesection}{\Roman{section}}
+    \titleformat{\section}{\normalfont\large\bfseries\filcenter}{Appendix \thesection:}{1ex}{}[]
 
 
-%\section{Title}\label{app-}
+    \section{Acronyms}
+    \printnoidxglossary[title={}]
 
 
-%\end{appendices}
+\end{appendices}
 
 
 %wrap figure around text

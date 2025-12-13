@@ -1,6 +1,6 @@
+%%%%
 %@TheDoctorRAB
-%standard white paper/preproposal format
-%
+%standard journal format
 %%%%%
 %
 %REFERENCES
@@ -27,6 +27,8 @@
 %%%%% general 
 \documentclass[11pt,a4paper]{article}
 \usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\usepackage{lscape}
+\usepackage[graphicx]{realboxes}
 \usepackage[pagewise]{lineno} %line numbering
 \usepackage{setspace}
 \usepackage{ulem} %strikethrough - do not \sout{\cite{}}
@@ -36,10 +38,11 @@
 \usepackage{tablefootnote}
 \usepackage{footnotehyper}
 \usepackage{float}
-\usepackage{mypythonhighlight,verbatim}
+%\usepackage{mypythonhighlight,verbatim}
 %\usepackage{subfig}
 \usepackage[yyyymmdd]{datetime} %date format
 \renewcommand{\dateseparator}{.}
+%\graphicspath{{$TEXIMG/}} %path to graphics
 \graphicspath{{../img/}} %path to graphics
 \setcounter{secnumdepth}{5} %set subsection to nth level
 \usepackage{needspace}
@@ -66,9 +69,11 @@
 \usepackage{color}
 \usepackage{marginnote}
 \usepackage[figure,table]{totalcount}
-\usepackage[capitalise]{cleveref}
-\usepackage{chngcntr}
-\counterwithin*{section}{part} %restart section under part
+\usepackage[capitalise,noabbrev]{cleveref}
+\usepackage{nameref}
+%\usepackage{parskip}
+\usepackage[font=itshape]{quoting}
+\usepackage{upgreek,textgreek}
 %%%%%
 
 
@@ -88,8 +93,8 @@
 
 
 %%%%% references
-%\usepackage[round,semicolon]{natbib} %for (Borrelli 2021; Clooney 2019) - standard.bst 
-\usepackage[numbers,sort&compress]{natbib} %for [1-3] - nsf.bst, neup.bst
+\usepackage[round,semicolon]{natbib} %for (Borrelli 2021; Clooney 2019) - standard.bst 
+%\usepackage[numbers,sort&compress]{natbib} %for [1-3] - nsf.bst, neup.bst
 \setlength{\bibsep}{7pt} %sets space between references
 %\renewcommand{\bibsection}{} %suppresses large 'references' heading
 %\renewcommand\bibpreamble{\vspace{\baselineskip}} %sets spacing after heading if not using default references heading
@@ -132,14 +137,13 @@
 \usepackage[title,titletoc]{appendix}
 \usepackage[acronym,nomain,nonumberlist]{glossaries}
 \makenoidxglossaries
-\AtBeginEnvironment{appendices}{\crefalias{section}{appendix}}
+\AtBeginEnvironment{appendices}{\crefalias{section}{appendix}} %for cleveref to use Appendix
+\crefname{paragraph}{Section}{Sections}
 \usepackage{titlesec,titletoc}
 %\renewcommand{\thepart}{ARTICLE \Roman{part}} %puts the label into the command so \thelabel will carry through
 %\renewcommand{\thesection}{\arabic{section}} %puts the label into the command so \thelabel will carry through
-\renewcommand{\thepart}{\Roman{part}}
-\titleformat{\part}{\normalfont\Large\bfseries\filcenter}{Phase \thepart }{0ex}{ - }[]
 %\titleformat{\part}{\normalfont\large\bfseries\filcenter}{\thepart}{}{}[]
-\titlespacing*\part{0pt}{0.00\baselineskip}{0.75\baselineskip}
+%\titlespacing*\part{0pt}{0.00\baselineskip}{0.75\baselineskip}
 %\titleformat{\section}[runin]{\normalfont\large\bfseries}{\thesection}{-1em}{}[.]
 %\titlespacing*\section{0pt}{0.65\baselineskip}{0.35\baselineskip}
 %\titleformat{\subsection}[runin]{\normalfont\normalsize\bfseries}{\thesubsection}{-1em}{}[.]
@@ -150,8 +154,8 @@
 %\titlespacing*\subparagraph{0pt}{0.40\baselineskip}{0.25\baselineskip}
 \titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{\theparagraph}{5pt}{}[]
 \titlespacing*\paragraph{0pt}{0.50\baselineskip}{0.25\baselineskip}
-\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{-1em}{}[.]
-\titlespacing*\subparagraph{0pt}{0.40\baselineskip}{0.20\baselineskip}
+\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{0.5em}{}[.]
+\titlespacing*\subparagraph{0pt}{0.40\baselineskip}{0.50\baselineskip}
 %%%%%
 
 
@@ -162,9 +166,6 @@
 %\newcommand{\sk}[1]{\sout{#1}} %shortcut for default strikethrough - do not sk through citep
 \newcommand\sk{\bgroup\markoverwith{\textcolor{red}{\rule[0.5ex]{1pt}{1pt}}}\ULon} %strikethrough with red line; not in \section{}
 %\st{} does strikethrough using soul package but does not like acronyms
-\newcommand{\blucell}{\cellcolor{aliceblue}} %use to shade in table cell
-\newcommand{\grycekk}{\cellcolor{lightgray}} %use to shade in table cell
-\newcommand{\whicell}{\cellcolor{antiquewhite}} %use to shade in table cell
 %%%%%
 
 
@@ -177,7 +178,6 @@
 \definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
 \definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
 \definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
-
 \newcommand{\x}{\cellcolor{aliceblue}} %use to shade in table cell
 \newcommand{\y}{\cellcolor{lightgray}} %use to shade in table cell
 \newcommand{\z}{\cellcolor{antiquewhite}} %use to shade in table cell
@@ -196,14 +196,14 @@
 
 
 %%%%% todonotes
-\newcommandx{\cmt}[2][1=]{\todo[author=\textbf{STRUCTURE},tickmarkheight=0.15cm,linecolor=red,backgroundcolor=red!25,bordercolor=black,#1]{#2}}
-\newcommandx{\con}[2][1=]{\todo[author=\textbf{CONTENT},tickmarkheight=0.15cm,linecolor=brilliantlavender,backgroundcolor=brilliantlavender,bordercolor=black,#1]{#2}}
+\newcommandx{\cmt}[2][1=]{\todo[noline,author=\textbf{ATTN: Lan},tickmarkheight=0.15cm,linecolor=black,backgroundcolor=red!25,bordercolor=black,#1]{#2}}
+\newcommandx{\kat}[2][1=]{\todo[noline,author=\textbf{ATTN: Kathy},tickmarkheight=0.15cm,linecolor=black,backgroundcolor=brilliantlavender,bordercolor=black,#1]{#2}}
 \newcommandx{\rab}[2][1=]{\todo[noline,author=\textbf{RAB},backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
 
 
 %\newcommandx{\jon}[2][1=]{\todo[noline,author=\textbf{ATTN: Johnson},backgroundcolor=blue!25,bordercolor=black,#1]{#2}}
 %\newcommandx{\han}[2][1=]{\todo[noline,author=\textbf{ATTN: Haney},backgroundcolor=OliveGreen!25,bordercolor=black,#1]{#2}}
-%\newcommandx{\rab}[2][1=]{\todo[author=\textbf{RAB},tickmarkheight=0.15cm,linecolor=Plum,backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
+\newcommandx{\ral}[2][1=]{\todo[author=\textbf{RAB},tickmarkheight=0.15cm,linecolor=Plum,backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
 %\newcommandx{\han}[2][1=]{\todo[author=\textbf{ATTN: Haney},tickmarkheight=0.15cm,linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
 %\newcommandx{\jon}[2][1=]{\todo[author=\textbf{ATTN: Johnson},tickmarkheight=0.15cm,linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
 
@@ -214,18 +214,18 @@
     \if@todonotes@disabled
     \newcommand{\hlh}[2]{#1}
     \else
-    \newcommand{\hlh}[2]{\han{#2}\hlc{#1}}
+    \newcommand{\hlh}[2]{\cmt{#2}\hlc{#1}}
     \fi
     \makeatother
 
-\DeclareRobustCommand{\hld}[1]{{\sethlcolor{CornflowerBlue}\hl{#1}}}
-\makeatletter
-    \if@todonotes@disabled
-    \newcommand{\hlj}[2]{#1}
-    \else
-    \newcommand{\hlj}[2]{\jon{#2}\hld{#1}}
-    \fi
-    \makeatother
+%\DeclareRobustCommand{\hld}[1]{{\sethlcolor{CornflowerBlue}\hl{#1}}}
+%\makeatletter
+%    \if@todonotes@disabled
+%    \newcommand{\hlj}[2]{#1}
+%    \else
+%    \newcommand{\hlj}[2]{\jon{#2}\hld{#1}}
+%    \fi
+%    \makeatother
 
 \DeclareRobustCommand{\hlf}[1]{{\sethlcolor{lightmauve}\hl{#1}}}
 \makeatletter
@@ -256,7 +256,7 @@
 \renewcommand*\l@section{\@dottedtocline{1}{0.25em}{2em}} %change first for indentation of label; second for title
 \makeatother
 
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{5}
 
 \makeatletter
 \renewcommand\listoffigures{%
@@ -276,158 +276,27 @@
 %%%%%
 
 
-%%%%% archived section commands - use titlesec
-%\makeatletter
-%\renewcommand\section{%
-%    \@startsection{section}{1}{\z@ }{0.50\baselineskip}{0.25\baselineskip}
-%    {\large \normalfont \bfseries}}%
-
-%\makeatletter
-%\renewcommand\paragraph{%
-%    \@startsection{paragraph}{4}{\z@ }{0.55\baselineskip}{-1em}
-%    {\normalfont \normalsize \bfseries}}%
-
-%\makeatletter
-%\renewcommand\subparagraph{%
-%    \@startsection{subparagraph}{5}{\z@ }{0.40\baselineskip}{-1em}
-%    {\normalfont \normalsize \itshape }}%
-
-%\makeatletter
-%\renewcommand\subsection{%
-%    \@startsection{subsection}{2}{\z@ }{0.45\baselineskip}{0.25\baselineskip}
-%    {\large \normalfont \bfseries}}%
-%%%%%
-
-
 %%%%% header and footer
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{} %move page number to bottom right
 %\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
-\lhead{\scriptsize NE529 final report}
-\chead{\scriptsize \textit{Abbrev Title}}
+\lhead{\scriptsize NE529 -- Risk assessment}
+\chead{\scriptsize \textit{Topic}}
 \rhead{\scriptsize \today}
+\lfoot{\scriptsize Name}
 \rfoot{\thepage}
 %%%%%
 
 
-%%%%%%% citations
-\begin{filecontents}{references.bib}
-    @misc{
-        nye15a,
-        author = {Nye, Jr., Joseph S.},
-        title = {{The World Needs an Arms-control Treaty for Cybersecurity}},
-        year = {2015},
-        note = {{The Washington Post}}
-    }
-    @article{
-        mil20a,
-        author = {Miller, James N.},
-        title = {No to no first use — for now},
-        journal = {Bulletin of the Atomic Scientists},
-        volume = {76},
-        pages = {8},
-        year  = {2020}
-    }
-    @incollection{
-        mil17a,
-        author = {Miller, Steven E.},
-        title = {{Cyber Threats, Nuclear Analogies? Divergent Trajectories in Adapting to New Dual-Use Technologies}},
-        booktitle = {Understanding Cyber Conflict: 14 Analogies},
-        publisher = {Georgetown University Press},
-        year = {2017},
-        editor = {Perkovich, George and Levite, Ariel E.},
-        pages = {161}
-    }
-    @conference{
-        ben20a,
-        author = {Benjamin, Jacob and Haney, Michael},
-        title = {{Nonproliferation of Cyber Weapons}},
-        year = { 2020},
-        organization = {Symposium on Cyber Warfare, Cyber Defense, \& Cyber Security },
-        address = {Las Vegas, Nevada}
-    }
-\end{filecontents}
-%%%%%%%
+%%%%% citations
+% do not use \acf in author field; screws up alphabetical on standard.bst
+%%%%%
 
 
 %%%%% acronyms
-% alphabetical ordering is automated
-\newacronym{nrs}{NRHES}{Nuclear Renewable Hybrid Energy System}
-\newacronym{ahp}{AHP}{Analytical Hierarchy Process}
-\newacronym{inl}{INL}{Idaho National Laboratory}
-\newacronym{orl}{ORNL}{Oak Ridge National Laboratory}
-\newacronym{anl}{ANL}{Argonne National Laboratory}
-\newacronym{npp}{NPP}{Nuclear Power Plant}
-\newacronym{smr}{SMR}{Small Modular Reactor}
-\newacronym{ump}{UAMPS}{Utah Associated Municipal Power Systems}
-\newacronym{nus}{NuScale}{NuScale Power, LLC}
-\newacronym{nrc}{NRC}{United States Nuclear Regulatory Commission}
-\newacronym{epri}{EPRI}{Electric Power Research Institute}
-\newacronym{nerc}{NERC}{North American Electric Reliability Corporation}
-\newacronym{ci}{CI}{Consistency Index}
-\newacronym{cr}{CR}{Consistency Ratio}
-\newacronym{htse}{HTSE}{High Temperature Steam Electrolysis}
-\newacronym{lwr}{LWR}{Light Water Reactor}
-\newacronym{eia}{EIA}{U.S. Energy Information Administration}
-\newacronym{oer}{OER}{Online Educational Resource}
-\newacronym{lms}{LMS}{Learning Management System}
-\newacronym{cps}{CPS}{Cyber-Physical Systems}
-\newacronym{nsf}{NSF}{National Science Foundation}
-\newacronym{wsc}{WSC}{Western Services Corporation}
-\newacronym{cae}{CAES}{Center for Advanced Energy Studies}
-\newacronym{hsl}{HSSL}{Human System Simulation Laboratory}
-\newacronym{pwr}{PWR}{Pressurized Water Reactor}
-\newacronym{bwr}{BWR}{Boiling Water Reactor}
-\newacronym{roi}{ROI}{Return on Investment}
-\newacronym{ic}{I\&C}{Instrumentation \& Controls}
-\newacronym{mwe}{MWe}{Megawatts-electric}
-\newacronym{ics}{ICS}{Industrial Control Systems}
-\newacronym{sca}{SCADA}{Supervisory Control and Data Acquisition}
-\newacronym{ip}{IP}{Internet Protocol}
-\newacronym{udp}{UDP}{User Datagram Protocol}
-\newacronym{tva}{TVA}{Tennessee Valley Authority}
-\newacronym{plc}{PLC}{Programmable Logic Controller}
-\newacronym{vfd}{VFD}{Variable Frequency Drive}
-\newacronym{khp}{KHNP}{Korean Hydro \& Nuclear Power Co., Ltd}
-\newacronym{onl}{ORNL}{Oak Ridge National Laboratory}
-\newacronym{jcp}{JCPOA}{Joint Comprehensive Plan of Action}
-\newacronym{mim}{MITM}{Man in the Middle}
-\newacronym{dos}{DDoS}{Distributed Denial of Service}
-\newacronym{tcp}{TCP/IP}{Transmission Control Protocol/Internet Protocol}
-\newacronym{dnp}{DNP3}{Distributed Network Protocol 3}
-\newacronym{pra}{PRA}{Probabilistic Risk Assessment}
-\newacronym{cs}{CS}{Critical System}
-\newacronym{loc}{LOCA}{Loss of Coolant Accident}
-\newacronym{hmi}{HMI}{Human Machine Interface}
-\newacronym{pha}{PHA}{Preliminary Hazards Analysis}
-\newacronym{bol}{BOL}{Beginning-of-Life}
-\newacronym{eol}{EOL}{End-of-Life}
-\newacronym{mol}{MOL}{Middle-of-Life}
-\newacronym{imu}{IMUNES}{Integrated Multiprotocol Network Emulator/Simulator}
-\newacronym{ccc}{CCC}{Computing Community Consortium}
-\newacronym{neu}{NEUP}{Nuclear Energy University Program}
-\newacronym{doe}{DOE}{United States Department of Energy}
-\newacronym{nei}{NEI}{Nuclear Energy Institute}
-\newacronym{nit}{NITRD}{Networking Information Technology Research \& Development Program}
-\newacronym{rcs}{RCS}{Reactor Cooling System}
-\newacronym{con}{IC}{Initial Condition}
-\newacronym{csi}{CSIS}{Center for Strategic \& International Studies}
-\newacronym{pcap}{PCAP}{packet capture file}
-\newacronym{dc}{DC}{Direct-Current}
-\newacronym{ac}{AC}{Alternating-Current}
-\newacronym{iff}{UIIF}{Idaho Falls Center for Higher Education}
-\newacronym{snl}{SNL}{Sandia National Laboratory}
-\newacronym{cie}{CIE}{Cyber-Informed Engineering}
-\newacronym{cds}{CRDS}{Control Rod Drive System}
-\newacronym{cdm}{CRDM}{Control Rod Drive Mechanism}
-\newacronym{fma}{FMEA}{Failure Modes \& Effects Analysis}
-\newacronym{rpn}{RPN}{Risk Priority Number}
-\newacronym{scr}{SCR}{silicon controller rectifier}
-\newacronym{hvc}{HVAC}{Heating, Ventilation \& Air Conditioning}
-\newacronym{ttb}{TTB}{Time-to-Boil}
-\newacronym{sis}{SIS}{Safety Instrumented System}
-%\newacronym{}{}{}
+\input{$ACRONYM/acronyms}
+%\input{../acronyms/acronyms}
 %%%%%
 
 
@@ -440,9 +309,9 @@
         Name
         \\ \\
         University of Idaho $\sq$ Idaho Falls Center for Higher Education\\
-        Nuclear Engineering and Industrial Management Department
+        Department of Nuclear Engineering and Industrial Management
         \\ \\ \\
-        email 
+        email
     }
 \clearpage % not have page number on title page
 \maketitle
@@ -457,6 +326,9 @@
 \end{titlepage}
 
 
+\thispagestyle{empty}
+
+
 %%%%% spacing
 \onehalfspacing %linespacing
 %\setstretch{1.05} %linespacing
@@ -467,39 +339,22 @@
 %%%%% linenumbering
 \linenumbers %toggle line numbers
 \pagewiselinenumbers %reset line numbers on new page
-\modulolinenumbers[3] %line numbering interval
+\modulolinenumbers[5] %line numbering interval
 %%%%%
 
 
-\pagenumbering{gobble}
-
-\section*{Executive Summary} \label{sec-exec-summ} 
-
-
-\newpage
-
-
-\pagenumbering{roman}
-
-\section*{Table of Contents}
-\tableofcontents
+\section*{Executive Summary} \label{exec-summ}
+One page
 
 
 \newpage
 
 
-\printnoidxglossary
+\thispagestyle{fancy}
+\setcounter{page}{1}
 
 
-\newpage
-
-
-\pagenumbering{arabic}
-
-\part{Risk Assessment}
-
-
-\section{Introduction} \label{introduction}
+\section{Introduction} \label{sec-introduction}
 Expand on the white paper in this section to introduce the project.
 
 \subsection{Motivation}
@@ -510,132 +365,82 @@ Expand on the white paper in this section to introduce the project.
 \newpage
 
 
-\section{Background} \label{background}
+\section{Background} \label{sec-background}
 Give a good technical overview of your topic with literature references.
 
 
 \newpage
 
 
-\section{Methodology}
+\section{Process model} \label{sec-process-model}
+`Derive' the process model. Include all the necessary data needed. Provide diagrams, etc.
 
-\subsection{Assumptions}
-
-\subsection{Models}
-
-\subsection{Input data}
-
-\subsection{Simulations}
+Be as technical as possible, and include a solid qualitative analysis. Include and justify any assumptions.
 
 
 \newpage
 
 
-\section{Results} \label{results}
-
-\subsection{Common trends}
-
-\subsection{Other observations}
+\section{\acs{mcp} model} \label{sec-mcnp}
+Provide the \acs{mcp} model screenshot the configuration in the visual editor. Explain what you are modeling and why it is important. Include the input file in an appendix.
 
 
 \newpage
 
 
-\section{Discussion} \label{discussion}
-
-\subsection{Major takeaways}
-
-\subsection{Implications}
-
-\subsection{Limitations}
+\section{Results and discussion} \label{sec-results-discussion}
+Present and analyze results.
 
 
 \newpage
 
 
-\part{Risk Management}
-
-
-\section{Mitigation}
-
-\subsection{Risks}
-
-\subsection{Goals}
-
-
-\newpage
-
-
-\section{Methodology}
-
-\subsection{Assumptions}
-
-\subsection{Models}
-
-\subsection{Input data}
-
-\subsection{Simulations}
-
-
-\newpage
-
-
-\section{Results} 
-
-\subsection{Common trends}
-
-\subsection{Other observations}
-
-
-\newpage
-
-
-\section{Discussion} 
-
-\subsection{Major takeaways}
-
-\subsection{Implications}
-
-\subsection{Limitations}
-
-
-\newpage
-
-
-\part{Institutional Issues}
-
-
-\section{Risk perception}
-
-
-\section{Risk communication}
-
-
-\section{Regulatory, social, political issues}
-
-
-\newpage
-
-
-\part{Conclusions}
-
-
-\section{Summary Remarks}
-
-
-\section{Cross cutting discussions} \label{cross-cutting}
+\section{Cross cutting discussions} \label{sec-cross-cutting}
 Briefly discuss cross cutting issues related to the project.
 
 
-\section{Future work} \label{future-work}
+\newpage
+
+
+\section{Future work} \label{sec-future-work}
 Outside the scope of the project, what additional work could be done using the existing model? What enhancements can be made to the model and for what purpose(s)?
 
 
-\section{Lessons learned} \label{lessons-learned}
-What you personally learned over the course of the project?
+\newpage
+
+
+\section{Lessons learned} \label{sec-lessons}
+What you personally learned over the course of the project
 
 
 \newpage
+
+
+\section{Summary remarks} \label{sec-summary}
+Summarize. 
+
+Major results and implications include - 
+\begin{itemize}[topsep=0pt,itemsep=-0.75ex,partopsep=1ex,parsep=1ex]
+    \item
+    \item
+    \item
+\end{itemize}
+
+
+\newpage
+
+
+%%%%% header and footer
+\pagestyle{fancy}
+\fancyhf{} %move page number to bottom right
+\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
+%\lhead{\scriptsize }
+%\chead{\scriptsize }
+%\rhead{\scriptsize }
+%\lfoot{\scriptsize }
+\rfoot{\thepage}
+\nolinenumbers
+%%%%%
 
 
 \section*{Acknowledgements}
@@ -643,11 +448,18 @@ What you personally learned over the course of the project?
 
 \newpage
 
-%%%%% references
-\bibliographystyle{nsf}
+
+%%%%%%% citations
+%
+%%% make sure $BIBREF contains the path to each bib file in .bashrc
+%%% make sure Overleaf has the latexmkrc pointing to where the bib and bst are located
+%
+\bibliographystyle{standard}
 \setlength{\bibhang}{0pt}
-\bibliography{references}
-%%%%%
+\bibliography{
+}
+%
+%%%%%%%
 
 
 \newpage
@@ -663,67 +475,38 @@ What you personally learned over the course of the project?
 
 \newpage
 
-%\begin{table}[h!]
-%    \centering
-%    \caption[short]{Title}
-%        \begin{tabular}{|c|c|c|c|}
-%            \hline
-%            A&
-%            B&
-%            C&
-%            D
-%            \\
-%            \hline
-%            X
-%            &X
-%            &X
-%            &X
-%            \\
-%            \hline
-%        \end{tabular}
-%    \label{tab-label}
-%\end{table}
-
-
-\newpage
-
-
-%\begin{spacing}{1}
-%\begin{longtable}{|c|c|c|c|c|}
-%    \caption{Title}
-%    \label{tab-label-name} \\
-%    \hline
-%    \multicolumn{1}{|c|}{A}&
-%    \multicolumn{1}{c|}{B}&
-%    \multicolumn{1}{c|}{C}&
-%    \multicolumn{1}{c|}{D}&
-%    \multicolumn{1}{c|}{E}
+%\setlength{\arrayrulewidth}{0.3mm}
+%\begin{longtable}{|l|c|c|}
+%    \caption{Gas processing constraints}
+%    \label{tab-gas-processing}
 %    \\
 %    \hline
-%    \endfirsthead
-%    \multicolumn{5}{c}{{\tablename\ \thetable{} - continued}} \\
-%    \hline
-%    \multicolumn{1}{|c|}{A}&
-%    \multicolumn{1}{c|}{B}&
-%    \multicolumn{1}{c|}{C}&
-%    \multicolumn{1}{c|}{D}&
-%    \multicolumn{1}{c|}{E}
+%    \textbf{Constraint}
+%    &\textbf{Regular grade}
+%    &\textbf{Premium grade}
 %    \\
 %    \hline
-%    \endhead
+%    Raw gas
+%    & 7 m\textsuperscript{3}/ton
+%    & 11 m\textsuperscript{3}/ton
+%    \\
 %    \hline
-%    \endfoot
+%    Production time
+%    & 10 h/ton
+%    & 8 h/ton
+%    \\
 %    \hline
-%    \endlastfoot
-%    X
-%    &X
-%    &X
-%    &X
-%    &X
+%    Storage
+%    & 9 tons
+%    & 6 tons
+%    \\
+%    \hline
+%    Profit
+%    & \$150/ton
+%    & \$175/ton
 %    \\
 %    \hline
 %\end{longtable}
-%\end{spacing}
 
 
 \newpage
@@ -743,7 +526,7 @@ What you personally learned over the course of the project?
 
 %\begin{figure}[h!]
 %    \centering
-%    \includegraphics[width=0.X\textwidth]{.png}
+%    \includegraphic[width=0.X\textwidth]{.png}
 %    \caption[short]{}
 %    \label{fig-label-name}
 %\end{figure}
@@ -753,16 +536,22 @@ What you personally learned over the course of the project?
 
 \begin{appendices}
 
-    \titleformat{\part}{\normalfont\Large\bfseries\filcenter}{\thepart}{0ex}{}[]
 
-    \part*{Appendices}
-
+%%%%% formatting
     \setcounter{section}{0}
     \renewcommand{\thesection}{\Roman{section}}
-    \titleformat{\section}{\normalfont\Large\bfseries}{Appendix \thesection:}{1ex}{}[]
+    \titleformat{\section}{\normalfont\large\bfseries\filcenter}{Appendix \thesection:}{1ex}{}[]
+%%%%%
 
 
-    \section{Just appendix title} \label{}
+    \section{\acs{mcp} input decks} \label{app-mcnp}
+
+
+\newpage
+
+
+    \section{Acronyms}
+    \printnoidxglossary[title={}]
 
 
 \end{appendices}

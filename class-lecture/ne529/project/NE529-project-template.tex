@@ -24,6 +24,21 @@
 %%%%%
 
 
+%%%%% enable tagging for accessibility
+\RequirePackage{pdfmanagement-testphase}
+\DocumentMetadata{
+    tagging=on,
+    pdfversion=2.0,
+    pdfstandard=ua-2,
+    lang=en-US,
+    debug={log=all},
+    testphase={latest,tagpdf},
+    tagging-setup={math/setup={mathml-AF,mathml-SE}}
+}
+\tagpdfsetup{math/alt/use}
+%%%%%
+
+
 %%%%% general 
 \documentclass[11pt,a4paper]{article}
 \usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
@@ -58,8 +73,6 @@
 \usepackage{lscape}
 \usepackage{array}
 \usepackage{chngcntr}
-\usepackage{hyperref}
-\hypersetup{colorlinks,linkcolor=black,citecolor=black,urlcolor=blue} 
 \usepackage{sectsty}
 \usepackage{textcomp}
 \usepackage{lastpage}
@@ -69,11 +82,28 @@
 \usepackage{color}
 \usepackage{marginnote}
 \usepackage[figure,table]{totalcount}
-\usepackage[capitalise,noabbrev]{cleveref}
 \usepackage{nameref}
 %\usepackage{parskip}
 \usepackage[font=itshape]{quoting}
 \usepackage{upgreek,textgreek}
+%%%%%
+
+
+%%%%% links and tags
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=blue,
+    pdftitle={Project report},
+    pdfauthor={R. A. Borrelli},
+    pdfkeywords={project report},
+    pdflanguage={en-US},
+    pdfsubject={project report},
+    pdfdisplaydoctitle=true 
+} 
+\usepackage[capitalise]{cleveref}
 %%%%%
 
 
@@ -139,7 +169,7 @@
 \makenoidxglossaries
 \AtBeginEnvironment{appendices}{\crefalias{section}{appendix}} %for cleveref to use Appendix
 \crefname{paragraph}{Section}{Sections}
-\usepackage{titlesec,titletoc}
+%\usepackage{titlesec,titletoc}
 %\renewcommand{\thepart}{ARTICLE \Roman{part}} %puts the label into the command so \thelabel will carry through
 %\renewcommand{\thesection}{\arabic{section}} %puts the label into the command so \thelabel will carry through
 %\titleformat{\part}{\normalfont\large\bfseries\filcenter}{\thepart}{}{}[]
@@ -152,10 +182,10 @@
 %\titlespacing*\paragraph{0pt}{0.45\baselineskip}{0.25\baselineskip}
 %\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{-1em}{}[.]
 %\titlespacing*\subparagraph{0pt}{0.40\baselineskip}{0.25\baselineskip}
-\titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{\theparagraph}{5pt}{}[]
-\titlespacing*\paragraph{0pt}{0.50\baselineskip}{0.25\baselineskip}
-\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{0.5em}{}[.]
-\titlespacing*\subparagraph{0pt}{0.40\baselineskip}{0.50\baselineskip}
+%\titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{\theparagraph}{5pt}{}[]
+%\titlespacing*\paragraph{0pt}{0.50\baselineskip}{0.25\baselineskip}
+%\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{0.5em}{}[.]
+%\titlespacing*\subparagraph{0pt}{0.40\baselineskip}{0.50\baselineskip}
 %%%%%
 
 
@@ -420,7 +450,7 @@ What you personally learned over the course of the project
 Summarize. 
 
 Major results and implications include - 
-\begin{itemize}[topsep=0pt,itemsep=-0.75ex,partopsep=1ex,parsep=1ex]
+\begin{itemize}
     \item
     \item
     \item
@@ -444,7 +474,7 @@ Major results and implications include -
 
 
 \section*{Acknowledgements}
-
+\acl{ui}
 
 \newpage
 
@@ -540,7 +570,7 @@ Major results and implications include -
 %%%%% formatting
     \setcounter{section}{0}
     \renewcommand{\thesection}{\Roman{section}}
-    \titleformat{\section}{\normalfont\large\bfseries\filcenter}{Appendix \thesection:}{1ex}{}[]
+%    \titleformat{\section}{\normalfont\large\bfseries\filcenter}{Appendix \thesection:}{1ex}{}[]
 %%%%%
 
 

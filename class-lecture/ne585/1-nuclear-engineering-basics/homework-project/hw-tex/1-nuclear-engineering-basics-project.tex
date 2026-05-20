@@ -2,8 +2,18 @@
 %@TheDoctorRAB
 %%%%%
 %
-%REFERENCES
+%%%%%
+%standard report format for journal papers
+%%%%%
 %
+%%%%%
+%PDF tagging accessible file
+%compile with pdflatex
+%run $show-pdf-tags --xml filename.pdf
+%%%%%
+%
+%%%%%
+%REFERENCES
 %neup.bst - numbered citations in order of appearance, short author list with et al in reference section
 %nsf.bst - numbered citations in order of appearance, full author list in references section
 %standard.bst - citations with author last name with et al for more than 2 authors; full author list in references section
@@ -23,15 +33,31 @@
 %%%%%
 
 
+%%%%% enable tagging for accessibility
+\RequirePackage{pdfmanagement-testphase}
+\DocumentMetadata{
+    tagging=on,
+    pdfversion=2.0,
+    pdfstandard=ua-2,
+    lang=en-US,
+    debug={log=all},
+    testphase={latest,tagpdf},
+    tagging-setup={math/setup={mathml-AF,mathml-SE}}
+}
+\tagpdfsetup{math/alt/use}
+%%%%%
+
+
 %%%%% general 
 \documentclass[11pt,a4paper]{article}
 \usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
-\usepackage[pagewise]{lineno} %line numbering
+\usepackage[pagewise]{lineno} %linenumbering restarts each page
+%\usepackage[running]{lineno} %linenumbering continuous
+\usepackage{mmap} %helps make pdfs copy and paste
 \usepackage{setspace}
 \usepackage{ulem} %strikethrough - do not \sout{\cite{}}
 \usepackage[pdftex,dvipsnames]{xcolor,colortbl} %change font color
 \usepackage{graphicx}
-\usepackage{filecontents}
 \usepackage{tablefootnote}
 \usepackage{footnotehyper}
 \usepackage{float}
@@ -39,11 +65,11 @@
 %\usepackage{subfig}
 \usepackage[yyyymmdd]{datetime} %date format
 \renewcommand{\dateseparator}{.}
-\graphicspath{{$TEXIMG/}} %path to graphics
+%\graphicspath{{$TEXIMG/}} %path to graphics
 \setcounter{secnumdepth}{5} %set subsection to nth level
 \usepackage{needspace}
 \usepackage[stable,hang,flushmargin]{footmisc} %footnotes in section titles and no indent; standard.bst
-\usepackage[inline]{enumitem}
+\usepackage[inline]{enumitem} %https://www.tug.org/texlive//Contents/live/texmf-dist/doc/latex-dev/latex-lab/latex-lab-enumitem.pdf
 \usepackage{boldline}
 \usepackage{makecell}
 \usepackage{booktabs}
@@ -54,8 +80,6 @@
 \usepackage{lscape}
 \usepackage{array}
 \usepackage{chngcntr}
-\usepackage{hyperref}
-\hypersetup{colorlinks,linkcolor=black,citecolor=black,urlcolor=blue} 
 \usepackage{sectsty}
 \usepackage{textcomp}
 \usepackage{lastpage}
@@ -65,9 +89,25 @@
 \usepackage{color}
 \usepackage{marginnote}
 \usepackage[figure,table]{totalcount}
-\usepackage[capitalise]{cleveref}
-\usepackage{nameref}
 \usepackage{parskip}
+%%%%%
+
+
+%%%%% links and tags
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor=black,
+    citecolor=black,
+    urlcolor=blue,
+    pdftitle={Homework},
+    pdfauthor={R. A. Borrelli},
+    pdfkeywords={homework},
+    pdflanguage={en-US},
+    pdfsubject={homework},
+    pdfdisplaydoctitle=true 
+} 
+\usepackage[capitalise]{cleveref} %must be loaded after hyperref
 %%%%%
 
 
@@ -107,7 +147,7 @@
 \setlength{\columnsep}{1.00mm}
 \usepackage[singlelinecheck=false,labelfont=bf]{caption}
 \usepackage{subcaption}
-\captionsetup[table]{justification=justified,skip=5pt,labelformat={default},labelsep=period,name={Table}} %sets a space after table caption
+\captionsetup[table]{justification=centering,skip=5pt,labelformat={default},labelsep=period,name={Table}} %sets a space after table caption
 \captionsetup[figure]{justification=justified,skip=5pt,labelformat={default},labelsep=period,name={Figure}} %sets space above caption, 'figure' format
 \captionsetup[wrapfigure]{justification=centering,aboveskip=0pt,belowskip=0pt,labelformat={default},labelsep=period,name={Fig.}} %sets space above caption, 'figure' format
 \captionsetup[wraptable]{justification=centering,aboveskip=0pt,belowskip=0pt,labelformat={default},labelsep=period,name={Table}} %sets space above caption, 'figure' format
@@ -116,16 +156,14 @@
 
 %%%%% watermark
 %\usepackage[firstpage,vpos=0.63\paperheight]{draftwatermark}
-%\SetWatermarkText{\shortstack{CONFIDENTIAL\\do not distribute}}
+%\SetWatermarkText{\shortstack{DRAFT\\do not distribute}}
 %\SetWatermarkScale{0.20}
 %%%%%
 
 
 %%%%% cross referencing files
 %\usepackage{xr} %for revisions - will cross reference from one file to here
-%\externaldocument{../review/PNUCENE-D-22-00841-Reviewer1} %aux file needed
-%\externaldocument{../review/PNUCENE-D-22-00841-Reviewer2} %aux file needed
-%see reviwer tex file for compiling instructions
+%\externaldocument{/path/to/auxfilename} %aux file needed
 %%%%%
 
 
@@ -133,23 +171,7 @@
 \usepackage[toc,title]{appendix}
 \usepackage[acronym,nomain,nonumberlist]{glossaries}
 \makenoidxglossaries
-\usepackage{titlesec,titletoc}
-%\renewcommand{\thepart}{ARTICLE \Roman{part}} %puts the label into the command so \thelabel will carry through
-%\renewcommand{\thesection}{\arabic{section}} %puts the label into the command so \thelabel will carry through
-%\titleformat{\part}{\normalfont\Large\bfseries\filcenter}{\thepart}{}{}[]
-%\titlespacing*\part{0pt}{0.95\baselineskip}{0.75\baselineskip}
-%\titleformat{\section}{\normalfont\large\bfseries\filcenter}{\thesection}{}{}[]
-%\titlespacing*\section{0pt}{0.65\baselineskip}{0.35\baselineskip}
-%\titleformat{\subsection}[runin]{\normalfont\normalsize\bfseries}{\thesubsection}{-1em}{}[.]
-%\titlespacing*\subsection{0pt}{0.50\baselineskip}{0.25\baselineskip}
-%\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries\itshape}{\theparagraph}{-1em}{}[.]
-%\titlespacing*\paragraph{0pt}{0.45\baselineskip}{0.25\baselineskip}
-%\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{-1em}{}[.]
-%\titlespacing*\subparagraph{0pt}{0.40\baselineskip}{0.25\baselineskip}
-\titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{\theparagraph}{5pt}{}[]
-\titlespacing*\paragraph{0pt}{0.50\baselineskip}{0.25\baselineskip}
-\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{-1em}{}[.]
-\titlespacing*\subparagraph{0pt}{0.40\baselineskip}{0.20\baselineskip}
+%do not load titlesec,titletoc
 %%%%%
 
 
@@ -175,6 +197,10 @@
 \definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
 \definecolor{brandeisblue}{rgb}{0.0, 0.44, 1.0}
 \definecolor{darkmidnightblue}{rgb}{0.0, 0.2, 0.4}
+
+\newcommand{\x}{\cellcolor{aliceblue}} %use to shade in table cell
+\newcommand{\y}{\cellcolor{lightgray}} %use to shade in table cell
+\newcommand{\z}{\cellcolor{antiquewhite}} %use to shade in table cell
 %%%%%
 
 
@@ -193,9 +219,7 @@
 \newcommandx{\cmt}[2][1=]{\todo[author=\textbf{STRUCTURE},tickmarkheight=0.15cm,linecolor=red,backgroundcolor=red!25,bordercolor=black,#1]{#2}}
 \newcommandx{\con}[2][1=]{\todo[author=\textbf{CONTENT},tickmarkheight=0.15cm,linecolor=brilliantlavender,backgroundcolor=brilliantlavender,bordercolor=black,#1]{#2}}
 \newcommandx{\rab}[2][1=]{\todo[noline,author=\textbf{RAB},backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
-\newcommandx{\one}[2][1=]{\todo[author=\textbf{Reviewer 1},tickmarkheight=0.15cm,linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=black,#1]{#2}} 
-\newcommandx{\two}[2][1=]{\todo[author=\textbf{Reviewer 2},tickmarkheight=0.15cm,linecolor=Plum,backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
-\newcommandx{\thr}[2][1=]{\todo[author=\textbf{Reviewer 3},tickmarkheight=0.15cm,linecolor=Plum,backgroundcolor=Plum!25,bordercolor=black,#1]{#2}}
+
 
 %\newcommandx{\jon}[2][1=]{\todo[noline,author=\textbf{ATTN: Johnson},backgroundcolor=blue!25,bordercolor=black,#1]{#2}}
 %\newcommandx{\han}[2][1=]{\todo[noline,author=\textbf{ATTN: Haney},backgroundcolor=OliveGreen!25,bordercolor=black,#1]{#2}}
@@ -266,26 +290,6 @@
 %%%%%
 
 
-%%%%% archived section commands - use titlesec
-%\makeatletter
-%\renewcommand\section{%
-%    \@startsection{section}{1}{\z@ }{0.50\baselineskip}{0.25\baselineskip}
-%    {\large \normalfont \bfseries}}%
-%\makeatletter
-%\renewcommand\paragraph{%
-%    \@startsection{paragraph}{4}{\z@ }{0.55\baselineskip}{-1em}
-%    {\normalfont \normalsize \bfseries}}%
-%\makeatletter
-%\renewcommand\subparagraph{%
-%    \@startsection{subparagraph}{5}{\z@ }{0.40\baselineskip}{-1em}
-%    {\normalfont \normalsize \itshape }}%
-%\makeatletter
-%\renewcommand\subsection{%
-%    \@startsection{subsection}{2}{\z@ }{0.45\baselineskip}{0.25\baselineskip}
-%    {\large \normalfont \bfseries}}%
-%%%%%
-
-
 %%%%% header and footer
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -298,129 +302,9 @@
 %%%%%
 
 
-%%%%% citations
-\begin{filecontents}{references.bib}
-    @misc{
-        nye15a,
-        author = {Nye, Jr., Joseph S.},
-        title = {{The World Needs an Arms-control Treaty for Cybersecurity}},
-        year = {2015},
-        note = {{The Washington Post}}
-    }
-    @article{
-        mil20a,
-        author = {Miller, James N.},
-        title = {No to no first use — for now},
-        journal = {Bulletin of the Atomic Scientists},
-        volume = {76},
-        pages = {8},
-        year  = {2020}
-    }
-    @incollection{
-        mil17a,
-        author = {Miller, Steven E.},
-        title = {{Cyber Threats, Nuclear Analogies? Divergent Trajectories in Adapting to New Dual-Use Technologies}},
-        booktitle = {Understanding Cyber Conflict: 14 Analogies},
-        publisher = {Georgetown University Press},
-        year = {2017},
-        editor = {Perkovich, George and Levite, Ariel E.},
-        pages = {161}
-    }
-    @conference{
-        ben20a,
-        author = {Benjamin, Jacob and Haney, Michael},
-        title = {{Nonproliferation of Cyber Weapons}},
-        year = { 2020},
-        organization = {Symposium on Cyber Warfare, Cyber Defense, \& Cyber Security },
-        address = {Las Vegas, Nevada}
-    }
-\end{filecontents}
-%%%%%
-
-
-%%%% acronyms
-% alphabetical ordering is automated
-\newacronym{nrs}{NRHES}{Nuclear Renewable Hybrid Energy System}
-\newacronym{ahp}{AHP}{Analytical Hierarchy Process}
-\newacronym{inl}{INL}{Idaho National Laboratory}
-\newacronym{orl}{ORNL}{Oak Ridge National Laboratory}
-\newacronym{anl}{ANL}{Argonne National Laboratory}
-\newacronym{npp}{NPP}{Nuclear Power Plant}
-\newacronym{smr}{SMR}{Small Modular Reactor}
-\newacronym{ump}{UAMPS}{Utah Associated Municipal Power Systems}
-\newacronym{nus}{NuScale}{NuScale Power, LLC}
-\newacronym{nrc}{NRC}{United States Nuclear Regulatory Commission}
-\newacronym{epri}{EPRI}{Electric Power Research Institute}
-\newacronym{nerc}{NERC}{North American Electric Reliability Corporation}
-\newacronym{ci}{CI}{Consistency Index}
-\newacronym{cr}{CR}{Consistency Ratio}
-\newacronym{htse}{HTSE}{High Temperature Steam Electrolysis}
-\newacronym{lwr}{LWR}{Light Water Reactor}
-\newacronym{eia}{EIA}{U.S. Energy Information Administration}
-\newacronym{oer}{OER}{Online Educational Resource}
-\newacronym{lms}{LMS}{Learning Management System}
-\newacronym{cps}{CPS}{Cyber-Physical Systems}
-\newacronym{nsf}{NSF}{National Science Foundation}
-\newacronym{wsc}{WSC}{Western Services Corporation}
-\newacronym{cae}{CAES}{Center for Advanced Energy Studies}
-\newacronym{hsl}{HSSL}{Human System Simulation Laboratory}
-\newacronym{pwr}{PWR}{Pressurized Water Reactor}
-\newacronym{bwr}{BWR}{Boiling Water Reactor}
-\newacronym{roi}{ROI}{Return on Investment}
-\newacronym{ic}{I\&C}{Instrumentation \& Controls}
-\newacronym{mwe}{MWe}{Megawatts-electric}
-\newacronym{ics}{ICS}{Industrial Control Systems}
-\newacronym{sca}{SCADA}{Supervisory Control and Data Acquisition}
-\newacronym{ip}{IP}{Internet Protocol}
-\newacronym{udp}{UDP}{User Datagram Protocol}
-\newacronym{tva}{TVA}{Tennessee Valley Authority}
-\newacronym{plc}{PLC}{Programmable Logic Controller}
-\newacronym{vfd}{VFD}{Variable Frequency Drive}
-\newacronym{khp}{KHNP}{Korean Hydro \& Nuclear Power Co., Ltd}
-\newacronym{onl}{ORNL}{Oak Ridge National Laboratory}
-\newacronym{jcp}{JCPOA}{Joint Comprehensive Plan of Action}
-\newacronym{mim}{MITM}{Man in the Middle}
-\newacronym{dos}{DDoS}{Distributed Denial of Service}
-\newacronym{tcp}{TCP/IP}{Transmission Control Protocol/Internet Protocol}
-\newacronym{dnp}{DNP3}{Distributed Network Protocol 3}
-\newacronym{pra}{PRA}{Probabilistic Risk Assessment}
-\newacronym{cs}{CS}{Critical System}
-\newacronym{loc}{LOCA}{Loss of Coolant Accident}
-\newacronym{hmi}{HMI}{Human Machine Interface}
-\newacronym{pha}{PHA}{Preliminary Hazards Analysis}
-\newacronym{bol}{BOL}{Beginning-of-Life}
-\newacronym{eol}{EOL}{End-of-Life}
-\newacronym{mol}{MOL}{Middle-of-Life}
-\newacronym{imu}{IMUNES}{Integrated Multiprotocol Network Emulator/Simulator}
-\newacronym{ccc}{CCC}{Computing Community Consortium}
-\newacronym{neu}{NEUP}{Nuclear Energy University Program}
-\newacronym{doe}{DOE}{United States Department of Energy}
-\newacronym{nei}{NEI}{Nuclear Energy Institute}
-\newacronym{nit}{NITRD}{Networking Information Technology Research \& Development Program}
-\newacronym{rcs}{RCS}{Reactor Cooling System}
-\newacronym{con}{IC}{Initial Condition}
-\newacronym{csi}{CSIS}{Center for Strategic \& International Studies}
-\newacronym{pcap}{PCAP}{packet capture file}
-\newacronym{dc}{DC}{Direct-Current}
-\newacronym{ac}{AC}{Alternating-Current}
-\newacronym{iff}{UIIF}{Idaho Falls Center for Higher Education}
-\newacronym{snl}{SNL}{Sandia National Laboratory}
-\newacronym{cie}{CIE}{Cyber-Informed Engineering}
-\newacronym{cds}{CRDS}{Control Rod Drive System}
-\newacronym{cdm}{CRDM}{Control Rod Drive Mechanism}
-\newacronym{fma}{FMEA}{Failure Modes \& Effects Analysis}
-\newacronym{rpn}{RPN}{Risk Priority Number}
-\newacronym{scr}{SCR}{silicon controller rectifier}
-\newacronym{hvc}{HVAC}{Heating, Ventilation \& Air Conditioning}
-\newacronym{ttb}{TTB}{Time-to-Boil}
-\newacronym{sis}{SIS}{Safety Instrumented System}
-\newacronym{usb}{USB}{Universal Serial Bus}
-\newacronym{ack}{ACK}{Acknowledge}
-\newacronym{seq}{SEQ}{Sequence}
-\newacronym{npr}{NPR}{National Public Radio}
-\newacronym{cyd}{CYDEF}{Cyber Defence QCD Corporation}
-\newacronym{ara}{ARA}{Amsterdam-Rotterdam-Antwerp}
-%\newacronym{}{}{}
+%%%%% acronyms
+\input{$ACRONYM/acronyms}
+%\input{../acronyms/acronyms}
 %%%%%
 
 
@@ -451,13 +335,7 @@
 \end{titlepage}
 
 
-\printnoidxglossary
-
-
-\newpage
-
-\section{Poisson distribution}
-\paragraph*{(20)} 
+\section{Poisson distribution -- (20)} 
 The Poisson distribution describes radioactive decay. It is a specific form of the binomial distribution. Derive the Poisson distribution from the binomial distribution. Derive the first and second (central) moments of the Poisson distribution. Briefly comment on their significance. Check out the \href{https://uidaho.pressbooks.pub/riskassessment/chapter/common-statistical-distributions/}{Risk assessment OER} for more information.
 
 
@@ -466,8 +344,8 @@ The Poisson distribution describes radioactive decay. It is a specific form of t
 
 \newpage
 
-\section{Binding energy}
-\paragraph*{(20)} 
+
+\section{Binding energy -- (20)}
 Find the binding energy per nucleon for $^{235}U$ and $^{252}Cf$. Which radionuclide do you think is more likely to spontaneously fission and why?
 
 
@@ -476,9 +354,9 @@ Find the binding energy per nucleon for $^{235}U$ and $^{252}Cf$. Which radionuc
 
 \newpage
 
-\section{Three member decay}
-\paragraph*{(20)} 
-Derive the \href{https://uidaho.pressbooks.pub/nuclearengineering/chapter/radioactive-decay/}{decay equation} for a three member chain (A, B, C), where the third member is a stable nuclide. At what time is the activity of B maximized? Based on the three member decay chain, when will secular equilibrium be reached if $\lambda_A \ll \lambda_B$ or if $\lambda_B \ll \lambda_A$ Discuss why secular equilibrium is useful.
+
+\section{Three member decay -- (20)}
+Derive the decay equation for a three member chain (A, B, C), where the third member is a stable nuclide. At what time is the activity of B maximized? Based on the three member decay chain, when will secular equilibrium be reached if $\lambda_A \ll \lambda_B$ or if $\lambda_B \ll \lambda_A$ Discuss why secular equilibrium is useful.
 
 
 
@@ -486,10 +364,9 @@ Derive the \href{https://uidaho.pressbooks.pub/nuclearengineering/chapter/radioa
 
 \newpage
 
-\section{N member decay}
-\paragraph*{(20)} 
+
+\section{N member decay -- (20)}
 Derive the decay equation for an N member chain, where the Nth member is a stable nuclide. Do it out for at least a fourth member. Plot [\textit{log-log}] the $^{238}U$ decay chain for $0<t<10^8\;y$. Does $^{222}Rn$ reach secular equilibrium with $^{238}U$? Note any interesting observations and subsequent implications.
-        \vspace{0.25in}\\
         
         
         
@@ -497,15 +374,38 @@ Derive the decay equation for an N member chain, where the Nth member is a stabl
         
 \newpage
 
-\section{Half life}
-\paragraph*{(20)} 
-You are given an unknown radioactive sample. (See Table \ref{tab-half-life}.) You record `average counts;' i.e., disintegrations per second, every 30 seconds, for 10 minutes. Using these data, what radionuclide is this? Plot [\textit{semi-log}] the data with error bars; i.e., $\overline{c} \pm 1 \; \sigma$.
+
+\section{Half life -- (20)} 
+You are given an unknown radioactive sample. See \Cref{tab-half-life}. You record `average counts;' i.e., disintegrations per second, every 30 seconds, for 10 minutes. Using these data, what radionuclide is this? Plot [\textit{semi-log}] the data with error bars; i.e., $\overline{c} \pm 1 \; \sigma$.
         
 
 
 
 
 \newpage
+
+
+%%%%% header and footer
+\pagestyle{fancyplain}
+\fancyhf{} %clear header and footer 
+\renewcommand{\headrulewidth}{0pt} %set line thickness in header; uncomment as is to remove line
+\rfoot{\fancyplain{}{\thepage}}
+\nolinenumbers
+%%%%%
+
+
+%%%%%%% citations
+%
+%%% make sure $BIBREF contains the path to each bib file in .bashrc
+%%% make sure Overleaf has the latexmkrc pointing to where the bib and bst are located
+%
+\bibliographystyle{nsf}
+\setlength{\bibhang}{0pt}
+\bibliography{
+}
+%
+%%%%%%%
+
 
 \section*{Tables}
 
@@ -515,122 +415,90 @@ You are given an unknown radioactive sample. (See Table \ref{tab-half-life}.) Yo
 \listoftables%
 }
 
-\newpage
-
-\begin{table}[h!]
-    \centering
-    \caption{Average counts for unknown radioactive sample.}
-        \begin{tabular}{|c|c|}
-            \hline
-            Time(s)
-            &Counts per second
-            \\
-            \hline
-            0
-            &1000
-            \\
-            30
-            &856.7
-            \\
-            60
-            &734.0
-            \\
-            90
-            &628.8
-            \\
-            120
-            &538.8
-            \\
-            150
-            &461.6
-            \\
-            180
-            &395.4
-            \\
-            210
-            &338.8
-            \\
-            240
-            &290.3
-            \\
-            270
-            &248.7
-            \\
-            300
-            &213.0
-            \\
-            330
-            &182.5
-            \\
-            360
-            &156.4
-            \\
-            390
-            &134.0
-            \\
-            420
-            &114.8
-            \\
-            450
-            &98.3
-            \\
-            480
-            &84.2
-            \\
-            510
-            &72.2
-            \\
-            540
-            &61.8
-            \\
-            570
-            &53.0
-            \\
-            600
-            &45.4
-            \\
-            \hline
-        \end{tabular}
-    \label{tab-half-life}
-\end{table}
 
 \newpage
-%Put tables here
 
-%\setlength{\arrayrulewidth}{0.3mm}
-%\begin{longtable}{|l|c|c|}
-%    \caption{Gas processing constraints}
-%    \label{tab-gas-processing}
-%    \\
-%    \hline
-%    \textbf{Constraint}
-%    &\textbf{Regular grade}
-%    &\textbf{Premium grade}
-%    \\
-%    \hline
-%    Raw gas
-%    & 7 m\textsuperscript{3}/ton
-%    & 11 m\textsuperscript{3}/ton
-%    \\
-%    \hline
-%    Production time
-%    & 10 h/ton
-%    & 8 h/ton
-%    \\
-%    \hline
-%    Storage
-%    & 9 tons
-%    & 6 tons
-%    \\
-%    \hline
-%    Profit
-%    & \$150/ton
-%    & \$175/ton
-%    \\
-%    \hline
-%\end{longtable}
+
+\tagpdfsetup{table/header-rows=1}
+\begin{longtable}{|c|c|}
+        \caption{Average counts for unknown radioactive sample}
+        \label{tab-half-life}
+        \\
+        \hline
+        \textbf{Time (s)}& 
+        \textbf{Counts per second (cps)}
+        \\
+        \hline
+        \endfirsthead
+        0
+        &1000
+        \\
+        30
+        &856.7
+        \\
+        60
+        &734.0
+        \\
+        90
+        &628.8
+        \\
+        120
+        &538.8
+        \\
+        150
+        &461.6
+        \\
+        180
+        &395.4
+        \\
+        210
+        &338.8
+        \\
+        240
+        &290.3
+        \\
+        270
+        &248.7
+        \\
+        300
+        &213.0
+        \\
+        330
+        &182.5
+        \\
+        360
+        &156.4
+        \\
+        390
+        &134.0
+        \\
+        420
+        &114.8
+        \\
+        450
+        &98.3
+        \\
+        480
+        &84.2
+        \\
+        510
+        &72.2
+        \\
+        540
+        &61.8
+        \\
+        570
+        &53.0
+        \\
+        600
+        &45.4
+        \\
+        \hline
+\end{longtable}
+
 
 \newpage
+
 
 \section*{Figures}
 
@@ -640,8 +508,9 @@ You are given an unknown radioactive sample. (See Table \ref{tab-half-life}.) Yo
 \listoffigures%
 }
 
+
 \newpage
-%Put figures here
+
 
 %\begin{figure}[h!]
 %    \centering
@@ -650,23 +519,26 @@ You are given an unknown radioactive sample. (See Table \ref{tab-half-life}.) Yo
 %    \label{fig-label-name}
 %\end{figure}
 
+
+\begin{appendices}
+
+
+%%%%% formatting
+    \renewcommand{\thesection}{\Roman{section}}
+%%%%%
+
+
+%    \section{\acs{mcp} input decks} \label{app-mcnp}
+
+
 \newpage
 
-%appendix - uncomment below to add - do not uncomment this line
 
-%\begin{appendices}
-%
-%    \renewcommand{\thesection}{\Roman{section}}
-%    \titleformat{\section}{\normalfont\large\bfseries\filcenter}{Appendix \thesection:}{1ex}{}[]
-%
-%    \section{Just appendix title} \label{}
-%
-%\end{appendices}
+    \section{Acronyms}
+    \printnoidxglossary[title={}]
 
-%\newpage 
 
-\bibliographystyle{nsf}
-\setlength{\bibhang}{0pt}
-\bibliography{references}
+\end{appendices}
+
 
 \end{document}
